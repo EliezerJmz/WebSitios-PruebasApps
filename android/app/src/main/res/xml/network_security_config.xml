@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    
+    <!-- ⚠️⚠️⚠️ CONFIGURACIÓN SOLO PARA DEBUG/DESARROLLO - REMOVER EN PRODUCCIÓN ⚠️⚠️⚠️ -->
+    <!-- 
+         PELIGRO DE SEGURIDAD: Esta configuración permite conexiones HTTP no cifradas
+         Esto expone la aplicación a ataques man-in-the-middle y interceptación de datos
+         NUNCA usar en producción - Solo para desarrollo y testing local
+    -->
+    
+    <!-- Configuración base: PERMITE TODO EL TRÁFICO HTTP (MUY PELIGROSO) -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <!-- Confía en certificados del sistema operativo -->
+            <certificates src="system"/>
+            <!-- PELIGRO: Confía en certificados instalados por el usuario (para development) -->
+            <certificates src="user"/>
+        </trust-anchors>
+    </base-config>
+    
+    <!-- Configuración específica para servidores de desarrollo local -->
+    <!-- Permite HTTP solo para estas direcciones IP/dominios de desarrollo -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">127.0.0.1</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain>      <!-- Android Emulator -->
+        <domain includeSubdomains="true">192.168.1.1</domain>   <!-- Router común -->
+        <domain includeSubdomains="true">192.168.0.1</domain>   <!-- Router común -->
+        <domain includeSubdomains="true">10.0.0.0</domain>      <!-- Red local -->
+        <domain includeSubdomains="true">10.196.130.179</domain> <!-- Servidor de desarrollo actual -->
+    </domain-config>
+    
+    <!-- 
+         PARA PRODUCCIÓN: Reemplazar todo este archivo con:
+         <?xml version="1.0" encoding="utf-8"?>
+         <network-security-config>
+             <base-config cleartextTrafficPermitted="false" />
+         </network-security-config>
+    -->
+    
+</network-security-config>

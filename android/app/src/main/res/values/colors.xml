@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#DA291C</color>
+    <color name="colorPrimaryDark">#B52217</color>
+    <color name="colorAccent">#FFC721</color>
+    <color name="navigationBarColor">#B9B9B9</color>
+    <color name="statusBarColor">#B9B9B9</color>
+</resources>

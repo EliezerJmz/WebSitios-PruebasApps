@@ -1,0 +1,65 @@
+
+.card2{
+    border-radius:13px;
+    border: #DA291C;
+    background: linear-gradient(121deg, #DA291C 1.63%, #ff6055 100%);
+}
+
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius:13px;
+}
+.tw{
+ color: white;
+ font-weight: 700;
+ font-size: 1.8rem;
+}
+.tw2{
+    color: white;
+    font-weight: 400;
+    font-size: 1.2rem;
+    padding-bottom: 15px;
+   }
+.twt{
+    color: #FFC721;
+    font-weight: 600;
+    font-size: 1.7rem;
+   }
+.bt{
+    color: red;
+}
+
+hr {
+    border: 3px solid #ff8300;
+    border-radius: 2px;
+  }
+
+  .custom-red-button {
+    background-color: #DA291C;
+    color: white;
+}
+.custom-red-button:hover {
+    background-color: #B52217; /* Un rojo más oscuro para el efecto hover */
+}
+.custom-button:hover {
+    background-color: #DA291C; /* Un rojo más oscuro para el efecto hover */
+    color: white;
+}
+
+.p-rem-1{
+    padding:1rem
+}
+
+.pm-0{
+margin: 0; 
+padding: 0;
+}
+
+.font{
+    font-size: 1.2rem;
+    font-weight: 300;
+}

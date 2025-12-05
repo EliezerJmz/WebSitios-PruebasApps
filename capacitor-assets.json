@@ -1,0 +1,26 @@
+{
+  "android": {
+    "icon": {
+      "sources": ["resources/icon.png"],
+      "background": "#FFFFFF",
+      "foregroundScale": 1
+    },
+    "splash": {
+      "sources": ["resources/icon.png"],
+      "backgroundColor": "#FFFFFF",
+      "logoScale": 1
+    },
+    "adaptiveIcon": {
+      "icon": {
+        "sources": ["resources/icon.png"],
+        "background": "#FFFFFF",
+        "foregroundScale": 1
+      }
+    }
+  },
+  "pwa": {
+    "icon": {
+      "sources": ["resources/icon.png"]
+    }
+  }
+}
