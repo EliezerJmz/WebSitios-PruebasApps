@@ -64,6 +64,26 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+@media (max-width: 991px) {
+  body {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  #panel {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .grid {
+    margin: 0;
+    width: 100%;
+  }
+}
+
 .card {
     background: var(--surface-card);
     padding: 2rem;

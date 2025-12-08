@@ -1,7 +1,7 @@
-<div class="grid">
+<div class="grid m-0">
 
-  <div id="panel">
-            <h4>Formulario ATS</h4>
+        <div id="panel" class="col-12 p-0">
+            <h4 class="text-center pt-3">Formulario ATS</h4>
             <p-accordion>
                 <p-accordionTab header="Registro">
                    <div class="flex align-items-center">
@@ -255,9 +255,8 @@
 
 
 
-
-
-    <div class="col-12">
+<!--
+     <div class="col-12">
         <div class="card px-6 py-6">
             <p-toast></p-toast>
             <p-toolbar styleClass="mb-4">
@@ -290,7 +289,7 @@
                 <ng-template pTemplate="header">
                     <tr>
 
-                        <!-- <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th> -->
+                        
                         <th pSortableColumn="name">Nombre Parqueo <p-sortIcon field="name"></p-sortIcon></th>
                         <th pSortableColumn="availableSlots">Disponibles <p-sortIcon
                                 field="availableSlots"></p-sortIcon></th>
@@ -306,9 +305,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-parkings>
                     <tr>
-                        <!-- <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
-                            {{parkings.id}}
-                        </td> -->
+                      
                         <td style="width:25%; min-width:30rem;">
                             <span class="p-column-title">Nombre</span>
                             {{parkings.name}}
@@ -349,5 +346,8 @@
             [style]="{ width: '350px' }" rejectButtonStyleClass="p-button-text">
         </p-confirmDialog>
 
-    </div>
+    </div>   
+-->
+
+    
 </div>
