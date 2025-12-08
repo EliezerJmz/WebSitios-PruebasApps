@@ -101,6 +101,8 @@ a {
   font-weight: 500;
   width: 100px;
   border-radius: 12px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 .layout-topbar .layout-topbar-logo img {
   height: 2.5rem;
@@ -221,7 +223,7 @@ a {
   overflow-y: auto;
   user-select: none;
   top: 7rem;
-  left: 2rem;
+  left: 0;
   transition: transform 0.2s, left 0.2s;
   background-color: var(--surface-overlay);
   border-radius: 12px;
