@@ -11,7 +11,8 @@ export const environment = {
   
   // URLs HTTP para desarrollo local (SOLO PARA DEBUG):
   //apiUrlBase:'http://localhost:3500/', // Para emulador solamente
-  apiUrlBase:'http://10.166.61.179:3500/', // ipv4 local
+  //apiUrlBase:'http://10.166.61.179:3500/', // ipv4 local
+  apiUrlBase:'http://10.168.70.179:3500/', // ipv4 local
 
   
  
