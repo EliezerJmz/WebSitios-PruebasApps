@@ -16,8 +16,8 @@ import { StatusItem } from 'src/app/core/api/management-catalog/catalog';
 
 @Component({
     templateUrl: './crud.component.html',
+    styleUrls: ['./crud.component.scss'],
     providers: [MessageService, ConfirmationService, TableModule, TagModule, RatingModule, ButtonModule, CommonModule]
-
 })
 export class CrudComponent implements OnInit {
 
