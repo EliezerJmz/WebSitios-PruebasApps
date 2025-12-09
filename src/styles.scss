@@ -165,12 +165,17 @@ body {
 .p-button {
   /* Color primario (por defecto) */
   &.p-button-primary {
-    background: #3bb2c4; /* Nuevo color azul */
-    border-color: #3bb2c4;
+    // rojo atlas claro 700 #D32F2F
+    // rojo atlas claro 600 primario #DA291C
+    // rojo atlas claro 500 #F44336
+    // rojo atlas claro 400 #EF5350
+
+    background: #F44336;
+    border-color: #F44336;
     
     &:hover {
-      background: #46d3e9;
-      border-color: #46d3e9;
+      background: #EF5350;
+      border-color: #EF5350;
     }
   }
 
@@ -209,12 +214,18 @@ body {
 
   /* Warning */
   &.p-button-warning {
-    background: #FF8300; /* Nuevo color naranja */
-    border-color: #FF8300;
+    // amarillo atlas claro 900 #FF8300
+    // amarillo atlas claro 800 #FF7000
+    // amarillo atlas claro 700 #FFAD17
+    // amarillo atlas claro 600 #FF8300
+    // amarillo atlas claro 500 #FFC107
+    // amarillo atlas claro 400 #FFCA28
+    background: #FFAD17; // amarillo atlas claro 700
+    border-color: #FFAD17;
     
     &:hover {
-      background: #ec7a00;
-      border-color: #ec7a00;
+      background: #ffb630;
+      border-color: #ffb630;
     }
   }
 
