@@ -3,7 +3,7 @@
         <div id="panel" class="col-12 p-0">
             <h4 class="text-center pt-3">Formulario ATS</h4>
             <p-accordion>
-                <p-accordionTab header="Registro" headerStyleClass="registro-tab header-lg">
+                <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
                    <div class="flex align-items-center">
                         <p-checkbox 
                             [(ngModel)]="pizza"
@@ -33,7 +33,7 @@
                             value="Onion" />
                     </div>
                 </p-accordionTab>
-                <p-accordionTab header="Pasos de la Tarea a Realizar" headerStyleClass="registro-tab header-lg">
+                <p-accordionTab header="Fotografía del Rostro con Ubicación" headerStyleClass="registro-tab header-lg">
                     <p>
                         Contenido del segundo panel del acordeón.
                     </p>
@@ -244,12 +244,41 @@
 
                     
                 </p-accordionTab>
-                <p-accordionTab header="Evaluación de Riesgos" headerStyleClass="registro-tab header-lg">
+                <p-accordionTab header="Análisis de Riesgo" headerStyleClass="registro-tab header-lg">
+                    <p>
+                        Contenido del tercer panel del acordeón.
+                    </p>
+                </p-accordionTab>
+                 <p-accordionTab header="Permisos de Trabajo" headerStyleClass="registro-tab header-lg">
+                    <p>
+                        Contenido del tercer panel del acordeón.
+                    </p>
+                </p-accordionTab>
+                  <p-accordionTab header="Fotografía Herramientas" headerStyleClass="registro-tab header-lg">
+                    <p>
+                        Contenido del tercer panel del acordeón.
+                    </p>
+                </p-accordionTab>
+                 <p-accordionTab header="Fotografía Equipo de Protección" headerStyleClass="registro-tab header-lg">
+                    <p>
+                        Contenido del tercer panel del acordeón.
+                    </p>
+                </p-accordionTab>
+                 <p-accordionTab header="Medidas de prevención" headerStyleClass="registro-tab header-lg">
                     <p>
                         Contenido del tercer panel del acordeón.
                     </p>
                 </p-accordionTab>
             </p-accordion>
+        </div>
+
+        <div class="grid pt-3">
+            <div class="col-6 xl:col-6">
+                <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" />
+            </div>
+            <div class="col-6 xl:col-6">
+                <p-button severity="warning" label="Cancelar" styleClass="w-full" />
+            </div>
         </div>
 
 
