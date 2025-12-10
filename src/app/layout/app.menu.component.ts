@@ -24,22 +24,30 @@ export class AppMenuComponent implements OnInit {
         this.model = [
             {
                 items: [
-                    { label: 'Dashboard',
-                        icon: 'pi pi-fw pi-home',
+                    { label: 'Formularios Enviados',
+                        icon: 'pi pi-file-export',
+                        class: 'menu-item-lg',
                         slug:'dashboard',
                         routerLink: ['/dashboard'] }
                 ]
             },
-         {
+            {
                 items: [
-                    { label: 'Análisis de Trabajo Seguro (ATS)',
-                        icon: 'pi pi-building',
+                    {
+                        label: 'Análisis de Trabajo Seguro (ATS)',
+                        icon: 'pi pi-check-square',
+                        class: 'menu-item-lg',
                         slug: 'parking-crud',
                         routerLink: ['/parking-crud']
-                    },
+                    }
+                ]
+            },
+             {
+                items: [
                     {
-                        label: 'Asignar Parqueos',
-                        icon: 'pi pi-car',
+                        label: 'Reporte de Accidentes',
+                        icon: 'pi pi-pen-to-square',
+                        class: 'menu-item-lg',
                         slug: 'assign-parking',
                         routerLink: ['/assign-parking']
                     }
@@ -48,13 +56,17 @@ export class AppMenuComponent implements OnInit {
             {
                 items: [
                     {
-                        label: 'Reportes',
-                         icon: 'pi pi-book',
+                         label: 'Reporte de Riesgos y/o Incidentes',
+                         icon: 'pi pi-calendar-plus',
+                         class: 'menu-item-lg',
                          slug: 'management-reports',
                          routerLink: ['/management-reports/reports']
                     }
                 ]
             },
+          
+
+            /**
             {
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
@@ -62,6 +74,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Usuarios',
                         icon: 'pi pi-fw pi-users',
+                        class: 'menu-item-lg',
                         slug: 'users',
                         items: [
                             {
@@ -79,17 +92,20 @@ export class AppMenuComponent implements OnInit {
                     },
                 ]
             },
-
+             
+        
             {
                 items: [
                     {
                         label: 'Notificaciones',
                          icon: 'pi pi-send',
+                         class: 'menu-item-lg',
                          slug: 'management-notifications',
                          routerLink: ['/management-notifications/dashboard-notifications']
                     }
                 ]
             },
+        
 
             {
                 icon: 'pi pi-fw pi-cog',
@@ -98,6 +114,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Configuracion',
                         icon: 'pi pi-fw pi pi-fw pi-cog',
+                        class: 'menu-item-lg',
                         slug: 'management-parameters',
                         items: [
                             {
@@ -130,6 +147,9 @@ export class AppMenuComponent implements OnInit {
                     },
                 ]
             },
+            */
+
+
         ];
 
         //construye el menu según los recursos del token

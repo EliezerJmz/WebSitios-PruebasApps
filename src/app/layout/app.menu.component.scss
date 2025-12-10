@@ -24,4 +24,23 @@
 .full-width-button i {
     margin-right: 8px; /* Espacio entre el icono y el texto */
     padding-left: 8px;
+    font-size: 1.5rem;
+}
+
+.logout-text {
+    font-size: 1.1rem;
+}
+
+.menu-logout {
+    padding-top: 15px;
+}
+
+.menu-divider {
+    margin: 1.25rem 0;
+
+    hr {
+        border: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        margin: 0;
+    }
 }

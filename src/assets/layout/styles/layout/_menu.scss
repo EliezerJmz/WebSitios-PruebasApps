@@ -1,6 +1,6 @@
 .layout-sidebar {
     position: fixed;
-    width: 300px;
+    width: 345px;
     height: calc(100vh - 6.1rem);
     z-index: 999;
     overflow-y: auto;
@@ -71,8 +71,18 @@
             border-radius: $borderRadius;
             transition: background-color $transitionDuration, box-shadow $transitionDuration;
 
+                &.menu-item-lg {
+                    .layout-menuitem-text {
+                        font-size: 1.1rem;
+                        //font-weight: 600;
+                    }
+                    .layout-menuitem-icon {
+                        font-size: 1.5rem;
+                    }
+                }
+
             .layout-menuitem-icon {
-                margin-right: .5rem;
+                margin-right: 1rem;
             }
 
             .layout-submenu-toggler {

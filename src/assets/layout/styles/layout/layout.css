@@ -242,6 +242,12 @@ a {
   font-weight: 700;
   color: var(--surface-900);
   margin: 0.75rem 0;
+.layout-menu ul a.menu-item-lg .layout-menuitem-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.layout-menu ul a.menu-item-lg .layout-menuitem-icon {
+  font-size: 1.3rem;
 }
 .layout-menu .layout-root-menuitem > a {
   display: none;
