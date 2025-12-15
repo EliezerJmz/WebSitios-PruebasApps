@@ -14,6 +14,8 @@ import { VerticalBarComponent } from './vertical-bar/vertical-bar.component';
 import { TablePaginatorComponent } from './table-paginator/table-paginator.component';
 import { AccordionModule } from "primeng/accordion";
 import { CheckboxModule } from "primeng/checkbox";
+import { TagModule } from 'primeng/tag';
+import { FormSentsComponent } from './form-sents/form-sents.component';
 
 
 
@@ -29,13 +31,15 @@ import { CheckboxModule } from "primeng/checkbox";
     ButtonModule,
     DashboardsRoutingModule,
     AccordionModule,
-    CheckboxModule
+    CheckboxModule,
+    TagModule
 ],
     declarations: [
         DashboardComponent,
         LineBarComponent,
         VerticalBarComponent,
         TablePaginatorComponent,
+        FormSentsComponent,
 
     ]
 })
