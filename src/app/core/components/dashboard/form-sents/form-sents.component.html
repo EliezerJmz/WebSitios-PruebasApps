@@ -1,13 +1,12 @@
 <h3>Formularios Enviados</h3>
 
 
-<p-table [value]="products" [tableStyle]="{'min-width': '22rem'}">
-    <ng-template pTemplate="caption">
-        <div class="flex align-items-center justify-content-between">
-            Products
-            <p-button icon="pi pi-refresh" />
-        </div>
-    </ng-template>
+<p-table [value]="products" 
+    [tableStyle]="{'min-width': '22rem'}"  
+    [paginator]="true"
+    [rows]="6"
+    [pageLinks]="3"
+    >
     <ng-template pTemplate="header">
         <tr>
             <th>Name</th>
@@ -22,7 +21,13 @@
     </ng-template>
     <ng-template pTemplate="summary">
         <div class="flex align-items-center justify-content-between">
-            In total there are {{products ? products.length : 0 }} Forms.
+            En total Hay {{products ? products.length : 0 }} Formularios.
         </div>
     </ng-template>
 </p-table>
+
+<div class="grid pt-3">
+    <div class="col-12 xl:col-12">
+        <p-button severity="warning" label="Botón de Pánico" styleClass="w-full" />
+    </div>
+</div>
