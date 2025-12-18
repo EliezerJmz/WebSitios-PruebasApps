@@ -9,6 +9,8 @@
     padding-inline: 0;
     gap: 0.25rem;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 :host ::ng-deep .p-paginator > * {
@@ -33,4 +35,58 @@
     background-color:  #FF8300;
     border-color:  #FF8300;
     color: #fff;
+}
+
+//Quita el efecto de destello a los botones del paginador
+:host ::ng-deep .p-paginator button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+:host ::ng-deep .p-paginator .p-link {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+:host ::ng-deep .p-paginator .p-ink {
+    display: none;
+}
+
+@media (max-width: 375px) {
+    :host ::ng-deep .p-paginator {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 0.15rem !important;
+        padding: 0.25rem !important;
+        overflow: hidden !important;
+        overflow-x: hidden !important;
+    }
+
+    :host ::ng-deep .p-paginator > * {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    :host ::ng-deep .p-paginator button {
+        min-width: 2.5rem !important;
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        padding: 0.3rem !important;
+        font-size: 0.9rem !important;
+        margin: 0 !important;
+    }
+
+    :host ::ng-deep .p-paginator .p-paginator-pages {
+        gap: 0.15rem !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    :host ::ng-deep .p-paginator .p-paginator-page {
+        margin: 0 !important;
+    }
 }
