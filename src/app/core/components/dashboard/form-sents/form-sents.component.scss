@@ -54,7 +54,7 @@
     display: none;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 320px) {
     :host ::ng-deep .p-paginator {
         flex-wrap: wrap !important;
         justify-content: center !important;
