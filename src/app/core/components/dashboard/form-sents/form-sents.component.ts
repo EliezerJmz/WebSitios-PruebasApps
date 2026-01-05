@@ -90,7 +90,7 @@ confirmMessage() {
            
         },
         reject: () => {
-            this.messageService.add({ severity: 'warn', summary: 'Cancelado', detail: 'Envio cancelado', life: 2000 });
+            this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Envio cancelado', life: 2000 });
         }
     });
 }
