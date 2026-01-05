@@ -1,6 +1,7 @@
 <h3>Formularios Enviados</h3>
 
-
+<p-toast></p-toast>
+<p-confirmDialog key="formSentsDialog" />
 <p-table [value]="products" 
     [tableStyle]="{'min-width': '20rem'}"  
     [paginator]="true"
@@ -28,6 +29,6 @@
 
 <div class="grid pt-3">
     <div class="col-12 xl:col-12">
-        <p-button severity="warning" label="Botón de Pánico" styleClass="w-full" />
+        <p-button severity="warning" label="Botón de Pánico" styleClass="w-full" (onClick)="confirmMessage()" />
     </div>
 </div>

@@ -16,6 +16,8 @@ import { AccordionModule } from "primeng/accordion";
 import { CheckboxModule } from "primeng/checkbox";
 import { TagModule } from 'primeng/tag';
 import { FormSentsComponent } from './form-sents/form-sents.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { Toast, ToastModule } from 'primeng/toast';
 
 
 
@@ -32,7 +34,9 @@ import { FormSentsComponent } from './form-sents/form-sents.component';
     DashboardsRoutingModule,
     AccordionModule,
     CheckboxModule,
-    TagModule
+    TagModule,
+    ConfirmDialogModule,
+    ToastModule
 ],
     declarations: [
         DashboardComponent,
