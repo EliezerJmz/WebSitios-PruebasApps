@@ -19,10 +19,70 @@ import { StatusItem } from 'src/app/core/api/management-catalog/catalog';
     styleUrls: ['./crud.component.scss'],
     providers: [MessageService, ConfirmationService, TableModule, TagModule, RatingModule, ButtonModule, CommonModule]
 })
-export class CrudComponent implements OnInit {
+export class CrudComponent  {
 
-    // Propiedad para los checkboxes del accordion
+// Propiedad para los checkboxes del accordion
     pizza: string[] = [];
+
+constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
+
+//CONFIRMACIÓN BOTON DE ENVIAR FORMULARIO ATS
+confirmSubmitFormATS() {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: '¿Desea Enviar un Formulario ATS?',
+        header: 'Confirmar Envío',
+        icon: 'pi pi-exclamation-triangle',
+        acceptIcon:"none",
+        rejectIcon:"none",
+        acceptLabel: 'Sí',
+        rejectLabel: 'No',
+        rejectButtonStyleClass:"p-button-text",
+        accept: () => {
+            this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: 'Se ha enviado un Formulario ATS', life: 1000 });
+           /**
+            setTimeout(() => {
+                this.redirectSearchAssignment()
+              }, 1000);
+             */   
+           
+        },
+        reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Envio Cancelado', life: 2000 });
+        }
+    });
+}
+
+//CONFIRMACIÓN BOTON DE BORRAR FORMULARIO ATS
+confirmCancelFormATS() {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: '¿Desea Borrar el Formulario ATS?',
+        header: 'Confirmar Borrado',
+        icon: 'pi pi-exclamation-triangle',
+        acceptIcon:"none",
+        rejectIcon:"none",
+        acceptLabel: 'Sí',
+        rejectLabel: 'No',
+        rejectButtonStyleClass:"p-button-text",
+        accept: () => {
+            this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: 'Borrado Confirmado', life: 1000 });
+           /**
+            setTimeout(() => {
+                this.redirectSearchAssignment()
+              }, 1000);
+             */   
+           
+        },
+        reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Borrado Cancelado', life: 2000 });
+        }
+    });
+}
+
+
+
+/** 
 
     id: string;
     productDialog: boolean = false;
@@ -208,4 +268,7 @@ export class CrudComponent implements OnInit {
                 return 'unknown';
         }
     }
+
+*/
+
 }

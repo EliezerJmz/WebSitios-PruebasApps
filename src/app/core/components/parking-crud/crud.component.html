@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+<p-confirmDialog />
 <div class="grid m-0">
 
         <div id="panel" class="col-12 p-0">
@@ -274,10 +276,10 @@
 
         <div class="grid pt-3">
             <div class="col-6 xl:col-6">
-                <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" />
+                <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" (onClick)="confirmSubmitFormATS()" />
             </div>
             <div class="col-6 xl:col-6">
-                <p-button severity="warning" label="Cancelar" styleClass="w-full" />
+                <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
             </div>
         </div>
 
