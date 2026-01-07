@@ -20,3 +20,35 @@
   font-size: 1.3rem;
   font-weight: 500;
 }
+
+.label {
+  display: block;
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.p{
+  font-size: 1.2rem;
+  color: #000;
+}
+
+:host ::ng-deep input.p-inputtext {
+  font-size: 1.2rem;
+  padding: 0.57rem;
+}
+
+:host ::ng-deep .p-accordion .p-accordion-content {
+  padding: 1rem 0.5rem !important;
+  background: var(--gray-100) !important;
+}
+
+// Estilos para botones en pantallas muy pequeñas
+@media (max-width: 325px) {
+  :host ::ng-deep .p-button .p-button-label {
+    display: none !important;
+  }
+  
+  :host ::ng-deep .p-button .p-button-icon {
+    margin-right: 0 !important;
+  }
+}
