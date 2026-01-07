@@ -6,34 +6,50 @@
             <h4 class="text-center pt-3">Formulario ATS</h4>
             <p-accordion>
                 <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
-                   <div class="flex align-items-center">
-                        <p-checkbox 
-                            [(ngModel)]="pizza"
-                            label="Cheese" 
-                            name="pizza" 
-                            value="Cheese" />
+                    <div class="card">
+                        <div>
+                            <label class="label" for="emp">Nombre de la Empresa</label>
+                            <input id="emp" type="text" pInputText class="w-full" [(ngModel)]="valueEmp" />
+                        </div>
+                
+                        <div class="mt-3">
+                            <label class="label" for="id">ID del Sitio</label>
+                            <div class="flex gap-2 align-items-center">
+                                <input id="id" type="text" pInputText class="flex-1" [(ngModel)]="valueId" />
+                                <p-button type="button" label="Buscar" icon="pi pi-search" styleClass="p-button-info" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex align-items-center">
-                        <p-checkbox 
-                            [(ngModel)]="pizza"
-                            label="Mushroom"
-                            name="pizza" 
-                            value="Mushroom" />
+                    <div class="card mt-3">
+                        <div class="flex align-items-center gap-3">
+                            <label class="label mb-0" for="id">ID del Sitio:</label>
+                            <p class="p m-0">1001</p>
+                        </div>
+                        <div class="flex align-items-center gap-3 mt-2">
+                            <label class="label mb-0" for="nombre">Nombre del Sitio:</label>
+                            <p class="p m-0">Central Centro</p>
+                        </div>
                     </div>
-                    <div class="flex align-items-center">
-                        <p-checkbox 
-                            [(ngModel)]="pizza"
-                            label="Pepper" 
-                            name="pizza" 
-                            value="Pepper" />
+                 
+                    <div class="mt-3 mt-3">
+                        <label class="label" for="id">Código IVR</label>
+                        <div class="flex gap-2 align-items-center">
+                            <input id="id" type="text" pInputText class="flex-1" [(ngModel)]="valueId" />
+                            <p-button type="button" label="Buscar" icon="pi pi-search" styleClass="p-button-info" />
+                        </div>
                     </div>
-                    <div class="flex align-items-center">
-                        <p-checkbox 
-                            [(ngModel)]="pizza"
-                            label="Onion" 
-                            name="pizza" 
-                            value="Onion" />
-                    </div>
+                    
+                     <div class="card mt-3">
+                        <label class="label" for="id">Descripción del trabajo a realizar</label>
+                        <textarea 
+                            placeholder="Escriba la descripción aquí..." 
+                            id="description"
+                            rows="5"
+                            pInputTextarea 
+                            class="w-full"
+                            [(ngModel)]="valueTextArea">
+                        </textarea>
+                   </div>
                 </p-accordionTab>
                 <p-accordionTab header="Fotografía del Rostro con Ubicación" headerStyleClass="registro-tab header-lg">
                     <p>
