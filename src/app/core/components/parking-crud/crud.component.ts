@@ -24,6 +24,10 @@ export class CrudComponent  {
 // Propiedad para los checkboxes del accordion
     pizza: string[] = [];
 
+    valueEmp: string;
+    valueId: string;
+    valueTextArea: string;
+
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
 //CONFIRMACIÓN BOTON DE ENVIAR FORMULARIO ATS
