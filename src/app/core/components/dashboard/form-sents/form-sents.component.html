@@ -2,7 +2,7 @@
 
 <p-toast></p-toast>
 <p-confirmDialog key="formSentsDialog" />
-<p-table [value]="products" 
+<p-table [value]="formularios" 
     [tableStyle]="{'min-width': '20rem'}"  
     [paginator]="true"
     [rows]="6"
@@ -10,19 +10,27 @@
     >
     <ng-template pTemplate="header">
         <tr>
-            <th>Name</th>
-            <th>Status</th>
+            <th pSortableColumn="name" >
+                Nombre <p-sortIcon field="name" />
+            </th>
+            <th pSortableColumn="fecha" >
+                Fecha <p-sortIcon field="fecha" />
+            </th>
+            <th pSortableColumn="status" >
+                Estado <p-sortIcon field="status" />
+            </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-formulario>
         <tr>
-            <td>{{product.name}}</td>
-            <td><p-tag [value]="product.status" [severity]="getSeverity(product.status)" /></td>
+            <td>{{formulario.name}}</td>
+            <td>{{formulario.fecha}}</td>
+            <td><p-tag [value]="formulario.status" [severity]="getSeverity(formulario.status)" /></td>
         </tr>
     </ng-template>
     <ng-template pTemplate="summary">
         <div class="flex align-items-center justify-content-between">
-            En total Hay {{products ? products.length : 0 }} Formularios.
+            En total Hay {{formularios ? formularios.length : 0 }} Formularios.
         </div>
     </ng-template>
 </p-table>
