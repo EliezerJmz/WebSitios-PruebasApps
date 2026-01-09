@@ -1,3 +1,11 @@
+// Reduce el espaciado entre th y td
+:host ::ng-deep .p-datatable th,
+:host ::ng-deep .p-datatable td {
+    padding: 0.5rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+}
+
 :host ::ng-deep .p-paginator {
     background-color: #f5f5f5;
     border-radius: 0.75rem;
