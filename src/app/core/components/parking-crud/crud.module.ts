@@ -23,6 +23,7 @@ import { TagModule } from 'primeng/tag';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
     imports: [
@@ -48,7 +49,9 @@ import { CheckboxModule } from 'primeng/checkbox';
         MenuModule,
         TagModule,
         AccordionModule,
-        CheckboxModule
+        CheckboxModule,
+        ImageModule
+
         // BrowserAnimationsModule
 
 
