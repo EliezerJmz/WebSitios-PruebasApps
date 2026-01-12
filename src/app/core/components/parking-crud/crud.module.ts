@@ -24,6 +24,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ImageModule } from 'primeng/image';
+import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 
 @NgModule({
     imports: [
@@ -50,7 +51,11 @@ import { ImageModule } from 'primeng/image';
         TagModule,
         AccordionModule,
         CheckboxModule,
-        ImageModule
+        ImageModule,
+
+        //my components
+        UploadPhotoComponent,
+
 
         // BrowserAnimationsModule
 
