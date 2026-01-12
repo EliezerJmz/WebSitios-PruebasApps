@@ -2,6 +2,10 @@
     "conventionalCommits.scopes": [
         "css",
         "html",
-        "component"
-    ]
+        "component",
+        "package"
+    ],
+    "chat.fontSize": 14,
+    "scm.inputFontSize": 14,
+    "editor.minimap.sectionHeaderFontSize": 14
 }
