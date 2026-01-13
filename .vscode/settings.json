@@ -3,7 +3,9 @@
         "css",
         "html",
         "component",
-        "package"
+        "package",
+        "android",
+        "service"
     ],
     "chat.fontSize": 14,
     "scm.inputFontSize": 14,
