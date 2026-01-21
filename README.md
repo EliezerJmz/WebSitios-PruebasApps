@@ -3,9 +3,13 @@
 Este proyecto usa [Angular v17](https://angular.dev/), [PrimeNG v17](https://primeng.org/) y [Capacitor v7](https://capacitorjs.com/) para construir las aplicaciones web, Android e iOS.
 
 ## 🚀 Requisitos
-- Node.js 18 o superior
-- npm 9 o superior
+- Node.js v20.9.0
+- npm 10.1.0
 - Capacitor CLI v7
+- Android Studio
+- Gradle 8.13.2
+- Gradle 8.13
+- Angular CLI: 17.0.5
 
 ## ⚙️ Instalacion
 ```bash
@@ -22,6 +26,9 @@ npm install
 1. Ejecuta `npm run build` para compilar Angular.
 2. Ejecuta `npx cap sync` para actualizar las plataformas nativas.
 3. Abre `android/` en Android Studio o `ios/` en Xcode para generar los binarios.
+
+## VS Code extensiones
+- WebNative
 
 ## 📚 Recursos
 - Documentacion Angular: [angular.dev](https://angular.dev/)
