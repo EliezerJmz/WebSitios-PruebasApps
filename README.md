@@ -1,4 +1,4 @@
-# 🏭 Web Sitios Seguridad Industrial Apps Móviles
+# 🏭 Web Sitios Salud y Seguridad Ocupacional Apps Móviles
 
 Este proyecto usa [Angular v17](https://angular.dev/), [PrimeNG v17](https://primeng.org/) y [Capacitor v7](https://capacitorjs.com/) para construir las aplicaciones web, Android e iOS.
 
