@@ -25,6 +25,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ImageModule } from 'primeng/image';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { SpinnerModule } from 'primeng/spinner';
 
 @NgModule({
     imports: [
@@ -52,6 +53,9 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
         AccordionModule,
         CheckboxModule,
         ImageModule,
+        ToastModule,
+        ButtonModule,
+        SpinnerModule,
 
         //my components
         UploadPhotoComponent,
