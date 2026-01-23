@@ -5,7 +5,8 @@
         "component",
         "package",
         "android",
-        "service"
+        "service",
+        "interceptor"
     ],
     "chat.fontSize": 14,
     "scm.inputFontSize": 14,

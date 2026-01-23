@@ -13,9 +13,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
     // Configurar headers para aceptar cookies HTTP
     const headers: { [key: string]: string } = {
-      'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
+
+    // Solo agregar Content-Type si NO es FormData (para permitir uploads de archivos)
+    if (!(req.body instanceof FormData)) {
+      headers['Content-Type'] = 'application/json';
+    }
 
     // Si hay un token, agregarlo al header Authorization
     if (token) {
