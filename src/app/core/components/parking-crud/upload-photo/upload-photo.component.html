@@ -1,1 +1,69 @@
-<p>upload-photo works!</p>
+<div class="upload-container">
+  <p-toast></p-toast>
+
+  <div class="flex flex-column align-items-center mt-2">
+    
+      <!-- Botón para tomar foto con la cámara -->
+        <p-button 
+        label="Tomar Foto" 
+        icon="pi pi-camera" 
+        (onClick)="takePhoto()"
+        [disabled]="uploading"
+        severity="info"
+        styleClass="p-button-lg">
+        </p-button>              
+
+      <!-- Botón para seleccionar de galería -->
+      <p-button 
+        label="Seleccionar de Galería" 
+        icon="pi pi-images" 
+        (onClick)="selectFromGallery()"
+        [disabled]="uploading"
+        severity="secondary"
+        styleClass="p-button-lg">
+      </p-button>
+
+      <!-- Botón para tomar y subir directamente -->
+      <p-button 
+        label="Tomar y Subir" 
+        icon="pi pi-upload" 
+        (onClick)="takeAndUpload()"
+        [disabled]="uploading"
+        severity="success"
+        styleClass="p-button-lg">
+      </p-button>
+    </div>
+
+    <!-- Preview de la foto -->
+    <div class="preview-container" *ngIf="previewUrl">
+      <label class="label mb-0" for="vista">Vista Previa</label>
+      <img [src]="previewUrl" alt="Preview" class="preview-image">
+      
+      <div class="action-buttons">
+        <p-button 
+          label="Subir Foto" 
+          icon="pi pi-cloud-upload" 
+          (onClick)="uploadPhoto()"
+          [disabled]="uploading"
+          [loading]="uploading"
+          severity="success">
+        </p-button>
+  
+        <p-button 
+          label="Cancelar" 
+          icon="pi pi-times" 
+          (onClick)="clearPhoto()"
+          [disabled]="uploading"
+          severity="warning">
+        </p-button>
+      </div>
+    </div>
+
+    <!-- Spinner de carga -->
+    <div class="loading-container" *ngIf="uploading">
+      <p-progressSpinner></p-progressSpinner>
+      <p>Subiendo foto al servidor...</p>
+    </div>
+ 
+</div>
+
