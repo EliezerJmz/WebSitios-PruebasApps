@@ -62,8 +62,14 @@
                                 width="250" />
                         </div>
 -->
-                        <app-upload-photo></app-upload-photo>
-                        
+                        <app-upload-photo 
+                            [showTakePhotoButton]="true"
+                            [showGalleryButton]="false"
+                            [showTakeAndUploadButton]="false"
+                            [showUploadButton]="true"
+                            [showCancelButton]="true">                            
+                        </app-upload-photo>
+
                     </div>
                      <div class="card">
                         <div class="flex flex-column align-items-center mt-2">

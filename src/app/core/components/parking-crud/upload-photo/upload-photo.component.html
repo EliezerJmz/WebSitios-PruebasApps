@@ -5,6 +5,7 @@
     
       <!-- Botón para tomar foto con la cámara -->
         <p-button 
+        *ngIf="showTakePhotoButton"
         label="Tomar Foto" 
         icon="pi pi-camera" 
         (onClick)="takePhoto()"
@@ -15,6 +16,7 @@
 
       <!-- Botón para seleccionar de galería -->
       <p-button 
+        *ngIf="showGalleryButton"
         label="Seleccionar de Galería" 
         icon="pi pi-images" 
         (onClick)="selectFromGallery()"
@@ -25,6 +27,7 @@
 
       <!-- Botón para tomar y subir directamente -->
       <p-button 
+        *ngIf="showTakeAndUploadButton"
         label="Tomar y Subir" 
         icon="pi pi-upload" 
         (onClick)="takeAndUpload()"
@@ -36,11 +39,12 @@
 
     <!-- Preview de la foto -->
     <div class="preview-container" *ngIf="previewUrl">
-      <label class="label mb-0" for="vista">Vista Previa</label>
+      <label class="label mb-2" for="vista">Vista Previa</label>
       <img [src]="previewUrl" alt="Preview" class="preview-image">
       
-      <div class="action-buttons">
+      <div class="action-buttons mt-3">
         <p-button 
+          *ngIf="showUploadButton"
           label="Subir Foto" 
           icon="pi pi-cloud-upload" 
           (onClick)="uploadPhoto()"
@@ -50,6 +54,7 @@
         </p-button>
   
         <p-button 
+          *ngIf="showCancelButton"
           label="Cancelar" 
           icon="pi pi-times" 
           (onClick)="clearPhoto()"
@@ -61,7 +66,7 @@
 
     <!-- Spinner de carga -->
     <div class="loading-container" *ngIf="uploading">
-      <p-progressSpinner></p-progressSpinner>
+      <p-progressSpinner [style]="{'width': '50px', 'height': '50px'}" strokeWidth="4"></p-progressSpinner>
       <p>Subiendo foto al servidor...</p>
     </div>
  

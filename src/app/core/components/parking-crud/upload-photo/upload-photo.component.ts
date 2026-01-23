@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UploadPhotoService, UploadResponse } from 'src/app/core/service/upload-photo/upload-photo.service';
 import { Photo } from '@capacitor/camera';
 import { MessageService } from 'primeng/api';
@@ -25,6 +25,13 @@ import { ToastModule } from 'primeng/toast';
   styleUrl: './upload-photo.component.scss'
 })
 export class UploadPhotoComponent {
+
+  // Configuración de botones visibles
+  @Input() showTakePhotoButton: boolean = true;
+  @Input() showGalleryButton: boolean = true;
+  @Input() showTakeAndUploadButton: boolean = true;
+  @Input() showUploadButton: boolean = true;
+  @Input() showCancelButton: boolean = true;
 
   uploading: boolean = false;
   selectedPhoto: Photo | null = null;
