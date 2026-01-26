@@ -26,47 +26,44 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ImageModule } from 'primeng/image';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { SpinnerModule } from 'primeng/spinner';
+import { CardModule } from 'primeng/card';
 import { GeolocationComponent } from './geolocation/geolocation/geolocation.component';
+import { A11yModule } from "@angular/cdk/a11y";
 
 @NgModule({
     imports: [
-        CommonModule,
-        CrudRoutingModule,
-        TableModule,
-        FileUploadModule,
-        FormsModule,
-        ButtonModule,
-        RippleModule,
-        ToastModule,
-        ToolbarModule,
-        RatingModule,
-        ConfirmDialogModule,
-        InputTextModule,
-        InputTextareaModule,
-        DropdownModule,
-        RadioButtonModule,
-        InputNumberModule,
-        DialogModule,
-        ButtonModule,SplitButtonModule,
-        ToggleButtonModule,
-        MenuModule,
-        TagModule,
-        AccordionModule,
-        CheckboxModule,
-        ImageModule,
-        ToastModule,
-        ButtonModule,
-        SpinnerModule,
-
-        //my components
-        UploadPhotoComponent,
-        GeolocationComponent
-
-
-        // BrowserAnimationsModule
-
-
-    ],
-    declarations: [CrudComponent,]
+    CommonModule,
+    CrudRoutingModule,
+    TableModule,
+    FileUploadModule,
+    FormsModule,
+    ButtonModule,
+    RippleModule,
+    ToastModule,
+    ToolbarModule,
+    RatingModule,
+    ConfirmDialogModule,
+    InputTextModule,
+    InputTextareaModule,
+    DropdownModule,
+    RadioButtonModule,
+    InputNumberModule,
+    DialogModule,
+    ButtonModule, SplitButtonModule,
+    ToggleButtonModule,
+    MenuModule,
+    TagModule,
+    AccordionModule,
+    CheckboxModule,
+    ImageModule,
+    ToastModule,
+    ButtonModule,
+    SpinnerModule,
+    CardModule,
+    //my components
+    UploadPhotoComponent,
+    A11yModule
+],
+    declarations: [CrudComponent, GeolocationComponent]
 })
 export class CrudModule { }
