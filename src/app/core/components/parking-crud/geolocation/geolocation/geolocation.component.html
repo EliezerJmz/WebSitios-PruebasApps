@@ -1,1 +1,61 @@
-<p>geolocation works!</p>
+
+   <div class="flex flex-column align-items-center mt-4 mb-3">  
+      <p-button 
+        label="Obtener Ubicación" 
+        icon="pi pi-map-marker" 
+        severity="info"
+        (onClick)="getCurrentPosition()"
+        [loading]="loading"
+        [disabled]="loading"
+        styleClass="p-button-lg">
+      </p-button>
+    
+    
+    <!-- Mostrar mensaje de error si existe -->
+    <div *ngIf="error" class="error-message">
+      <i class="pi pi-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+  </div>
+     
+
+    <!-- Mostrar las coordenadas cuando estén disponibles -->
+    <div *ngIf="latitude !== null && longitude !== null" class="coordinates">
+      <label class="label mt-2">Coordenadas:</label>
+      
+      <div class="coordinate-item">
+        <i class="pi pi-compass"></i>
+        <label class="label">Latitud:</label>
+        <p class="p">{{ latitude }}</p>
+      </div>
+      
+      <div class="coordinate-item">
+        <i class="pi pi-compass"></i>
+        <label class="label">Longitud:</label>
+        <p class="p">{{ longitude }}</p>
+      </div>
+      
+      <div class="coordinate-item" *ngIf="accuracy !== null">
+        <i class="pi pi-chart-line"></i>
+        <label class="label">Precisión:</label>
+        <p class="p">{{ accuracy.toFixed(2) }} metros</p>
+      </div>
+      
+      <!-- Paso 6: Link para abrir en Google Maps -->
+      <div class="map-link">
+        <a 
+          [href]="'https://www.google.com/maps?q=' + latitude + ',' + longitude" 
+          target="_blank"
+          class="google-maps-link">
+          <i class="pi pi-map"></i>
+          Ver en Google Maps
+        </a>
+      </div>
+ 
+    <!-- Paso 7: Mensaje cuando no hay coordenadas -->
+    <div *ngIf="latitude === null && longitude === null && !loading && !error" class="no-location">
+      <i class="pi pi-info-circle"></i>
+      <p>Presiona el botón para obtener tu ubicación actual</p>
+    </div>
+    
+</div>

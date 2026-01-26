@@ -1,0 +1,125 @@
+
+
+h1 {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.label {
+  display: block;
+  font-weight: 500;
+  font-size: 1.3em;
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+.p{
+  font-size: 1.2rem;
+  color: #000;
+}
+
+/* Paso 3: Estilos para el mensaje de error */
+.error-message {
+  background-color: #fee;
+  border: 1px solid #fcc;
+  color: #c33;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.error-message i {
+  font-size: 1.5rem;
+}
+
+/* Paso 4: Estilos para las coordenadas */
+.coordinates {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.coordinates h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.coordinate-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  margin: 10px 0;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  border-left: 4px solid #FF8300;
+}
+
+.coordinate-item i {
+  color: #FF8300;
+  font-size: 1.2rem;
+}
+
+.coordinate-item .label {
+  display: block;
+  font-weight: 500;
+  font-size: 1.3em;
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+
+.coordinate-item .value {
+  color: #333;
+  font-family: monospace;
+  font-size: 1.1rem;
+}
+
+/* Paso 5: Estilos para el link de Google Maps */
+.map-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.google-maps-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #4285f4;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.google-maps-link:hover {
+  background-color: #3367d6;
+}
+
+.google-maps-link i {
+  font-size: 1.2rem;
+}
+
+/* Paso 6: Estilos para el mensaje cuando no hay ubicación */
+.no-location {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+}
+
+.no-location i {
+  font-size: 3rem;
+  color: #667eea;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.no-location p {
+  font-size: 1.1rem;
+  margin: 0;
+}
