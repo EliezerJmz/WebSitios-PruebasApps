@@ -26,8 +26,8 @@ export class UploadPhotoService {
 
   
   // URL del endpoint para subir archivos usando HTTP
-  //private apiUrl = 'http://10.175.80.179:3000/archivo/upload';
-  private apiUrl = 'http://localhost:3000/archivo/upload';
+  private apiUrl = 'http://10.212.203.179:3000/archivo/upload';
+  //private apiUrl = 'http://localhost:3000/archivo/upload';
   constructor(private http: HttpClient) { }
 
   /**
