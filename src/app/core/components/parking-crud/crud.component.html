@@ -76,6 +76,8 @@
                             <p-button type="button" label="Obtener Ubicación" icon="pi pi-map-marker" styleClass="p-button-info mb-3" />
                         </div>
 
+                        <app-geolocation></app-geolocation>
+
                         <div class="card mt-3">
                             <div class="flex align-items-center gap-3">
                                 <label class="label mb-0" for="id">Latitud:</label>
@@ -96,8 +98,6 @@
                                 <label class="label" for="emp">Número de Orden de Trabajo</label>
                                 <input id="emp" type="text" placeholder="Ingrese Número de Orden..."  pInputText class="w-full" [(ngModel)]="valueEmp" />
                             </div>
-                    
-                           
                         </div>
 
                     </div>

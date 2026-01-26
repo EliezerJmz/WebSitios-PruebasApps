@@ -26,6 +26,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ImageModule } from 'primeng/image';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { SpinnerModule } from 'primeng/spinner';
+import { GeolocationComponent } from './geolocation/geolocation/geolocation.component';
 
 @NgModule({
     imports: [
@@ -59,6 +60,7 @@ import { SpinnerModule } from 'primeng/spinner';
 
         //my components
         UploadPhotoComponent,
+        GeolocationComponent
 
 
         // BrowserAnimationsModule
