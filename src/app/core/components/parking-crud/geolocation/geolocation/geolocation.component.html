@@ -39,6 +39,10 @@
         <i class="pi pi-chart-line"></i>
         <label class="label">Precisión:</label>
         <p class="p">{{ accuracy.toFixed(2) }} metros</p>
+          <div *ngIf="accuracy > 500" class="error-message mt-2">
+            <i class="pi pi-exclamation-triangle"></i>
+              La precisión debe ser menor a 500m
+          </div>
       </div>
       
       <!-- Link para abrir en Google Maps -->
