@@ -41,8 +41,8 @@
         <p class="p">{{ accuracy.toFixed(2) }} metros</p>
       </div>
       
-      <!-- Paso 6: Link para abrir en Google Maps -->
-      <div class="map-link">
+      <!-- Link para abrir en Google Maps -->
+      <div class="map-link" *ngIf="showMap">
         <a 
           [href]="'https://www.google.com/maps?q=' + latitude + ',' + longitude" 
           target="_blank"
@@ -52,7 +52,7 @@
         </a>
       </div>
  
-    <!-- Paso 7: Mensaje cuando no hay coordenadas -->
+    <!-- Mensaje cuando no hay coordenadas -->
     <div *ngIf="latitude === null && longitude === null && !loading && !error" class="no-location">
       <i class="pi pi-info-circle"></i>
       <p>Presiona el botón para obtener tu ubicación actual</p>

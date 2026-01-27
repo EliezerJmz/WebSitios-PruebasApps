@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 // Paso 1: Importar el plugin de Geolocation de Capacitor
 import { Geolocation } from '@capacitor/geolocation';
 
@@ -9,6 +9,9 @@ import { Geolocation } from '@capacitor/geolocation';
   styleUrl: './geolocation.component.scss'
 })
 export class GeolocationComponent implements OnInit {
+   
+  // Configuración de google map visibles
+  @Input() showMap: boolean = true;
   
   // Paso 2: Definir las propiedades para almacenar las coordenadas
   latitude: number | null = null;
