@@ -2,12 +2,16 @@
 
 buildscript {
 
+    ext {
+        agp_version = '8.13.2'
+        agp_version1 = '8.7.2'
+    }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.13.2'
+        classpath "com.android.tools.build:gradle:$agp_version1"
         classpath 'com.google.gms:google-services:4.4.2'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -23,17 +27,7 @@ allprojects {
         mavenCentral()
     }
 
-    // ⚠️ FORZAR JAVA 17 PARA TODOS LOS MÓDULOS - CONFIGURACIÓN DE DEBUG ⚠️
-    afterEvaluate { project ->
-        if (project.hasProperty("android")) {
-            android {
-                compileOptions {
-                    sourceCompatibility JavaVersion.VERSION_17
-                    targetCompatibility JavaVersion.VERSION_17
-                }
-            }
-        }
-    }
+    
 }
 
 task clean(type: Delete) {
