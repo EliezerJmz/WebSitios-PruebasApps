@@ -29,6 +29,7 @@ import { SpinnerModule } from 'primeng/spinner';
 import { CardModule } from 'primeng/card';
 import { GeolocationComponent } from './geolocation/geolocation/geolocation.component';
 import { A11yModule } from "@angular/cdk/a11y";
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
     imports: [
@@ -60,6 +61,7 @@ import { A11yModule } from "@angular/cdk/a11y";
     ButtonModule,
     SpinnerModule,
     CardModule,
+    CalendarModule,
     //my components
     UploadPhotoComponent,
     A11yModule

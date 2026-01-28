@@ -20,13 +20,13 @@
   font-size: 1.3rem;
   font-weight: 500;
 }
-
 .label {
   display: block;
   font-weight: 500;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
+
 .p{
   font-size: 1.2rem;
   color: #000;
@@ -35,6 +35,29 @@
 :host ::ng-deep input.p-inputtext {
   font-size: 1.2rem;
   padding: 0.57rem;
+}
+
+:host ::ng-deep input.p-inputtext.input {
+  font-size: 1.3rem;
+  padding: 0.57rem;
+  color: #000;
+}
+
+:host ::ng-deep .p-calendar.p input.p-inputtext {
+  font-size: 1.2rem;
+  color: #000;
+}
+
+// Cambiar el color del botón del calendario
+:host ::ng-deep .p-calendar .p-datepicker-trigger {
+  background-color: #FF8300 !important;
+  border-color: #FF8300 !important;
+  color: white !important;
+}
+
+:host ::ng-deep .p-calendar .p-datepicker-trigger:hover {
+  background-color: #b82318 !important;
+  border-color: #b82318 !important;
 }
 
 :host ::ng-deep .p-accordion .p-accordion-content {

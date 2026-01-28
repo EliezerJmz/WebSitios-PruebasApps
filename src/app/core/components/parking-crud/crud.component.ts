@@ -27,6 +27,8 @@ export class CrudComponent  {
     valueEmp: string;
     valueId: string;
     valueTextArea: string;
+    valueDate: string;
+    valueDateFin: string;
 
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 

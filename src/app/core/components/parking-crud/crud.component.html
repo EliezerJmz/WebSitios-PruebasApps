@@ -79,12 +79,42 @@
 
                     <div class="card">
                         <div>
-                            <label class="label" for="emp">Número de Orden de Trabajo</label>
-                            <input id="emp" type="text" placeholder="Ingrese Número de Orden..."  pInputText class="w-full mt-3 mb-3" [(ngModel)]="valueEmp" />
+                            <label class="label" for="orden">No. De orden de trabajo / RDA</label>
+                            <input class="input" id="orden" type="number" placeholder="Ingrese número..."  pInputText [(ngModel)]="valueEmp" />
+                        </div>
+                        <div class="mt-4">
+                            <label class="label" for="date">Fecha de Inicio</label>
+                              <p-calendar 
+                                [(ngModel)]="valueDate" 
+                                [showIcon]="true" 
+                                [showOnFocus]="false" 
+                                styleClass="p"
+                                inputId="buttondisplay" />                                         
+                        </div>
+                         <div class="mt-4">
+                            <label class="label" for="date">Fecha de Fin</label>
+                                <p-calendar 
+                                [(ngModel)]="valueDateFin" 
+                                [showIcon]="true" 
+                                [showOnFocus]="false" 
+                                styleClass="p"
+                                inputId="buttondisplay" />                                                  
                         </div>
                     </div>
 
+                    <div class="card mt-3">
+                        <label class="label" for="id">Lugar exacto de donde se realizará el trabajo</label>
+                        <textarea 
+                            placeholder="Escriba la descripción aquí..." 
+                            id="description"
+                            rows="5"
+                            pInputTextarea 
+                            class="w-full"
+                            [(ngModel)]="valueTextArea">
+                        </textarea>
+                   </div>
 
+               
                     
                 </p-accordionTab>
                 <p-accordionTab header="Análisis de Riesgo" headerStyleClass="registro-tab header-lg">
