@@ -29,6 +29,7 @@ export class CrudComponent  {
     valueTextArea: string;
     valueDate: string;
     valueDateFin: string;
+    showInfoDialog: boolean = false;
 
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 

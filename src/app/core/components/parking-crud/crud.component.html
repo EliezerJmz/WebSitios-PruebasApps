@@ -1,9 +1,24 @@
 <p-toast></p-toast>
 <p-confirmDialog />
+<p-dialog header="Información" [(visible)]="showInfoDialog" [modal]="true" [style]="{width: '83vw'}" [baseZIndex]="10000">
+    <p class="m-0">
+        Análisis de trabajo seguro (ATS)
+    </p>
+</p-dialog>
 <div class="grid m-0">
 
         <div id="panel" class="col-12 p-0">
-            <h4 class="text-center pt-3">Formulario ATS</h4>
+            <div class="flex justify-content-center align-items-center gap-3 pt-3 px-3 mb-3">
+                <h4 class="m-0">Formulario ATS</h4>
+                <p-button 
+                    icon="pi pi-question-circle" 
+                    severity="info" 
+                    size="small"
+                    (onClick)="showInfoDialog = true"
+                    styleClass="info-button-large-icon"
+                    />
+            </div>
+
             <p-accordion>
                 <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
                     <div class="card">

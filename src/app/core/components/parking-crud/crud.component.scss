@@ -65,6 +65,11 @@
   background: var(--gray-100) !important;
 }
 
+// Estilo para el botón de información con ícono grande
+:host ::ng-deep .info-button-large-icon .p-button-icon {
+  font-size: 1.3rem !important;
+}
+
 // Estilos para botones en pantallas muy pequeñas
 @media (max-width: 325px) {
   :host ::ng-deep .p-button .p-button-label {
