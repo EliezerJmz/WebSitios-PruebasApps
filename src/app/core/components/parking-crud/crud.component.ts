@@ -11,15 +11,41 @@ import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { StatusItem } from 'src/app/core/api/management-catalog/catalog';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 
 @Component({
     templateUrl: './crud.component.html',
     styleUrls: ['./crud.component.scss'],
-    providers: [MessageService, ConfirmationService, TableModule, TagModule, RatingModule, ButtonModule, CommonModule]
+    providers: [MessageService, ConfirmationService, TableModule, TagModule, RatingModule, ButtonModule, CommonModule, CheckboxModule]
 })
 export class CrudComponent  {
+
+// Propiedades para secciones del formulario analisis de riesgo
+  selectedCategories: any[] = [];
+
+    categories: any[] = [
+        { name: 'Explosión', key: 'EXP' },
+        { name: 'Incendio', key: 'INC' },
+        { name: 'Quemaduras', key: 'QUEM' },
+        { name: 'Choque eléctrico', key: 'CE' },
+        { name: 'Arco eléctrico', key: 'AE' },
+        { name: 'Caida de diferentes niveles', key: 'CDN' },
+        { name: 'Caida de objetos desplomes', key: 'COD' },
+        { name: 'Colisiones', key: 'COL' },
+        { name: 'Atropellamiento', key: 'ATRO' },
+        { name: 'inhalación de particulas', key: 'INH' },
+        { name: 'Exposición a fluidos presurizados', key: 'EFP' },
+        { name: 'Intoxicación/Asfixia/Irritación por quimicos', key: 'IQC' },
+        { name: 'Contaminación por quimicos', key: 'CQC' },
+        { name: 'Exposición a ruido', key: 'ER' },
+        { name: 'Sobre esfuerzo por manipulación manual de carga', key: 'SEMMC' },
+        { name: 'Generación de residuos', key: 'GR' },
+        { name: 'Atrapamiento', key: 'ATRA' },
+        { name: 'Derrumbes', key: 'DER' },
+    ];
+
 
 // Propiedad para los checkboxes del accordion
     pizza: string[] = [];
@@ -32,6 +58,21 @@ export class CrudComponent  {
     showInfoDialog: boolean = false;
 
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
+
+ngOnInit() {
+  
+}
+
+// Log de categorías seleccionadas
+onSelectedCategoriesChange(selected: any[]) {
+    const nombres = (selected || []).map((c: any) => c.name);
+    console.log('Categorías seleccionadas:', nombres);
+
+}
+
+selectedCheckCategories(){
+    console.log("CHEKEADAS:", this.selectedCategories);
+}
 
 //CONFIRMACIÓN BOTON DE ENVIAR FORMULARIO ATS
 confirmSubmitFormATS() {
