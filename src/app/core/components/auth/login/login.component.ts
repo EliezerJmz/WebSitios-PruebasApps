@@ -114,27 +114,37 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.invalidCredentials = null;
 
+    console.log('🔐 Iniciando login con:', this.loginForm.value.username);
+
     this.auth.login(this.loginForm.value)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: () => {
-            this.isLoading = false;
-            const payload = this.auth.getTokenPayload();
+        next: (response) => {
+            console.log('✅ Login exitoso, respuesta recibida');
+            
+            // Pequeño delay para asegurar que las cookies estén disponibles
+            setTimeout(() => {
+              this.isLoading = false;
+              const payload = this.auth.getTokenPayload();
 
-            if (!payload || !payload.resources || payload.resources.length === 0) {
-              this.invalidCredentials = 'Error en la autenticación: Token inválido o sin recursos asignados.';
-              this.auth.clearSession(); // Limpiar sesión inválida
-              return;
-            }
+              console.log("📦 VALORES DEL payload:", payload);
 
-            // Redirigir según el rol
-            const targetRoute = payload.role ? '/dashboard' : '/';
-            this.router.navigate([targetRoute]);
+              if (!payload || !payload.resources || payload.resources.length === 0) {
+                this.invalidCredentials = 'Error en la autenticación: Token inválido o sin recursos asignados.';
+                this.auth.clearSession(); // Limpiar sesión inválida
+                return;
+              }
+
+              // Redirigir según el rol
+              const targetRoute = payload.role ? '/dashboard' : '/';
+              console.log('🚀 Redirigiendo a:', targetRoute);
+              this.router.navigate([targetRoute]);
+            }, 150); // 150ms de delay
           },
         error: (err) => {
           this.isLoading = false;
           this.invalidCredentials = 'Credenciales inválidas o error del servidor.';
-          console.error('Error en login:', err);
+          console.error('❌ Error en login:', err);
         }
       });
   }

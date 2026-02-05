@@ -40,7 +40,28 @@ export class AuthService {
       withCredentials: true,
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     }).pipe(
-      tap(() => {
+      tap((response: any) => {
+        console.log('📥 Respuesta completa del login:', response);
+        console.log('📦 Body de la respuesta:', response.body);
+        console.log('🍪 Headers de la respuesta:', response.headers.keys());
+        
+        // Si el token viene en el body, guardarlo manualmente
+        if (response.body?.token) {
+          console.log('✅ Token encontrado en el body, guardándolo manualmente');
+          this.cookieService.set('jwt-token', response.body.token, {
+            path: '/',
+            secure: false,
+            sameSite: 'Lax'
+          });
+          if (response.body?.refreshToken) {
+            this.cookieService.set('refresh_token', response.body.refreshToken, {
+              path: '/',
+              secure: false,
+              sameSite: 'Lax'
+            });
+          }
+        }
+        
         this.setResourcesFromToken();
         this.setupTokenRefresh();
       })
@@ -49,8 +70,9 @@ export class AuthService {
 
   // En tu AuthService
 handleSamlAuthSuccess(token: string, refreshToken: string): void {
+    console.log('💾 Guardando tokens de SAML...');
     // Guardar los tokens en cookies (configuración para desarrollo)
-    this.cookieService.set('token', token, {
+    this.cookieService.set('jwt-token', token, {
       path: '/',
       secure: false,  // Para desarrollo HTTP
       sameSite: 'Lax' // Más permisivo para desarrollo
@@ -61,6 +83,8 @@ handleSamlAuthSuccess(token: string, refreshToken: string): void {
       secure: false,  // Para desarrollo HTTP  
       sameSite: 'Lax' // Más permisivo para desarrollo
     });
+    
+    console.log('✅ Tokens guardados correctamente');
 
     // Actualizar el estado de autenticación
     this.setResourcesFromToken();
@@ -84,6 +108,8 @@ handleSamlAuthSuccess(token: string, refreshToken: string): void {
   /** 🧩 Decodifica el token */
   getTokenPayload(): any | null {
     const token = this.getToken();
+    console.log("TOKEN EN PAYLOAD", token);
+
     if (!token) return null;
 
     try {
@@ -159,7 +185,24 @@ handleSamlAuthSuccess(token: string, refreshToken: string): void {
 
   /** 🔑 Obtiene el token desde la cookie */
   getToken(): string | null {
-    return this.cookieService.get('token') || null;
+    console.log('🔍 Buscando token en cookies...');
+    console.log('🍪 Cookies disponibles:', this.cookieService.getAll());
+    console.log('📄 document.cookie:', document.cookie);
+    
+    // Intentar diferentes nombres de cookies
+    const possibleNames = ['jwt-token', 'token', 'access_token', 'accessToken'];
+    
+    for (const name of possibleNames) {
+      const token = this.cookieService.get(name);
+      if (token) {
+        console.log(`✅ Token encontrado en cookie: ${name}`);
+        return token;
+      }
+    }
+    
+    console.warn('⚠️ No se encontró ningún token en las cookies');
+    console.warn('⚠️ Si el backend usa cookies HttpOnly, no serán accesibles desde JavaScript');
+    return null;
   }
   
   getRefreshToken(): string | null {
@@ -179,9 +222,11 @@ handleSamlAuthSuccess(token: string, refreshToken: string): void {
 
   /** 🧹 Limpia la sesión */
   public clearSession(): void {
-    // Limpiar cookies (para desarrollo)
-    this.cookieService.delete('token', '/');
-    this.cookieService.delete('refresh_token', '/');
+    // Limpiar cookies (para desarrollo) - todos los posibles nombres
+    const cookieNames = ['jwt-token', 'token', 'access_token', 'accessToken', 'refresh_token'];
+    cookieNames.forEach(name => {
+      this.cookieService.delete(name, '/');
+    });
 
     // Limpiar estado local
     this.resources = [];
