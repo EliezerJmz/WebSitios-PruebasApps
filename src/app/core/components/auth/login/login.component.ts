@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // Redirigir si ya está autenticado
     if (this.auth.isAuthenticated()) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/formularios-enviados']);
     }
 
     // 🚨 Timeout de respaldo (opcional)
@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.auth.handleSamlAuthSuccess(event.data.token, event.data.refreshToken);
 
       // Redirigir mediante el router de Angular (sin recarga)
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/formularios-enviados']);
 
       // Cerrar el popup si está abierto
       if (this.samlPopup && !this.samlPopup.closed) {
@@ -136,7 +136,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               }
 
               // Redirigir según el rol
-              const targetRoute = payload.role ? '/dashboard' : '/';
+              const targetRoute = payload.role ? '/formularios-enviados' : '/';
               console.log('🚀 Redirigiendo a:', targetRoute);
               this.router.navigate([targetRoute]);
             }, 150); // 150ms de delay
