@@ -15,8 +15,8 @@ import { AuthGuard } from './core/guards/auth.guard';
                 component: AppLayoutComponent,
                 children: [
                     {
-                        path: 'dashboard',
-                        loadChildren: () => import('./core/components/dashboard/dashboard.module').then(m => m.DashboardModule),
+                        path: 'formularios-enviados',
+                        loadChildren: () => import('./core/components/formularios-enviados/formularios-enviados.module').then(m => m.FormulariosEnviadosModule),
                         canActivate: [AuthGuard] // Descomenta para proteger esta ruta
                     },
                     {
