@@ -39,8 +39,8 @@ import { AuthGuard } from './core/guards/auth.guard';
                         loadChildren: () => import('./core/components/management-notifications/management-notifications.module').then(m => m.ManagementNotificationsModule),
                          canActivate: [AuthGuard]
                     },
-                    { path: 'parking-crud',
-                        loadChildren: () => import('./core/components/parking-crud/crud.module').then(m => m.CrudModule),
+                    { path: 'formulario-ats',
+                        loadChildren: () => import('./core/components/formulario-ats/formulario-ats.module').then(m => m.FormularioAtsModule),
                          canActivate: [AuthGuard]
                     },
 
