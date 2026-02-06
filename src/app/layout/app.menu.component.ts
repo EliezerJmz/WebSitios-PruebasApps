@@ -37,8 +37,8 @@ export class AppMenuComponent implements OnInit {
                         label: 'Análisis de Trabajo Seguro (ATS)',
                         icon: 'pi pi-check-square',
                         class: 'menu-item-lg',
-                        slug: 'parking-crud',
-                        routerLink: ['/parking-crud']
+                        slug: 'formulario-ats',
+                        routerLink: ['/formulario-ats']
                     }
                 ]
             },
