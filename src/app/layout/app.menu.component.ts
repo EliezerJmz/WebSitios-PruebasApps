@@ -27,8 +27,8 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Formularios Enviados',
                         icon: 'pi pi-file-export',
                         class: 'menu-item-lg',
-                        slug:'dashboard',
-                        routerLink: ['/dashboard'] }
+                        slug:'formularios-enviados',
+                        routerLink: ['/formularios-enviados'] }
                 ]
             },
             {
