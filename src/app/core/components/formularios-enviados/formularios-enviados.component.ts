@@ -3,11 +3,11 @@ import { OverviewService } from '../../service/dashboar/overview.service';
 import { OverView } from '../../api/dashboard/overView.model';
 
 @Component({
-    selector: 'app-dashboard',
-    templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    selector: 'app-formularios-enviados',
+    templateUrl: './formularios-enviados.component.html',
+    styleUrls: ['./formularios-enviados.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class FormulariosEnviadosComponent implements OnInit {
 
     //pruebas checkbox
     pizza: string[] = [];

@@ -1,4 +1,4 @@
-import { DashboardModule } from './../dashboard/dashboard.module';
+import { FormulariosEnviadosModule } from '../formularios-enviados/formularios-enviados.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 

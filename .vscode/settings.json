@@ -6,7 +6,8 @@
         "package",
         "android",
         "service",
-        "interceptor"
+        "interceptor",
+        "routing"
     ],
     "chat.fontSize": 14,
     "scm.inputFontSize": 14,
