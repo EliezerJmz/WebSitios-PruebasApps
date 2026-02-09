@@ -16,6 +16,18 @@
   border-color: #DA291C !important;
 }
 
+// Sub accordeón 
+:host ::ng-deep .p-accordion .p-accordion-header-link.registro-sub {
+  //background: #DA291C !important;
+  //border-color: #DA291C !important;
+  background: #0097A9 !important;
+  border-color: #03bdd2 !important;
+  color: #fff !important;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+// end sub accordeón
+
 :host ::ng-deep .p-accordion .p-accordion-header-link.header-lg .p-accordion-header-text {
   font-size: 1.3rem;
   font-weight: 500;
