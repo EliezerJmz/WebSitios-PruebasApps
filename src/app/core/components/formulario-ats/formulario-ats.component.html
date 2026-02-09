@@ -149,9 +149,49 @@
                  <p-accordionTab header="Permisos de Trabajo" headerStyleClass="registro-tab header-lg">
                         <p-accordion>
                             <p-accordionTab header="Trabajos en caliente" headerStyleClass="registro-sub">
-                                <p>
-                                    Lorem ipsum dolor sit amet...
-                                </p>
+                                <div class="card">
+                                    <label class="label" for="orden">Fotografía de extintor en buen estado, con carga, marchamo y pin.</label>
+                                    <app-upload-photo 
+                                        [showTakePhotoButton]="true"
+                                        [showGalleryButton]="false"
+                                        [showTakeAndUploadButton]="false"
+                                        [showUploadButton]="true"
+                                        [showCancelButton]="true">                            
+                                    </app-upload-photo>
+                                </div>    
+                                <div class="card">
+                                    <label class="label" for="orden">Fotografía de los equipos de protección a utilizar (guantes de cuero, lentes, careta, polainas, gabacha de cuero)</label>
+                                    <app-upload-photo 
+                                        [showTakePhotoButton]="true"
+                                        [showGalleryButton]="false"
+                                        [showTakeAndUploadButton]="false"
+                                        [showUploadButton]="true"
+                                        [showCancelButton]="true">                            
+                                    </app-upload-photo>
+                                </div>    
+                                <div class="card">
+                                    <label class="label" for="orden">Cumplimiento obligatorio</label>
+                                    <p>
+                                        Se han delimitado las áreas de trabajo 
+                                        expuestas a riesgos por la actividad.
+                                    </p>
+                                    <p>
+                                        Se ha aislado ductos de aire, ventiladores, 
+                                        alivios que puedan transportar gases.
+                                    </p>
+                                    <p>
+                                        Colocar protectores (canceles, pantallas, 
+                                        mamparas) a prueba de fuego para aislar áreas.
+                                    </p>
+                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                        <label for="" class="text-primary text-lg">Acepto el cumplimiento obligatorio</label>
+                                        <p-checkbox 
+                                        styleClass="checkbox-lg"
+                                        [(ngModel)]="checked" 
+                                        [binary]="true" 
+                                        inputId="binary" />
+                                    </div>
+                                </div>    
                             </p-accordionTab>
                             <p-accordionTab header="Trabajos en altura" headerStyleClass="registro-sub">
                                 <p>

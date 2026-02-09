@@ -57,6 +57,9 @@ export class FormularioAtsComponent  {
     valueDateFin: string;
     showInfoDialog: boolean = false;
 
+ // Permisos de trabajo
+  checked: boolean = false;   
+
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
 ngOnInit() {
