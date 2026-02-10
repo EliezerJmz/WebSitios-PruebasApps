@@ -35,7 +35,7 @@
 .label {
   display: block;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-bottom: 0.5rem;
 }
 .label-cumplimiento {
@@ -49,12 +49,16 @@
 
 .p{
   font-size: 1.2rem;
-  color: #000;
+  color: #4b5563;
+}
+.p-recomendaciones{
+  font-size: 1.1rem;
+  color: #4b5563;
 }
 .h5{
   font-size: 1.3rem;
   font-weight: 600;
-  color: #000;
+  color: #4b5563;
 }
 
 :host ::ng-deep input.p-inputtext {
