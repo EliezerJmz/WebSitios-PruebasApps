@@ -170,7 +170,7 @@
                                     </app-upload-photo>
                                 </div>    
                                 <div class="card">
-                                    <label class="label" for="orden">Cumplimiento obligatorio</label>
+                                    <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
                                     <p>
                                         Se han delimitado las áreas de trabajo 
                                         expuestas a riesgos por la actividad.
@@ -184,14 +184,40 @@
                                         mamparas) a prueba de fuego para aislar áreas.
                                     </p>
                                     <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="text-primary text-lg">Acepto el cumplimiento obligatorio</label>
+                                        <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
                                         <p-checkbox 
                                         styleClass="checkbox-lg"
-                                        [(ngModel)]="checked" 
+                                        [(ngModel)]="checkedCumplimiento" 
                                         [binary]="true" 
                                         inputId="binary" />
                                     </div>
-                                </div>    
+                                </div> 
+                                 <div class="card">
+                                    <h5 class="label" for="orden">Recomendaciones</h5>
+                                    <p>
+                                        Inspeccione las herramientas y equipos antes
+                                        de iniciar la actividad para identificar y 
+                                        eliminar peligros. 
+                                    </p>
+                                    <p>
+                                        El supervisor y las personas expuestas a los 
+                                        peligros de la actividad han sido notificados 
+                                        sobre los trabajos a realizar.
+                                    </p>
+                                    <p>
+                                        Evaluar alrededor del área para identificar 
+                                        posibles materiales inflamables. 
+                                    </p>
+                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                        <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
+                                        <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
+                                        <p-checkbox 
+                                        styleClass="checkbox-lg"
+                                        [(ngModel)]="checkedRecomendaciones" 
+                                        [binary]="true" 
+                                        inputId="binary" />
+                                    </div>
+                                </div>       
                             </p-accordionTab>
                             <p-accordionTab header="Trabajos en altura" headerStyleClass="registro-sub">
                                 <p>

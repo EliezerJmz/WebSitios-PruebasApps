@@ -58,7 +58,8 @@ export class FormularioAtsComponent  {
     showInfoDialog: boolean = false;
 
  // Permisos de trabajo
-  checked: boolean = false;   
+  checkedCumplimiento: boolean = false;  
+  checkedRecomendaciones: boolean = false; 
 
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
