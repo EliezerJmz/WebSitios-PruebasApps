@@ -150,3 +150,17 @@
   border-color: #FF8300 !important;
   box-shadow: 0 0 0 0.2rem rgba(255, 131, 0, 0.25) !important;
 }
+
+// Estilos para el dialog de información
+:host ::ng-deep .info-dialog .p-dialog-header {
+  background: #0097A9 !important;
+  color: #ffffff !important;
+}
+
+:host ::ng-deep .info-dialog .p-dialog-header .p-dialog-title {
+  color: #ffffff !important;
+}
+
+:host ::ng-deep .info-dialog .p-dialog-header .p-dialog-header-icon {
+  color: #ffffff !important;
+}
