@@ -10,8 +10,8 @@ export const environment = {
   //apiUrlBase:'https://api.devparqueosrrhh.claro.com.gt/',
   
   // URLs HTTP para desarrollo local (SOLO PARA DEBUG):
-  //apiUrlBase:'http://localhost:8080/', // Para emulador solamente
-  apiUrlBase:'http://10.168.112.179:8080/', // ipv4 local GIO
+  apiUrlBase:'http://localhost:8080/', // Para emulador solamente
+  //apiUrlBase:'http://172.22.111.216:8080/', // ipv4 local GIO
 
   
  
@@ -31,4 +31,3 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
-
