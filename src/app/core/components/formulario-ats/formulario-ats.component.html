@@ -556,14 +556,86 @@
                                 </div>       
                             </p-accordionTab>
 
-                            
-
-                              <p-accordionTab header="Trabajos de excavaciones" headerStyleClass="registro-sub">
-                                <p>
-                                    At vero eos et accusamus et iusto odio dignissimos...
-                                </p>
+                            <p-accordionTab header="Trabajos de excavaciones" headerStyleClass="registro-sub">
+                                <div class="card">
+                                    <label class="label" for="orden">Fotografía de equipos de protección personal <br> (casco, botas, chaleco, guantes).</label>
+                                    <app-upload-photo 
+                                        [showTakePhotoButton]="true"
+                                        [showGalleryButton]="false"
+                                        [showTakeAndUploadButton]="false"
+                                        [showUploadButton]="true"
+                                        [showCancelButton]="true">                            
+                                    </app-upload-photo>
+                                </div>    
+                              
+                                <div class="card">
+                                    <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
+                                    <p class="p-recomendaciones">
+                                        Inspección previa del terreno y verificación de servicios subterráneos.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Accesos seguros (escaleras o rampas) para entrada y salida.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Señalización y delimitación del área de trabajo.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Protección contra caídas y desprendimientos de material.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Vigilancia de atmósferas peligrosas 
+                                        (oxígeno, gases, vapores).
+                                    </p>
+                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                        <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                                        <p-checkbox 
+                                        styleClass="checkbox-lg"
+                                        [(ngModel)]="checkedCumplimiento" 
+                                        [binary]="true" 
+                                        inputId="binary" />
+                                    </div>
+                                </div> 
+                                 <div class="card">
+                                    <h5 class="label" for="orden">Recomendaciones</h5>
+                                    <p class="p-recomendaciones">
+                                        Supervisión permanente por personal competente.                
+                                    </p>
+                                    <p class="p-recomendaciones">    
+                                        Control de agua o lluvias para evitar inundaciones.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Plan de emergencia y rescate disponible y 
+                                        comunicado
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Suspender labores al aire libre por vientos fuertes y/o 
+                                        tormenta eléctrica.
+                                    </p>
+                                    <p class="p-recomendaciones"> 
+                                        Tomar pausas en movimientos repetitivos, para evitar 
+                                        fatiga. 
+                                    </p>
+                                    <p class="p-recomendaciones">   
+                                        Mantenerse hidratado. 
+                                    </p>
+                                     <p class="p-recomendaciones">   
+                                          Reportar cualquier anomalía durante la actividad.
+                                    </p>
+                                     <p class="p-recomendaciones">   
+                                        Evitar acumulación de material cerca del borde de la 
+                                        excavación.
+                                    </p>
+                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                        <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
+                                        <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
+                                        <p-checkbox 
+                                        styleClass="checkbox-lg"
+                                        [(ngModel)]="checkedRecomendaciones" 
+                                        [binary]="true" 
+                                        inputId="binary" />
+                                    </div>
+                                </div>       
                             </p-accordionTab>
-
                         </p-accordion>
                 </p-accordionTab>
                   <p-accordionTab header="Fotografía Herramientas" headerStyleClass="registro-tab header-lg">
