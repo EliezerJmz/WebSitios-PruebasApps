@@ -12,5 +12,65 @@
     ],
     "chat.fontSize": 14,
     "scm.inputFontSize": 14,
-    "editor.minimap.sectionHeaderFontSize": 14
+    "editor.minimap.sectionHeaderFontSize": 14,
+    // CSS IntelliSense Configuration
+    "css.validate": true,
+    "scss.validate": true,
+    "less.validate": true,
+    "css.completion.completePropertyWithSemicolon": true,
+    "css.completion.triggerPropertyValueCompletion": true,
+    "scss.completion.completePropertyWithSemicolon": true,
+    "scss.completion.triggerPropertyValueCompletion": true,
+    // HTML CSS Support
+    "css.enabledLanguages": [
+        "html",
+        "typescript"
+    ],
+    "scss.scannerExclude": [
+        "**/.git",
+        "**/bower_components",
+        "**/dist",
+        "**/build"
+    ],
+    "scss.scannerDepth": 30,
+    // CSS Class IntelliSense - Include PrimeFlex and PrimeNG
+    "html-css-class-completion.includeGlobPattern": "**/*.{css,scss,html}",
+    "html-css-class-completion.enableEmmetSupport": true,
+    "html-css-class-completion.enableFindUsage": true,
+    "css.customData": [
+        ".vscode/primeflex.json"
+    ],
+    "css.fileExtensions": [
+        "css",
+        "scss"
+    ],
+    "css.lint.compatibleVendorPrefixes": "warning",
+    "scss.lint.compatibleVendorPrefixes": "warning",
+    // Editor suggestions for CSS
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true
+    },
+    "[scss]": {
+        "editor.suggest.insertMode": "replace",
+        "editor.suggest.showWords": false
+    },
+    "[css]": {
+        "editor.suggest.insertMode": "replace"
+    },
+    "[html]": {
+        "editor.suggest.insertMode": "replace",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        }
+    },
+    // PrimeFlex specific paths
+    "css.styleSheets": [
+        "${workspaceFolder}/node_modules/primeflex/primeflex.css",
+        "${workspaceFolder}/node_modules/primeng/resources/primeng.css",
+        "${workspaceFolder}/src/styles.scss"
+    ]
 }

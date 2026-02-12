@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "ecmel.vscode-html-css",
+        "zignd.html-css-class-completion",
+        "mrmlnc.vscode-scss",
+        "pranaygp.vscode-css-peek",
+        "angular.ng-template"
+    ]
+}
