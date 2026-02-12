@@ -302,7 +302,7 @@
                                 </div>       
                             </p-accordionTab>
 
-                              <p-accordionTab header="Trabajos con Energías Peligrosas" headerStyleClass="registro-sub">
+                            <p-accordionTab header="Trabajos con Energías Peligrosas" headerStyleClass="registro-sub">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de equipos aislantes <br> (guantes, mantas, equipos de protección dieléctricos).</label>
                                     <app-upload-photo 
@@ -390,13 +390,81 @@
                                 </div>       
                             </p-accordionTab>
 
-                          
-
-                              <p-accordionTab header="Trabajos con quimícos" headerStyleClass="registro-sub">
-                                <p>
-                                    At vero eos et accusamus et iusto odio dignissimos...
-                                </p>
+                              <p-accordionTab header="Trabajos con Químicos" headerStyleClass="registro-sub">
+                                <div class="card">
+                                    <label class="label" for="orden">Fotografía del equipo (guantes, mangas, mascarilla, filtros y lentes)</label>
+                                    <app-upload-photo 
+                                        [showTakePhotoButton]="true"
+                                        [showGalleryButton]="false"
+                                        [showTakeAndUploadButton]="false"
+                                        [showUploadButton]="true"
+                                        [showCancelButton]="true">                            
+                                    </app-upload-photo>
+                                </div>    
+                                <div class="card">
+                                    <label class="label" for="orden">Fotografía Fichas técnicas de los químicos a manipular</label>
+                                    <app-upload-photo 
+                                        [showTakePhotoButton]="true"
+                                        [showGalleryButton]="false"
+                                        [showTakeAndUploadButton]="false"
+                                        [showUploadButton]="true"
+                                        [showCancelButton]="true">                            
+                                    </app-upload-photo>
+                                </div>    
+                                <div class="card">
+                                    <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
+                                    <p class="p-recomendaciones">
+                                        Delimitar el área de trabajo.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Fichas técnicas de los químicos a manipular.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Embaces de químicos debidamente 
+                                        identificados con nombre y rombo de 
+                                        peligrosidad.
+                                    </p>
+                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                        <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                                        <p-checkbox 
+                                        styleClass="checkbox-lg"
+                                        [(ngModel)]="checkedCumplimiento" 
+                                        [binary]="true" 
+                                        inputId="binary" />
+                                    </div>
+                                </div> 
+                                 <div class="card">
+                                    <h5 class="label" for="orden">Recomendaciones</h5>
+                                    <p class="p-recomendaciones">
+                                        Almacenar correctamente los químicos.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Tener un plan de acción por cualquier exposición del químico.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Lavarse las manos después de utilizarlos.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Tener protocolos claros para derrames, incendios o intoxicaciones. 
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Trabajar en áreas con buena circulación de aire para evitar acumulación de vapores tóxicos.
+                                    </p>
+                                    <p class="p-recomendaciones">
+                                        Si el olor del químico afecta a otras áreas, notificar para tomar medidas preventivas necesarias.
+                                    </p>
+                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                        <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
+                                        <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
+                                        <p-checkbox 
+                                        styleClass="checkbox-lg"
+                                        [(ngModel)]="checkedRecomendaciones" 
+                                        [binary]="true" 
+                                        inputId="binary" />
+                                    </div>
+                                </div>       
                             </p-accordionTab>
+
 
                               <p-accordionTab header="Trabajos en espacios confinados" headerStyleClass="registro-sub">
                                 <p>
