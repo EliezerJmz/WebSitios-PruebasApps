@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table, TableModule } from 'primeng/table';
 import { Router } from '@angular/router';
@@ -65,6 +65,78 @@ constructor(private confirmationService: ConfirmationService, private messageSer
 
 ngOnInit() {
   
+}
+
+// Función para manejar el click en los headers del acordeón y hacer scroll al contenido
+@HostListener('click', ['$event'])
+onClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const accordionHeader = target.closest('.p-accordion-header') as HTMLElement;
+    
+    if (accordionHeader) {
+        // Aumentar timeout en móvil para dar tiempo a la animación
+        const isMobile = window.innerWidth < 768;
+        const delay = isMobile ? 500 : 300; // 600ms en móvil, 400ms en desktop 
+        
+        setTimeout(() => {
+            // Calcular la altura real del menú
+            const topbar = document.querySelector('.layout-topbar') as HTMLElement;
+            const menuHeight = topbar ? topbar.offsetHeight : 100;
+            
+            // Agregar pequeño margen adicional (20px en móvil, 15px en desktop)
+            const margin = isMobile ? 65 : 15;
+            const offset = menuHeight + margin;
+            
+            // Obtener posición del header relativa al viewport
+            const rect = accordionHeader.getBoundingClientRect();
+            
+            // Obtener el scroll actual - usar múltiples métodos para compatibilidad móvil
+            const pageYOffset = window.pageYOffset || 0;
+            const docElementScrollTop = document.documentElement.scrollTop || 0;
+            const bodyScrollTop = document.body.scrollTop || 0;
+            
+            const currentScroll = Math.max(pageYOffset, docElementScrollTop, bodyScrollTop);
+            
+            // Calcular posición absoluta en el documento: posición en viewport + scroll actual
+            const absolutePosition = rect.top + currentScroll;
+            
+            // Calcular posición final: posición absoluta menos el offset del menú
+            const targetPosition = Math.max(0, absolutePosition - offset);
+            
+            // Implementar smooth scroll manual para mejor compatibilidad móvil
+            const startPosition = currentScroll;
+            const distance = targetPosition - startPosition;
+            const duration = 400; // 500ms de animación
+            let startTime: number | null = null;
+            
+            const smoothScrollStep = (currentTime: number) => {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                // Easing function (ease-in-out)
+                const ease = progress < 0.5 
+                    ? 2 * progress * progress 
+                    : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+                
+                const newPosition = startPosition + (distance * ease);
+                
+                // Aplicar scroll en el elemento correcto según el dispositivo
+                if (bodyScrollTop > 0 || isMobile) {
+                    document.body.scrollTop = newPosition;
+                }
+                if (docElementScrollTop > 0 || !isMobile) {
+                    document.documentElement.scrollTop = newPosition;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(smoothScrollStep);
+                }
+            };
+            
+            requestAnimationFrame(smoothScrollStep);
+        }, delay);
+    }
 }
 
 // Log de categorías seleccionadas

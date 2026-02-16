@@ -69,7 +69,7 @@
                 </p-accordionTab>
 
                 <p-accordionTab header="Fotografía del Rostro con Ubicación" headerStyleClass="registro-tab header-lg">
-                 <div class="scroll-box">
+                 <div>
 
                    <div class="card mt-2">
 
@@ -128,7 +128,7 @@
                 </p-accordionTab>
 
                 <p-accordionTab header="Análisis de Riesgo" headerStyleClass="registro-tab header-lg">
-                  <div class="scroll-box">
+                  <div>
                       <div class="card mt-2 mb-1">
                           <label class="label" for="riesgo">Análisis de Riesgos en el Entorno</label>
   
@@ -152,10 +152,9 @@
 
                 </p-accordionTab>
 
-                 <p-accordionTab header="Permisos de Trabajo" headerStyleClass="registro-tab header-lg">
+                <p-accordionTab header="Permisos de Trabajo" headerStyleClass="registro-tab header-lg">
                         <p-accordion styleClass="mt-2">
                             <p-accordionTab header="Trabajos en caliente" headerStyleClass="registro-sub">
-                             <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de extintor en buen estado, con carga, marchamo y pin.</label>
                                     <app-upload-photo 
@@ -224,12 +223,10 @@
                                         [binary]="true" 
                                         inputId="binary" />
                                     </div>
-                                </div>
-                             </div>       
+                                </div>    
                             </p-accordionTab>
 
                             <p-accordionTab header="Trabajos en alturas" headerStyleClass="registro-sub">
-                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de etiqueta de arnés.</label>
                                     <app-upload-photo 
@@ -308,11 +305,9 @@
                                         inputId="binary" />
                                     </div>
                                 </div>      
-                                </div> 
                             </p-accordionTab>
 
                             <p-accordionTab header="Trabajos con energías peligrosas" headerStyleClass="registro-sub">
-                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de equipos aislantes <br> (guantes, mantas, equipos de protección dieléctricos).</label>
                                     <app-upload-photo 
@@ -398,11 +393,9 @@
                                         inputId="binary" />
                                     </div>
                                 </div>       
-                                </div>
                             </p-accordionTab>
 
                             <p-accordionTab header="Trabajos con químicos" headerStyleClass="registro-sub">
-                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía del equipo (guantes, mangas, mascarilla, filtros y lentes)</label>
                                     <app-upload-photo 
@@ -475,11 +468,9 @@
                                         inputId="binary" />
                                     </div>
                                 </div>       
-                                </div>
                             </p-accordionTab>
                            
                             <p-accordionTab header="Trabajos en espacios confinados" headerStyleClass="registro-sub">
-                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de equipos de protección <br> (arnés, escalera, trípode).</label>
                                     <app-upload-photo 
@@ -566,13 +557,11 @@
                                         [(ngModel)]="checkedRecomendaciones" 
                                         [binary]="true" 
                                         inputId="binary" />
-                                    </div>
-                                </div>      
+                                    </div>    
                             </div>   
                             </p-accordionTab>
 
                             <p-accordionTab header="Trabajos de excavaciones" headerStyleClass="registro-sub">
-                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de equipos de protección personal <br> (casco, botas, chaleco, guantes).</label>
                                     <app-upload-photo 
@@ -650,21 +639,23 @@
                                         [binary]="true" 
                                         inputId="binary" />
                                     </div>
-                                </div>       
-                            </div>    
+                                </div>        
                             </p-accordionTab>
                         </p-accordion>
                 </p-accordionTab>
+
                   <p-accordionTab header="Fotografía Herramientas" headerStyleClass="registro-tab header-lg">
                     <p>
                         Contenido del tercer panel del acordeón.
                     </p>
                 </p-accordionTab>
-                 <p-accordionTab header="Fotografía Equipo de Protección" headerStyleClass="registro-tab header-lg">
+                
+                <p-accordionTab header="Fotografía Equipo de Protección" headerStyleClass="registro-tab header-lg">
                     <p>
                         Contenido del tercer panel del acordeón.
                     </p>
                 </p-accordionTab>
+
                  <p-accordionTab header="Medidas de prevención" headerStyleClass="registro-tab header-lg">
                     <p>
                         Contenido del tercer panel del acordeón.
