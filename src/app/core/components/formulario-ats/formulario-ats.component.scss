@@ -164,3 +164,17 @@
 :host ::ng-deep .info-dialog .p-dialog-header .p-dialog-header-icon {
   color: #ffffff !important;
 }
+
+
+:host ::ng-deep .p-accordion .p-accordion-content {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+}
+
+.scroll-box {
+    width: 100%; /* Define el ancho de la caja */
+    height: 400px; /* Define la altura de la caja */
+    //border: 1px solid #ccc; /* Añade un borde para visibilidad */
+    //padding: 10px; /* Espaciado interno */
+    overflow: auto; /* Muestra barras de desplazamiento solo cuando es necesario */
+}

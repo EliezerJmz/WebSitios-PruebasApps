@@ -20,7 +20,7 @@
                     />
             </div>
 
-            <p-accordion>
+            <p-accordion [activeIndex]="null">
                 <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
                     <div class="card">
 
@@ -69,7 +69,9 @@
                 </p-accordionTab>
 
                 <p-accordionTab header="Fotografía del Rostro con Ubicación" headerStyleClass="registro-tab header-lg">
-                   <div class="card">
+                 <div class="scroll-box">
+
+                   <div class="card mt-2">
 
                         <app-upload-photo 
                             [showTakePhotoButton]="true"
@@ -111,7 +113,7 @@
                         </div>
                     </div>
 
-                    <div class="card mt-3">
+                    <div class="card mt-3 mb-1">
                         <label class="label" for="id">Lugar exacto de donde se realizará el trabajo</label>
                         <textarea 
                             placeholder="Escriba la descripción aquí..." 
@@ -122,7 +124,7 @@
                             [(ngModel)]="valueTextArea">
                         </textarea>
                    </div>
-                    
+                 </div>  
                 </p-accordionTab>
 
                 <p-accordionTab header="Análisis de Riesgo" headerStyleClass="registro-tab header-lg">
