@@ -22,7 +22,7 @@
 
             <p-accordion [activeIndex]="null">
                 <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
-                    <div class="card">
+                    <div class="card mt-2">
 
                         <div class="flex align-items-center gap-3">
                             <label class="label mb-0" for="id">Código IVR:</label>
@@ -55,7 +55,7 @@
                  
                    
                     
-                     <div class="card mt-3">
+                     <div class="card mt-3 mb-1">
                         <label class="label" for="id">Descripción del trabajo a realizar</label>
                         <textarea 
                             placeholder="Escriba la descripción aquí..." 
@@ -128,30 +128,34 @@
                 </p-accordionTab>
 
                 <p-accordionTab header="Análisis de Riesgo" headerStyleClass="registro-tab header-lg">
-                    <div class="card">
-                        <label class="label" for="riesgo">Análisis de Riesgos en el Entorno</label>
+                  <div class="scroll-box">
+                      <div class="card mt-2 mb-1">
+                          <label class="label" for="riesgo">Análisis de Riesgos en el Entorno</label>
+  
+                          <div class="flex flex-column gap-2 mt-3">
+                              <div *ngFor="let category of categories" class="field-checkbox">
+                                  <p-checkbox 
+                                      styleClass="checkbox-lg"
+                                      severity="warning"
+                                      [(ngModel)]="selectedCategories"
+                                      (ngModelChange)="onSelectedCategoriesChange($event)"
+                                      [label]="category.name"
+                                      name="group"
+                                      [value]="category" />
+                              </div>
+                          </div>
+                      </div>
+  
+                      <p-button (onClick)="selectedCheckCategories()">Categorias chequeadas</p-button>
 
-                        <div class="flex flex-column gap-2 mt-3">
-                            <div *ngFor="let category of categories" class="field-checkbox">
-                                <p-checkbox 
-                                    styleClass="checkbox-lg"
-                                    severity="warning"
-                                    [(ngModel)]="selectedCategories"
-                                    (ngModelChange)="onSelectedCategoriesChange($event)"
-                                    [label]="category.name"
-                                    name="group"
-                                    [value]="category" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <p-button (onClick)="selectedCheckCategories()">Categorias chequeadas</p-button>
+                  </div>      
 
                 </p-accordionTab>
 
                  <p-accordionTab header="Permisos de Trabajo" headerStyleClass="registro-tab header-lg">
-                        <p-accordion>
+                        <p-accordion styleClass="mt-2">
                             <p-accordionTab header="Trabajos en caliente" headerStyleClass="registro-sub">
+                             <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de extintor en buen estado, con carga, marchamo y pin.</label>
                                     <app-upload-photo 
@@ -220,10 +224,12 @@
                                         [binary]="true" 
                                         inputId="binary" />
                                     </div>
-                                </div>       
+                                </div>
+                             </div>       
                             </p-accordionTab>
 
                             <p-accordionTab header="Trabajos en alturas" headerStyleClass="registro-sub">
+                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de etiqueta de arnés.</label>
                                     <app-upload-photo 
@@ -301,10 +307,12 @@
                                         [binary]="true" 
                                         inputId="binary" />
                                     </div>
-                                </div>       
+                                </div>      
+                                </div> 
                             </p-accordionTab>
 
                             <p-accordionTab header="Trabajos con energías peligrosas" headerStyleClass="registro-sub">
+                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de equipos aislantes <br> (guantes, mantas, equipos de protección dieléctricos).</label>
                                     <app-upload-photo 
@@ -390,9 +398,11 @@
                                         inputId="binary" />
                                     </div>
                                 </div>       
+                                </div>
                             </p-accordionTab>
 
                             <p-accordionTab header="Trabajos con químicos" headerStyleClass="registro-sub">
+                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía del equipo (guantes, mangas, mascarilla, filtros y lentes)</label>
                                     <app-upload-photo 
@@ -465,9 +475,11 @@
                                         inputId="binary" />
                                     </div>
                                 </div>       
+                                </div>
                             </p-accordionTab>
                            
                             <p-accordionTab header="Trabajos en espacios confinados" headerStyleClass="registro-sub">
+                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de equipos de protección <br> (arnés, escalera, trípode).</label>
                                     <app-upload-photo 
@@ -555,10 +567,12 @@
                                         [binary]="true" 
                                         inputId="binary" />
                                     </div>
-                                </div>       
+                                </div>      
+                            </div>   
                             </p-accordionTab>
 
                             <p-accordionTab header="Trabajos de excavaciones" headerStyleClass="registro-sub">
+                                <div class="scroll-box">
                                 <div class="card">
                                     <label class="label" for="orden">Fotografía de equipos de protección personal <br> (casco, botas, chaleco, guantes).</label>
                                     <app-upload-photo 
@@ -637,6 +651,7 @@
                                         inputId="binary" />
                                     </div>
                                 </div>       
+                            </div>    
                             </p-accordionTab>
                         </p-accordion>
                 </p-accordionTab>
