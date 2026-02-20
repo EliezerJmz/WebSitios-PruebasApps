@@ -59,8 +59,8 @@ export class AppMenuComponent implements OnInit {
                          label: 'Reporte de Riesgos y/o Incidentes',
                          icon: 'pi pi-calendar-plus',
                          class: 'menu-item-lg',
-                         slug: 'management-reports',
-                         routerLink: ['/management-reports/reports']
+                         slug: 'formulario-reporte-riesgos-incidentes',
+                         routerLink: ['/formulario-reporte-riesgos-incidentes']
                     }
                 ]
             },
