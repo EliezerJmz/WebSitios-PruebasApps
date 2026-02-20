@@ -48,8 +48,8 @@ export class AppMenuComponent implements OnInit {
                         label: 'Reporte de Accidentes',
                         icon: 'pi pi-pen-to-square',
                         class: 'menu-item-lg',
-                        slug: 'assign-parking',
-                        routerLink: ['/assign-parking']
+                        slug: 'formulario-reporte-accidentes',
+                        routerLink: ['/formulario-reporte-accidentes']
                     }
                 ]
             },

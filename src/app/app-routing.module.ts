@@ -43,6 +43,10 @@ import { AuthGuard } from './core/guards/auth.guard';
                         loadChildren: () => import('./core/components/formulario-ats/formulario-ats.module').then(m => m.FormularioAtsModule),
                          canActivate: [AuthGuard]
                     },
+                      { path: 'formulario-reporte-accidentes',
+                        loadChildren: () => import('./core/components/formulario-reporte-accidentes/formulario-reporte-accidentes.module').then(m => m.FormularioReporteAccidentesModule),
+                         canActivate: [AuthGuard]
+                    },
 
                      {path: 'users',
                         loadChildren: () => import("./core/components/management-user-assignments/usuarios/users.module").then(m => m.UsersModule),
