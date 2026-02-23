@@ -1,0 +1,220 @@
+:host ::ng-deep .p-accordion .p-accordion-header-link.registro-tab {
+  //background: #DA291C !important;
+  //border-color: #DA291C !important;
+  background: #6C6C6C !important;
+  border-color: #3C6C6C !important;
+  color: #fff !important;
+}
+
+:host ::ng-deep .p-accordion .p-accordion-header-link.registro-tab .p-accordion-header-text,
+:host ::ng-deep .p-accordion .p-accordion-header-link.registro-tab .p-accordion-toggle-icon {
+  color: #fff !important;
+}
+
+:host ::ng-deep .p-accordion .p-accordion-tab-active .p-accordion-header-link.registro-tab {
+  background: #DA291C !important;
+  border-color: #DA291C !important;
+}
+
+// Sub accordeón 
+:host ::ng-deep .p-accordion .p-accordion-header-link.registro-sub {
+  //background: #DA291C !important;
+  //border-color: #DA291C !important;
+  background: #0097A9 !important;
+  border-color: #03bdd2 !important;
+  color: #fff !important;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+// end sub accordeón
+
+:host ::ng-deep .p-accordion .p-accordion-header-link.header-lg .p-accordion-header-text {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+// Estilos responsivos para headers de accordion
+:host ::ng-deep .p-accordion-header {
+  position: relative;
+  z-index: 1;
+}
+
+// Acordion En móvil, ajustar tamaño de fuente para mejor visibilidad
+@media (max-width: 768px) {
+  :host ::ng-deep .p-accordion .p-accordion-header-link.header-lg .p-accordion-header-text {
+    font-size: 1.1rem;
+  }
+  
+  :host ::ng-deep .p-accordion .p-accordion-header-link.registro-sub {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :host ::ng-deep .p-accordion .p-accordion-header-link.header-lg .p-accordion-header-text {
+    font-size: 1.2rem;
+  }
+  
+  :host ::ng-deep .p-accordion .p-accordion-header-link.registro-sub {
+    font-size: 1.2rem;
+  }
+}
+.label {
+  display: block;
+  font-weight: 500;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+.label-cumplimiento {
+  display: block;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #FF8300;
+}
+
+.p{
+  font-size: 1.2rem;
+  color: #4b5563;
+}
+.p-recomendaciones{
+  font-size: 1.1rem;
+  color: #4b5563;
+}
+.h5{
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+:host ::ng-deep input.p-inputtext {
+  font-size: 1.2rem;
+  padding: 0.57rem;
+}
+
+:host ::ng-deep input.p-inputtext.input {
+  font-size: 1.3rem;
+  padding: 0.57rem;
+  color: #000;
+}
+
+:host ::ng-deep .p-calendar.p input.p-inputtext {
+  font-size: 1.2rem;
+  color: #000;
+}
+
+// Cambiar el color del botón del calendario
+:host ::ng-deep .p-calendar .p-datepicker-trigger {
+  background-color: #FF8300 !important;
+  border-color: #FF8300 !important;
+  color: white !important;
+}
+
+:host ::ng-deep .p-calendar .p-datepicker-trigger:hover {
+  background-color: #b82318 !important;
+  border-color: #b82318 !important;
+}
+
+:host ::ng-deep .p-accordion .p-accordion-content {
+  padding: 1rem 0.5rem !important;
+  background: var(--gray-100) !important;
+}
+
+// Estilo para el botón de información con ícono grande
+:host ::ng-deep .info-button-large-icon .p-button-icon {
+  font-size: 1.3rem !important;
+}
+
+// Estilos para botones en pantallas muy pequeñas
+@media (max-width: 325px) {
+  :host ::ng-deep .p-button .p-button-label {
+    display: none !important;
+  }
+  
+  :host ::ng-deep .p-button .p-button-icon {
+    margin-right: 0 !important;
+  }
+}
+
+// Tamaño grande para los checkboxes de PrimeNG
+::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+}
+
+::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-checkbox-icon {
+  font-size: 30px !important;
+}
+
+::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-icon {
+  width: 20px !important;
+  height: 22px !important;
+}
+
+::ng-deep .p-checkbox.checkbox-lg + .p-checkbox-label {
+  font-size: 1.2rem !important;
+  margin-left: 1.3rem !important;
+  line-height: 27px !important;
+}// Color warning (naranja) para el checkbox
+::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box.p-highlight {
+  border-color: #FF8300 !important;
+  background: #FF8300 !important;
+}
+
+::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: #FF8300 !important;
+}
+
+::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+  border-color: #b35c00 !important;
+  background: #b35c00 !important;
+}
+
+::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  border-color: #FF8300 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 131, 0, 0.25) !important;
+}
+
+// Estilos para el dialog de información
+:host ::ng-deep .info-dialog .p-dialog-header {
+  background: #0097A9 !important;
+  color: #ffffff !important;
+}
+
+:host ::ng-deep .info-dialog .p-dialog-header .p-dialog-title {
+  color: #ffffff !important;
+}
+
+:host ::ng-deep .info-dialog .p-dialog-header .p-dialog-header-icon {
+  color: #ffffff !important;
+}
+
+
+:host ::ng-deep .p-accordion .p-accordion-content {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+}
+
+.scroll-box {
+    width: 100%; /* Define el ancho de la caja */
+    height: 515px; /* Define la altura de la caja */
+    //border: 1px solid #ccc; /* Añade un borde para visibilidad */
+    //padding: 10px; /* Espaciado interno */
+    overflow: auto; /* Muestra barras de desplazamiento solo cuando es necesario */
+}
+
+// Ajuste de scroll-box para móvil
+@media (max-width: 768px) {
+    .scroll-box {
+        height: 450px;
+    }
+}
+
+@media (max-width: 480px) {
+    .scroll-box {
+        height: 400px;
+    }
+}

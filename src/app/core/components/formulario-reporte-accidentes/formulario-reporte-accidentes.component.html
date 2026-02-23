@@ -1,1 +1,209 @@
-<p>formulario-reporte-accidentes works!</p>
+<p-toast></p-toast>
+<p-confirmDialog />
+<p-dialog header="Información" [(visible)]="showInfoDialog" [modal]="true" [style]="{width: '83vw'}" [contentStyle]="{background: '#FFFCE0'}" styleClass="info-dialog" [baseZIndex]="10000 ">
+    <h5 class="h5 mt-3">
+        Reporte de Accidentes
+    </h5>
+    <p class="p">Accidente (Personal lesionado debido a un evento inesperado).</p>
+</p-dialog>
+<div class="grid m-0">
+        <div id="panel" class="col-12 p-0">
+            <div class="flex justify-content-center align-items-center gap-3 pt-3 px-3 mb-3">
+                <h4 class="m-0">Reporte de Accidentes</h4>
+                <p-button 
+                    icon="pi pi-question-circle" 
+                    severity="info" 
+                    size="small"
+                    (onClick)="showInfoDialog = true"
+                    styleClass="info-button-large-icon"
+                    />
+            </div>
+            <p-accordion [activeIndex]="null">
+                <p-accordionTab header="Datos del Colaborador código IVR" headerStyleClass="registro-tab header-lg">
+                    <div class="card mt-2">
+
+                        <div class="flex align-items-center gap-3">
+                            <label class="label mb-0" for="id">Código IVR:</label>
+                            <p class="p m-0">1001-741-654</p>
+                        </div>
+
+                        <div class="mt-3">
+                            <label class="label" for="emp">Nombre de la Empresa</label>
+                             <p class="p">Instalaciones de telecomunicaciones S.A</p>
+                        </div>
+                
+                        <div class="mt-3">
+                            <label class="label" for="id">ID del Sitio</label>
+                            <div class="flex gap-2 align-items-center">
+                                <input id="id" type="text" pInputText class="flex-1" [(ngModel)]="valueId" />
+                                <p-button type="button" label="Buscar" icon="pi pi-search" styleClass="p-button-info" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-3">
+                        <div class="flex align-items-center gap-3">
+                            <label class="label mb-0" for="id">ID del Sitio:</label>
+                            <p class="p m-0">1001</p>
+                        </div>
+                        <div class="flex align-items-center gap-3 mt-2">
+                            <label class="label mb-0" for="nombre">Nombre del Sitio:</label>
+                            <p class="p m-0">Central Centro</p>
+                        </div>
+                    </div>
+                 
+                   
+                    
+                     <div class="card mt-3 mb-1">
+                        <label class="label" for="id">Descripción del trabajo a realizar</label>
+                        <textarea 
+                            placeholder="Escriba la descripción aquí..." 
+                            id="description"
+                            rows="5"
+                            pInputTextarea 
+                            class="w-full p"
+                            [(ngModel)]="valueTextArea">
+                        </textarea>
+                   </div>
+                </p-accordionTab>
+
+                <p-accordionTab header="Lugar del Accidente" headerStyleClass="registro-tab header-lg">
+                 <div>
+
+                   <div class="card mt-2">
+
+                     
+
+                    </div>
+                     <div class="card">
+                       
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <label class="label" for="orden">No. De orden de trabajo / RDA</label>
+                            <input class="input" id="orden" type="number" placeholder="Ingrese número..."  pInputText [(ngModel)]="valueEmp" />
+                        </div>
+                        <div class="mt-4">
+                            <label class="label" for="date">Fecha de Inicio</label>
+                              <p-calendar 
+                                [(ngModel)]="valueDate" 
+                                [showIcon]="true" 
+                                [showOnFocus]="false" 
+                                styleClass="p"
+                                inputId="buttondisplay" />                                         
+                        </div>
+                         <div class="mt-4">
+                            <label class="label" for="date">Fecha de Fin</label>
+                                <p-calendar 
+                                [(ngModel)]="valueDateFin" 
+                                [showIcon]="true" 
+                                [showOnFocus]="false" 
+                                styleClass="p"
+                                inputId="buttondisplay" />                                                  
+                        </div>
+                    </div>
+
+                    <div class="card mt-3 mb-1">
+                        <label class="label" for="id">Lugar exacto de donde se realizará el trabajo</label>
+                        <textarea 
+                            placeholder="Escriba la descripción aquí..." 
+                            id="description"
+                            rows="5"
+                            pInputTextarea 
+                            class="w-full p"
+                            [(ngModel)]="valueTextArea">
+                        </textarea>
+                   </div>
+                 </div>  
+                </p-accordionTab>
+
+                <p-accordionTab header="Condiciones Ambientales en lugar del Accidente" headerStyleClass="registro-tab header-lg">
+                  <div>
+                      <div class="card mt-2 mb-1">
+                          <label class="label" for="riesgo">Análisis de Riesgos en el Entorno</label>
+  
+                          <div class="flex flex-column gap-2 mt-3">
+                              <div *ngFor="let category of categories" class="field-checkbox">
+                                  <p-checkbox 
+                                      styleClass="checkbox-lg"
+                                      severity="warning"
+                                      [(ngModel)]="selectedCategories"
+                                      (ngModelChange)="onSelectedCategoriesChange($event)"
+                                      [label]="category.name"
+                                      name="group"
+                                      [value]="category" />
+                              </div>
+                          </div>
+                      </div>
+                  </div>      
+
+                </p-accordionTab>
+
+                <p-accordionTab header="Datos Ocurrencia del Accidente" headerStyleClass="registro-tab header-lg">
+                     <label for="">Datos de ocurrencia</label>  
+                </p-accordionTab>
+
+                <p-accordionTab header="Análisis preliminar del accidente " headerStyleClass="registro-tab header-lg">
+                  <div class="card mt-2">
+                    <label class="label" for="orden">1. Fotografía Herramientas para utilizar.</label>
+                    
+                </div>    
+                <div class="card">
+                    <label class="label" for="orden">2. Fotografía Herramientas para utilizar.</label>
+                   
+                </div>  
+                 <div class="card mb-1">
+                    <label class="label" for="orden">3. Fotografía Herramientas para utilizar.</label>
+                   
+                </div>           
+                </p-accordionTab>
+                
+                <p-accordionTab header="Descripción del Accidente" headerStyleClass="registro-tab header-lg">
+                    <div class="card mt-2">
+                        <h5 class="label" for="orden">EPP básico obligatorio para todas las actividades</h5>
+                        <p class="p-recomendaciones">
+                            Casco con barbiquejo.
+                        </p>
+                        <p class="p-recomendaciones">
+                            Lentes de seguridad.
+                        </p>
+                        <p class="p-recomendaciones">
+                            Guantes de acuerdo con la actividad.
+                        </p>
+                        <p class="p-recomendaciones">
+                            Chaleco con reflectivo.
+                        </p>
+                        <p class="p-recomendaciones">
+                            Calzado industrial con punta de acero.
+                        </p>    
+                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                            <p-checkbox 
+                            styleClass="checkbox-lg"
+                            [(ngModel)]="checkedCumplimiento" 
+                            [binary]="true" 
+                            inputId="binary" />
+                        </div>
+                    </div> 
+                    <div class="card mt-2">
+                    <label class="label" for="orden">Fotografía EPP básico obligatorio.</label>
+                   
+                </div>    
+                <div class="card mb-1">
+                    <label class="label" for="orden">Fotografía protección adicional.</label>
+                   
+                </div>  
+                </p-accordionTab>
+
+            </p-accordion>
+        </div>
+
+        <div class="grid pt-3">
+            <div class="col-6 xl:col-6">
+                <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" (onClick)="confirmSubmitFormATS()" />
+            </div>
+            <div class="col-6 xl:col-6">
+                <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
+            </div>
+        </div>
+</div>
