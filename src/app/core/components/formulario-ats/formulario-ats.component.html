@@ -20,59 +20,650 @@
                     />
             </div>
 
-            <p-accordion [activeIndex]="null">
-                <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
-                    <div class="card mt-2">
+            <form id="form">
+                <p-accordion [activeIndex]="null">
+                    <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
+                        <div class="card mt-2">
 
-                        <div class="flex align-items-center gap-3">
-                            <label class="label mb-0" for="id">Código IVR:</label>
-                            <p class="p m-0">{{ userResponse?.data?.codigoIVR }}</p>
-                        </div>
+                            <div class="flex align-items-center gap-3">
+                                <label class="label mb-0" for="id">Código IVR:</label>
+                                <p class="p m-0">{{ userResponse?.data?.codigoIVR }}</p>
+                            </div>
 
-                        <div class="mt-3">
-                            <label class="label" for="emp">Nombre de la Empresa</label>
-                             <p class="p">{{ userResponse?.data?.empresaNombre }}</p>
-                        </div>
-                
-                        <div class="mt-3">
-                            <label class="label" for="id">ID del Sitio</label>
-                            <div class="flex gap-2 align-items-center">
-                                <input id="id" type="text" pInputText class="flex-1" [(ngModel)]="valueId" />
-                                <p-button type="button" label="Buscar" icon="pi pi-search" styleClass="p-button-info" />
+                            <div class="mt-3">
+                                <label class="label" for="emp">Nombre de la Empresa</label>
+                                <p class="p">{{ userResponse?.data?.empresaNombre }}</p>
+                            </div>
+                    
+                            <div class="mt-3">
+                                <label class="label" for="id">ID del Sitio</label>
+                                <div class="flex gap-2 align-items-center">
+                                    <input id="id" name="sitioId" type="text" pInputText class="flex-1" [(ngModel)]="valueId" />
+                                    <p-button type="button" label="Buscar" icon="pi pi-search" styleClass="p-button-info" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mt-3">
-                        <div class="flex align-items-center gap-3">
-                            <label class="label mb-0" for="id">ID del Sitio:</label>
-                            <p class="p m-0">1001</p>
+                        <div class="card mt-3">
+                            <div class="flex align-items-center gap-3">
+                                <label class="label mb-0" for="id">ID del Sitio:</label>
+                                <p class="p m-0">1001</p>
+                            </div>
+                            <div class="flex align-items-center gap-3 mt-2">
+                                <label class="label mb-0" for="nombre">Nombre del Sitio:</label>
+                                <p class="p m-0">Central Centro</p>
+                            </div>
                         </div>
-                        <div class="flex align-items-center gap-3 mt-2">
-                            <label class="label mb-0" for="nombre">Nombre del Sitio:</label>
-                            <p class="p m-0">Central Centro</p>
-                        </div>
-                    </div>
-                 
-                   
                     
-                     <div class="card mt-3 mb-1">
-                        <label class="label" for="id">Descripción del trabajo a realizar</label>
-                        <textarea 
-                            placeholder="Escriba la descripción aquí..." 
-                            id="description"
-                            rows="5"
-                            pInputTextarea 
-                            class="w-full p"
-                            [(ngModel)]="valueTextArea">
-                        </textarea>
-                   </div>
-                </p-accordionTab>
+                    
+                        
+                        <div class="card mt-3 mb-1">
+                            <label class="label" for="id">Descripción del trabajo a realizar</label>
+                            <textarea 
+                                placeholder="Escriba la descripción aquí..." 
+                                id="description"
+                                name="descripcionTrabajo"
+                                rows="5"
+                                pInputTextarea 
+                                class="w-full p"
+                                [(ngModel)]="valueTextArea">
+                            </textarea>
+                    </div>
+                    </p-accordionTab>
 
-                <p-accordionTab header="Fotografía del Rostro con Ubicación" headerStyleClass="registro-tab header-lg">
-                 <div>
+                    <p-accordionTab header="Fotografía del Rostro con Ubicación" headerStyleClass="registro-tab header-lg">
+                    <div>
 
-                   <div class="card mt-2">
+                    <div class="card mt-2">
 
+                            <app-upload-photo 
+                                [showTakePhotoButton]="true"
+                                [showGalleryButton]="false"
+                                [showTakeAndUploadButton]="false"
+                                [showUploadButton]="true"
+                                [showCancelButton]="true">                            
+                            </app-upload-photo>
+
+                        </div>
+                        <div class="card">
+                            <app-geolocation 
+                                [showMap]="false">
+                            </app-geolocation>
+                        </div>
+
+                        <div class="card">
+                            <div>
+                                <label class="label" for="orden">No. De orden de trabajo / RDA</label>
+                                <input class="input" id="orden" name="ordenTrabajo" type="number" placeholder="Ingrese número..."  pInputText [(ngModel)]="valueEmp" />
+                            </div>
+                            <div class="mt-4">
+                                <label class="label" for="date">Fecha de Inicio</label>
+                                <p-calendar 
+                                    [(ngModel)]="valueDate" 
+                                    name="fechaInicio"
+                                    [showIcon]="true" 
+                                    [showOnFocus]="false" 
+                                    styleClass="p"
+                                    inputId="buttondisplay" />                                         
+                            </div>
+                            <div class="mt-4">
+                                <label class="label" for="date">Fecha de Fin</label>
+                                    <p-calendar 
+                                    [(ngModel)]="valueDateFin" 
+                                    name="fechaFin"
+                                    [showIcon]="true" 
+                                    [showOnFocus]="false" 
+                                    styleClass="p"
+                                    inputId="buttondisplay" />                                                  
+                            </div>
+                        </div>
+
+                        <div class="card mt-3 mb-1">
+                            <label class="label" for="id">Lugar exacto de donde se realizará el trabajo</label>
+                            <textarea 
+                                placeholder="Escriba la descripción aquí..." 
+                                id="description"
+                                name="lugarTrabajo"
+                                rows="5"
+                                pInputTextarea 
+                                class="w-full p"
+                                [(ngModel)]="valueTextArea">
+                            </textarea>
+                    </div>
+                    </div>  
+                    </p-accordionTab>
+
+                    <p-accordionTab header="Análisis de Riesgo" headerStyleClass="registro-tab header-lg">
+                    <div>
+                        <div class="card mt-2 mb-1">
+                            <label class="label" for="riesgo">Análisis de Riesgos en el Entorno</label>
+    
+                            <div class="flex flex-column gap-2 mt-3">
+                                <div *ngFor="let category of categories" class="field-checkbox">
+                                    <p-checkbox 
+                                        styleClass="checkbox-lg"
+                                        severity="warning"
+                                        [(ngModel)]="selectedCategories"
+                                        (ngModelChange)="onSelectedCategoriesChange($event)"
+                                        [label]="category.name"
+                                        name="riesgos"
+                                        [value]="category" />
+                                </div>
+                            </div>
+                        </div>
+    
+                        <p-button (onClick)="selectedCheckCategories()">Categorias chequeadas</p-button>
+
+                    </div>      
+
+                    </p-accordionTab>
+
+                    <p-accordionTab header="Permisos de Trabajo" headerStyleClass="registro-tab header-lg">
+                            <p-accordion styleClass="mt-2">
+                                <p-accordionTab header="Trabajos en caliente" headerStyleClass="registro-sub">
+                                    <div class="card mt-2">
+                                        <label class="label" for="orden">Fotografía de extintor en buen estado, con carga, marchamo y pin.</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <label class="label" for="orden">Fotografía de los equipos de protección a utilizar (guantes de cuero, lentes, careta, polainas, gabacha de cuero)</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
+                                        <p class="p-recomendaciones">
+                                            Se han delimitado las áreas de trabajo 
+                                            expuestas a riesgos por la actividad.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Se ha aislado ductos de aire, ventiladores, 
+                                            alivios que puedan transportar gases.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Colocar protectores (canceles, pantallas, 
+                                            mamparas) a prueba de fuego para aislar áreas.
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedCumplimiento" 
+                                            name="cumplimientoCaliente"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div> 
+                                    <div class="card mb-1">
+                                        <h5 class="label" for="orden">Recomendaciones</h5>
+                                        <p class="p-recomendaciones">
+                                            Inspeccione las herramientas y equipos antes
+                                            de iniciar la actividad para identificar y 
+                                            eliminar peligros. 
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            El supervisor y las personas expuestas a los 
+                                            peligros de la actividad han sido notificados 
+                                            sobre los trabajos a realizar.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Evaluar alrededor del área para identificar 
+                                            posibles materiales inflamables. 
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
+                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedRecomendaciones" 
+                                            name="recomendacionesCaliente"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div>    
+                                </p-accordionTab>
+
+                                <p-accordionTab header="Trabajos en alturas" headerStyleClass="registro-sub">
+                                    <div class="card mt-2">
+                                        <label class="label" for="orden">Fotografía de etiqueta de arnés.</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <label class="label" for="orden">Fotografía de arnés y accesorios <br> (línea de vida, bandola, tie-off y mosquetones).</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
+                                        <p class="p-recomendaciones">
+                                            Se requiere un mínimo de 3 trabajadores
+                                            en el lugar.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Delimitar y señalizar el área bajo la zona de
+                                            trabajo por riesgo de caída de objetos.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                        Utilizar puntos de anclaje permanentes.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                        Contar con comunicación directa o telefónica.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                        Evaluar si existen interferencias con energías 
+                                            peligrosas y/o tránsito de personas.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Andamios, escaleras y/o grúas en buen estado.
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedCumplimiento"
+                                            name="cumplimientoAlturas"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div> 
+                                    <div class="card mb-1">
+                                        <h5 class="label" for="orden">Recomendaciones</h5>
+                                        <p class="p-recomendaciones">
+                                            Inspeccione las herramientas y equipos antes
+                                            de iniciar la actividad para identificar y 
+                                            eliminar peligros. 
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            El supervisor y las personas expuestas a los 
+                                            peligros de la actividad han sido notificados 
+                                            sobre los trabajos a realizar.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Evaluar alrededor del área para identificar 
+                                            posibles materiales inflamables. 
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
+                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedRecomendaciones" 
+                                            name="recomendacionesAlturas"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div>      
+                                </p-accordionTab>
+
+                                <p-accordionTab header="Trabajos con energías peligrosas" headerStyleClass="registro-sub">
+                                    <div class="card mt-2">
+                                        <label class="label" for="orden">Fotografía de equipos aislantes <br> (guantes, mantas, equipos de protección dieléctricos).</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <label class="label" for="orden">Fotografía de candado de bloqueo y etiqueta de señalización.</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
+                                        <p class="p-recomendaciones">
+                                            Verificar la interferencia con otros equipos del área.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Cumplir con las 5 reglas de oro. 
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                        Delimitar el área de trabajo.
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedCumplimiento" 
+                                            name="cumplimientoEnergias"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div> 
+                                    <div class="card mb-1">
+                                        <h5 class="label" for="orden">Recomendaciones</h5>
+                                        <p class="p-recomendaciones">
+                                            Verifica que el EPP no este dañado ni roto.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Contar con extintor. 
+                                        </p>
+                                        <h5 class="label">
+                                            5 reglas de oro:
+                                        </h5>
+                                        <p class="p-recomendaciones">
+                                            Desconectar la energía, cortar la fuente de 
+                                            energía antes de iniciar cualquier trabajo.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Bloquear y señalizar Asegurar que no se pueda 
+                                            reconectar accidentalmente y advertir con 
+                                            señalización.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Verificar ausencia de tensión Comprobar que 
+                                            no haya energía presente en el sistema.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Poner a tierra y cortocircuitar Evitar cualquier 
+                                            reenergización conectando a tierra y 
+                                            cortocircuitando.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Delimitar y señalizar la zona de trabajo. <br> 
+                                            Proteger el área para evitar accesos no autorizados y 
+                                            garantizar seguridad.
+                                        </p>
+
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
+                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedRecomendaciones" 
+                                            name="recomendacionesEnergias"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div>       
+                                </p-accordionTab>
+
+                                <p-accordionTab header="Trabajos con químicos" headerStyleClass="registro-sub">
+                                    <div class="card mt-2">
+                                        <label class="label" for="orden">Fotografía del equipo (guantes, mangas, mascarilla, filtros y lentes)</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <label class="label" for="orden">Fotografía Fichas técnicas de los químicos a manipular</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
+                                        <p class="p-recomendaciones">
+                                            Delimitar el área de trabajo.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Fichas técnicas de los químicos a manipular.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Embaces de químicos debidamente 
+                                            identificados con nombre y rombo de 
+                                            peligrosidad.
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedCumplimiento" 
+                                            name="cumplimientoQuimicos"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div> 
+                                    <div class="card mb-1">
+                                        <h5 class="label" for="orden">Recomendaciones</h5>
+                                        <p class="p-recomendaciones">
+                                            Almacenar correctamente los químicos.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Tener un plan de acción por cualquier exposición del químico.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Lavarse las manos después de utilizarlos.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Tener protocolos claros para derrames, incendios o intoxicaciones. 
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Trabajar en áreas con buena circulación de aire para evitar acumulación de vapores tóxicos.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Si el olor del químico afecta a otras áreas, notificar para tomar medidas preventivas necesarias.
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
+                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedRecomendaciones" 
+                                            name="recomendacionesQuimicos"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div>       
+                                </p-accordionTab>
+                            
+                                <p-accordionTab header="Trabajos en espacios confinados" headerStyleClass="registro-sub">
+                                    <div class="card mt-2">
+                                        <label class="label" for="orden">Fotografía de equipos de protección <br> (arnés, escalera, trípode).</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <label class="label" for="orden">Fotografía de equipos de protección <br> (medidor de oxígeno, inyector de oxígeno).</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                    <div class="card">
+                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
+                                        <p class="p-recomendaciones">
+                                            Con el medidor de oxígeno se identificó que el 
+                                            espacio esté libre de gases, vapores, presión, 
+                                            residuos de materiales combustibles, 
+                                            sustancias tóxicas, asfixiantes, etc.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            El área alrededor deberá mantenerse libre y 
+                                            limpia de materiales combustibles e 
+                                            inflamables en todo momento.
+                                            </p>
+                                        <p class="p-recomendaciones">
+                                            Asignar a una persona como vigía.
+                                            Se debe tener un medio de comunicación entre 
+                                            el vigía y las personas que ingresan. 
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Las personas que ingresan deben usar arnés y 
+                                            estar conectados a la línea de vida.
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedCumplimiento" 
+                                            name="cumplimientoConfinados"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div> 
+                                    <div class="card mb-1">
+                                        <h5 class="label" for="orden">Recomendaciones</h5>
+                                        <p class="p-recomendaciones">
+                                            Se debe gestionar el permiso de trabajo en caliente 
+                                            para toda labor que genere chispas.
+                                        </p>
+                                        <p class="p-recomendaciones">    
+                                            Se debe desconectar cualquier fuente de 
+                                            energización eléctrica. 
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            La entrada del espacio confinado debe estar 
+                                            señalizada.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Recuerda establecer la rotación de las personas que 
+                                            ingresan cada cierto tiempo.
+                                        </p>
+                                        <p class="p-recomendaciones"> 
+                                            El vigía es quien debe llevar la bitácora de las 
+                                            condiciones del espacio incluyendo el ingreso y 
+                                            egreso del personal. 
+                                        </p>
+                                        <p class="p-recomendaciones">   
+                                            Se debe tener un plan de emergencia y rescate 
+                                            disponible y conocido por todos.
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
+                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedRecomendaciones" 
+                                            name="recomendacionesConfinados"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>    
+                                </div>   
+                                </p-accordionTab>
+
+                                <p-accordionTab header="Trabajos de excavaciones" headerStyleClass="registro-sub">
+                                    <div class="card mt-2">
+                                        <label class="label" for="orden">Fotografía de equipos de protección personal <br> (casco, botas, chaleco, guantes).</label>
+                                        <app-upload-photo 
+                                            [showTakePhotoButton]="true"
+                                            [showGalleryButton]="false"
+                                            [showTakeAndUploadButton]="false"
+                                            [showUploadButton]="true"
+                                            [showCancelButton]="true">                            
+                                        </app-upload-photo>
+                                    </div>    
+                                
+                                    <div class="card">
+                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
+                                        <p class="p-recomendaciones">
+                                            Inspección previa del terreno y verificación de servicios subterráneos.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Accesos seguros (escaleras o rampas) para entrada y salida.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Señalización y delimitación del área de trabajo.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Protección contra caídas y desprendimientos de material.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Vigilancia de atmósferas peligrosas 
+                                            (oxígeno, gases, vapores).
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedCumplimiento" 
+                                            name="cumplimientoExcavaciones"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div> 
+                                    <div class="card mb-1">
+                                        <h5 class="label" for="orden">Recomendaciones</h5>
+                                        <p class="p-recomendaciones">
+                                            Supervisión permanente por personal competente.                
+                                        </p>
+                                        <p class="p-recomendaciones">    
+                                            Control de agua o lluvias para evitar inundaciones.
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Plan de emergencia y rescate disponible y 
+                                            comunicado
+                                        </p>
+                                        <p class="p-recomendaciones">
+                                            Suspender labores al aire libre por vientos fuertes y/o 
+                                            tormenta eléctrica.
+                                        </p>
+                                        <p class="p-recomendaciones"> 
+                                            Tomar pausas en movimientos repetitivos, para evitar 
+                                            fatiga. 
+                                        </p>
+                                        <p class="p-recomendaciones">   
+                                            Mantenerse hidratado. 
+                                        </p>
+                                        <p class="p-recomendaciones">   
+                                            Reportar cualquier anomalía durante la actividad.
+                                        </p>
+                                        <p class="p-recomendaciones">   
+                                            Evitar acumulación de material cerca del borde de la 
+                                            excavación.
+                                        </p>
+                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
+                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
+                                            <p-checkbox 
+                                            styleClass="checkbox-lg"
+                                            [(ngModel)]="checkedRecomendaciones" 
+                                            name="recomendacionesExcavaciones"
+                                            [binary]="true" 
+                                            inputId="binary" />
+                                        </div>
+                                    </div>        
+                                </p-accordionTab>
+                            </p-accordion>
+                    </p-accordionTab>
+
+                    <p-accordionTab header="Fotografías de Herramientas" headerStyleClass="registro-tab header-lg">
+                    <div class="card mt-2">
+                        <label class="label" for="orden">1. Fotografía Herramientas para utilizar.</label>
                         <app-upload-photo 
                             [showTakePhotoButton]="true"
                             [showGalleryButton]="false"
@@ -80,702 +671,132 @@
                             [showUploadButton]="true"
                             [showCancelButton]="true">                            
                         </app-upload-photo>
-
-                    </div>
-                     <div class="card">
-                        <app-geolocation 
-                            [showMap]="false">
-                        </app-geolocation>
-                    </div>
-
+                    </div>    
                     <div class="card">
-                        <div>
-                            <label class="label" for="orden">No. De orden de trabajo / RDA</label>
-                            <input class="input" id="orden" type="number" placeholder="Ingrese número..."  pInputText [(ngModel)]="valueEmp" />
-                        </div>
-                        <div class="mt-4">
-                            <label class="label" for="date">Fecha de Inicio</label>
-                              <p-calendar 
-                                [(ngModel)]="valueDate" 
-                                [showIcon]="true" 
-                                [showOnFocus]="false" 
-                                styleClass="p"
-                                inputId="buttondisplay" />                                         
-                        </div>
-                         <div class="mt-4">
-                            <label class="label" for="date">Fecha de Fin</label>
-                                <p-calendar 
-                                [(ngModel)]="valueDateFin" 
-                                [showIcon]="true" 
-                                [showOnFocus]="false" 
-                                styleClass="p"
-                                inputId="buttondisplay" />                                                  
-                        </div>
-                    </div>
-
-                    <div class="card mt-3 mb-1">
-                        <label class="label" for="id">Lugar exacto de donde se realizará el trabajo</label>
-                        <textarea 
-                            placeholder="Escriba la descripción aquí..." 
-                            id="description"
-                            rows="5"
-                            pInputTextarea 
-                            class="w-full p"
-                            [(ngModel)]="valueTextArea">
-                        </textarea>
-                   </div>
-                 </div>  
-                </p-accordionTab>
-
-                <p-accordionTab header="Análisis de Riesgo" headerStyleClass="registro-tab header-lg">
-                  <div>
-                      <div class="card mt-2 mb-1">
-                          <label class="label" for="riesgo">Análisis de Riesgos en el Entorno</label>
-  
-                          <div class="flex flex-column gap-2 mt-3">
-                              <div *ngFor="let category of categories" class="field-checkbox">
-                                  <p-checkbox 
-                                      styleClass="checkbox-lg"
-                                      severity="warning"
-                                      [(ngModel)]="selectedCategories"
-                                      (ngModelChange)="onSelectedCategoriesChange($event)"
-                                      [label]="category.name"
-                                      name="group"
-                                      [value]="category" />
-                              </div>
-                          </div>
-                      </div>
-  
-                      <p-button (onClick)="selectedCheckCategories()">Categorias chequeadas</p-button>
-
-                  </div>      
-
-                </p-accordionTab>
-
-                <p-accordionTab header="Permisos de Trabajo" headerStyleClass="registro-tab header-lg">
-                        <p-accordion styleClass="mt-2">
-                            <p-accordionTab header="Trabajos en caliente" headerStyleClass="registro-sub">
-                                <div class="card mt-2">
-                                    <label class="label" for="orden">Fotografía de extintor en buen estado, con carga, marchamo y pin.</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <label class="label" for="orden">Fotografía de los equipos de protección a utilizar (guantes de cuero, lentes, careta, polainas, gabacha de cuero)</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                    <p class="p-recomendaciones">
-                                        Se han delimitado las áreas de trabajo 
-                                        expuestas a riesgos por la actividad.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Se ha aislado ductos de aire, ventiladores, 
-                                        alivios que puedan transportar gases.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Colocar protectores (canceles, pantallas, 
-                                        mamparas) a prueba de fuego para aislar áreas.
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedCumplimiento" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div> 
-                                 <div class="card mb-1">
-                                    <h5 class="label" for="orden">Recomendaciones</h5>
-                                    <p class="p-recomendaciones">
-                                        Inspeccione las herramientas y equipos antes
-                                        de iniciar la actividad para identificar y 
-                                        eliminar peligros. 
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        El supervisor y las personas expuestas a los 
-                                        peligros de la actividad han sido notificados 
-                                        sobre los trabajos a realizar.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Evaluar alrededor del área para identificar 
-                                        posibles materiales inflamables. 
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                        <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedRecomendaciones" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div>    
-                            </p-accordionTab>
-
-                            <p-accordionTab header="Trabajos en alturas" headerStyleClass="registro-sub">
-                                <div class="card mt-2">
-                                    <label class="label" for="orden">Fotografía de etiqueta de arnés.</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <label class="label" for="orden">Fotografía de arnés y accesorios <br> (línea de vida, bandola, tie-off y mosquetones).</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                    <p class="p-recomendaciones">
-                                        Se requiere un mínimo de 3 trabajadores
-                                        en el lugar.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Delimitar y señalizar el área bajo la zona de
-                                        trabajo por riesgo de caída de objetos.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                       Utilizar puntos de anclaje permanentes.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                       Contar con comunicación directa o telefónica.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                       Evaluar si existen interferencias con energías 
-                                        peligrosas y/o tránsito de personas.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Andamios, escaleras y/o grúas en buen estado.
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedCumplimiento" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div> 
-                                 <div class="card mb-1">
-                                    <h5 class="label" for="orden">Recomendaciones</h5>
-                                    <p class="p-recomendaciones">
-                                        Inspeccione las herramientas y equipos antes
-                                        de iniciar la actividad para identificar y 
-                                        eliminar peligros. 
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        El supervisor y las personas expuestas a los 
-                                        peligros de la actividad han sido notificados 
-                                        sobre los trabajos a realizar.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Evaluar alrededor del área para identificar 
-                                        posibles materiales inflamables. 
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                        <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedRecomendaciones" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div>      
-                            </p-accordionTab>
-
-                            <p-accordionTab header="Trabajos con energías peligrosas" headerStyleClass="registro-sub">
-                                <div class="card mt-2">
-                                    <label class="label" for="orden">Fotografía de equipos aislantes <br> (guantes, mantas, equipos de protección dieléctricos).</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <label class="label" for="orden">Fotografía de candado de bloqueo y etiqueta de señalización.</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                    <p class="p-recomendaciones">
-                                        Verificar la interferencia con otros equipos del área.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Cumplir con las 5 reglas de oro. 
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                       Delimitar el área de trabajo.
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedCumplimiento" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div> 
-                                 <div class="card mb-1">
-                                    <h5 class="label" for="orden">Recomendaciones</h5>
-                                    <p class="p-recomendaciones">
-                                        Verifica que el EPP no este dañado ni roto.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Contar con extintor. 
-                                    </p>
-                                    <h5 class="label">
-                                        5 reglas de oro:
-                                    </h5>
-                                    <p class="p-recomendaciones">
-                                        Desconectar la energía, cortar la fuente de 
-                                        energía antes de iniciar cualquier trabajo.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Bloquear y señalizar Asegurar que no se pueda 
-                                        reconectar accidentalmente y advertir con 
-                                        señalización.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Verificar ausencia de tensión Comprobar que 
-                                        no haya energía presente en el sistema.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Poner a tierra y cortocircuitar Evitar cualquier 
-                                        reenergización conectando a tierra y 
-                                        cortocircuitando.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Delimitar y señalizar la zona de trabajo. <br> 
-                                        Proteger el área para evitar accesos no autorizados y 
-                                        garantizar seguridad.
-                                    </p>
-
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                        <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedRecomendaciones" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div>       
-                            </p-accordionTab>
-
-                            <p-accordionTab header="Trabajos con químicos" headerStyleClass="registro-sub">
-                                <div class="card mt-2">
-                                    <label class="label" for="orden">Fotografía del equipo (guantes, mangas, mascarilla, filtros y lentes)</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <label class="label" for="orden">Fotografía Fichas técnicas de los químicos a manipular</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                    <p class="p-recomendaciones">
-                                        Delimitar el área de trabajo.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Fichas técnicas de los químicos a manipular.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Embaces de químicos debidamente 
-                                        identificados con nombre y rombo de 
-                                        peligrosidad.
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedCumplimiento" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div> 
-                                 <div class="card mb-1">
-                                    <h5 class="label" for="orden">Recomendaciones</h5>
-                                    <p class="p-recomendaciones">
-                                        Almacenar correctamente los químicos.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Tener un plan de acción por cualquier exposición del químico.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Lavarse las manos después de utilizarlos.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Tener protocolos claros para derrames, incendios o intoxicaciones. 
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Trabajar en áreas con buena circulación de aire para evitar acumulación de vapores tóxicos.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Si el olor del químico afecta a otras áreas, notificar para tomar medidas preventivas necesarias.
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                        <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedRecomendaciones" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div>       
-                            </p-accordionTab>
-                           
-                            <p-accordionTab header="Trabajos en espacios confinados" headerStyleClass="registro-sub">
-                                <div class="card mt-2">
-                                    <label class="label" for="orden">Fotografía de equipos de protección <br> (arnés, escalera, trípode).</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <label class="label" for="orden">Fotografía de equipos de protección <br> (medidor de oxígeno, inyector de oxígeno).</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                                <div class="card">
-                                    <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                    <p class="p-recomendaciones">
-                                        Con el medidor de oxígeno se identificó que el 
-                                        espacio esté libre de gases, vapores, presión, 
-                                        residuos de materiales combustibles, 
-                                        sustancias tóxicas, asfixiantes, etc.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        El área alrededor deberá mantenerse libre y 
-                                        limpia de materiales combustibles e 
-                                        inflamables en todo momento.
-                                        </p>
-                                    <p class="p-recomendaciones">
-                                        Asignar a una persona como vigía.
-                                        Se debe tener un medio de comunicación entre 
-                                        el vigía y las personas que ingresan. 
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Las personas que ingresan deben usar arnés y 
-                                        estar conectados a la línea de vida.
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedCumplimiento" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div> 
-                                 <div class="card mb-1">
-                                    <h5 class="label" for="orden">Recomendaciones</h5>
-                                    <p class="p-recomendaciones">
-                                        Se debe gestionar el permiso de trabajo en caliente 
-                                        para toda labor que genere chispas.
-                                    </p>
-                                    <p class="p-recomendaciones">    
-                                        Se debe desconectar cualquier fuente de 
-                                        energización eléctrica. 
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        La entrada del espacio confinado debe estar 
-                                        señalizada.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Recuerda establecer la rotación de las personas que 
-                                        ingresan cada cierto tiempo.
-                                    </p>
-                                    <p class="p-recomendaciones"> 
-                                        El vigía es quien debe llevar la bitácora de las 
-                                        condiciones del espacio incluyendo el ingreso y 
-                                        egreso del personal. 
-                                    </p>
-                                    <p class="p-recomendaciones">   
-                                        Se debe tener un plan de emergencia y rescate 
-                                        disponible y conocido por todos.
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                        <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedRecomendaciones" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>    
-                            </div>   
-                            </p-accordionTab>
-
-                            <p-accordionTab header="Trabajos de excavaciones" headerStyleClass="registro-sub">
-                                <div class="card mt-2">
-                                    <label class="label" for="orden">Fotografía de equipos de protección personal <br> (casco, botas, chaleco, guantes).</label>
-                                    <app-upload-photo 
-                                        [showTakePhotoButton]="true"
-                                        [showGalleryButton]="false"
-                                        [showTakeAndUploadButton]="false"
-                                        [showUploadButton]="true"
-                                        [showCancelButton]="true">                            
-                                    </app-upload-photo>
-                                </div>    
-                              
-                                <div class="card">
-                                    <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                    <p class="p-recomendaciones">
-                                        Inspección previa del terreno y verificación de servicios subterráneos.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Accesos seguros (escaleras o rampas) para entrada y salida.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Señalización y delimitación del área de trabajo.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Protección contra caídas y desprendimientos de material.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Vigilancia de atmósferas peligrosas 
-                                        (oxígeno, gases, vapores).
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedCumplimiento" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div> 
-                                 <div class="card mb-1">
-                                    <h5 class="label" for="orden">Recomendaciones</h5>
-                                    <p class="p-recomendaciones">
-                                        Supervisión permanente por personal competente.                
-                                    </p>
-                                    <p class="p-recomendaciones">    
-                                        Control de agua o lluvias para evitar inundaciones.
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Plan de emergencia y rescate disponible y 
-                                        comunicado
-                                    </p>
-                                    <p class="p-recomendaciones">
-                                        Suspender labores al aire libre por vientos fuertes y/o 
-                                        tormenta eléctrica.
-                                    </p>
-                                    <p class="p-recomendaciones"> 
-                                        Tomar pausas en movimientos repetitivos, para evitar 
-                                        fatiga. 
-                                    </p>
-                                    <p class="p-recomendaciones">   
-                                        Mantenerse hidratado. 
-                                    </p>
-                                     <p class="p-recomendaciones">   
-                                          Reportar cualquier anomalía durante la actividad.
-                                    </p>
-                                     <p class="p-recomendaciones">   
-                                        Evitar acumulación de material cerca del borde de la 
-                                        excavación.
-                                    </p>
-                                    <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                        <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                        <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                        <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        [(ngModel)]="checkedRecomendaciones" 
-                                        [binary]="true" 
-                                        inputId="binary" />
-                                    </div>
-                                </div>        
-                            </p-accordionTab>
-                        </p-accordion>
-                </p-accordionTab>
-
-                <p-accordionTab header="Fotografías de Herramientas" headerStyleClass="registro-tab header-lg">
-                  <div class="card mt-2">
-                    <label class="label" for="orden">1. Fotografía Herramientas para utilizar.</label>
-                    <app-upload-photo 
-                        [showTakePhotoButton]="true"
-                        [showGalleryButton]="false"
-                        [showTakeAndUploadButton]="false"
-                        [showUploadButton]="true"
-                        [showCancelButton]="true">                            
-                    </app-upload-photo>
-                </div>    
-                <div class="card">
-                    <label class="label" for="orden">2. Fotografía Herramientas para utilizar.</label>
-                    <app-upload-photo 
-                        [showTakePhotoButton]="true"
-                        [showGalleryButton]="false"
-                        [showTakeAndUploadButton]="false"
-                        [showUploadButton]="true"
-                        [showCancelButton]="true">                            
-                    </app-upload-photo>
-                </div>  
-                 <div class="card mb-1">
-                    <label class="label" for="orden">3. Fotografía Herramientas para utilizar.</label>
-                    <app-upload-photo 
-                        [showTakePhotoButton]="true"
-                        [showGalleryButton]="false"
-                        [showTakeAndUploadButton]="false"
-                        [showUploadButton]="true"
-                        [showCancelButton]="true">                            
-                    </app-upload-photo>
-                </div>           
-                </p-accordionTab>
-                
-                <p-accordionTab header="Fotografías de Equipo de Protección" headerStyleClass="registro-tab header-lg">
-                    <div class="card mt-2">
-                        <h5 class="label" for="orden">EPP básico obligatorio para todas las actividades</h5>
-                        <p class="p-recomendaciones">
-                            Casco con barbiquejo.
-                        </p>
-                        <p class="p-recomendaciones">
-                            Lentes de seguridad.
-                        </p>
-                        <p class="p-recomendaciones">
-                            Guantes de acuerdo con la actividad.
-                        </p>
-                        <p class="p-recomendaciones">
-                            Chaleco con reflectivo.
-                        </p>
-                        <p class="p-recomendaciones">
-                            Calzado industrial con punta de acero.
-                        </p>    
-                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                            <p-checkbox 
-                            styleClass="checkbox-lg"
-                            [(ngModel)]="checkedCumplimiento" 
-                            [binary]="true" 
-                            inputId="binary" />
-                        </div>
-                    </div> 
-                    <div class="card mt-2">
-                    <label class="label" for="orden">Fotografía EPP básico obligatorio.</label>
-                    <app-upload-photo 
-                        [showTakePhotoButton]="true"
-                        [showGalleryButton]="false"
-                        [showTakeAndUploadButton]="false"
-                        [showUploadButton]="true"
-                        [showCancelButton]="true">                            
-                    </app-upload-photo>
-                </div>    
-                <div class="card mb-1">
-                    <label class="label" for="orden">Fotografía protección adicional.</label>
-                    <app-upload-photo 
-                        [showTakePhotoButton]="true"
-                        [showGalleryButton]="false"
-                        [showTakeAndUploadButton]="false"
-                        [showUploadButton]="true"
-                        [showCancelButton]="true">                            
-                    </app-upload-photo>
-                </div>  
-                </p-accordionTab>
-
-                 <p-accordionTab header="Medidas de prevención" headerStyleClass="registro-tab header-lg">
-                    <div class="card mt-2 mb-1">
-                        <h5 class="label" for="orden">Recuerda estas medidas de prevención para un trabajo más seguro.</h5>
-                        <p class="p-recomendaciones">
-                            Práctica siempre el orden y limpieza. 
-                        </p>
-                        <p class="p-recomendaciones">
-                            Delimita tu área de trabajo.
-                        </p>
-                        <p class="p-recomendaciones">
-                            Evitar hacer bromas pesadas.
-                        </p>
-                        <p class="p-recomendaciones">
-                            Utilizar herramienta en buen estado. 
-                        </p>
-                        <p class="p-recomendaciones">
-                            Reportar cualquier anomalía.
-                        </p>    
-                        <p class="p-recomendaciones">
-                            Evita tomar bebidas energizantes. 
-                        </p>  
-                        <p class="p-recomendaciones">
-                            No Fumar adentro de las instalaciones de la empresa.
-                        </p>  
-                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                            <h5 class="label">Y recuerda antes de iniciar:</h5>
-                            <div class="flex align-items-center gap-2">
-                                <p-button label="Me detengo" icon="pi pi-arrow-right" iconPos="right" [outlined]="true" severity="secondary" />
-                                <p-button label="Pienso" icon="pi pi-arrow-right" iconPos="right" [outlined]="true" severity="secondary" />
-                                <p-button label="Actúo" [outlined]="true" severity="secondary" />
+                        <label class="label" for="orden">2. Fotografía Herramientas para utilizar.</label>
+                        <app-upload-photo 
+                            [showTakePhotoButton]="true"
+                            [showGalleryButton]="false"
+                            [showTakeAndUploadButton]="false"
+                            [showUploadButton]="true"
+                            [showCancelButton]="true">                            
+                        </app-upload-photo>
+                    </div>  
+                    <div class="card mb-1">
+                        <label class="label" for="orden">3. Fotografía Herramientas para utilizar.</label>
+                        <app-upload-photo 
+                            [showTakePhotoButton]="true"
+                            [showGalleryButton]="false"
+                            [showTakeAndUploadButton]="false"
+                            [showUploadButton]="true"
+                            [showCancelButton]="true">                            
+                        </app-upload-photo>
+                    </div>           
+                    </p-accordionTab>
+                    
+                    <p-accordionTab header="Fotografías de Equipo de Protección" headerStyleClass="registro-tab header-lg">
+                        <div class="card mt-2">
+                            <h5 class="label" for="orden">EPP básico obligatorio para todas las actividades</h5>
+                            <p class="p-recomendaciones">
+                                Casco con barbiquejo.
+                            </p>
+                            <p class="p-recomendaciones">
+                                Lentes de seguridad.
+                            </p>
+                            <p class="p-recomendaciones">
+                                Guantes de acuerdo con la actividad.
+                            </p>
+                            <p class="p-recomendaciones">
+                                Chaleco con reflectivo.
+                            </p>
+                            <p class="p-recomendaciones">
+                                Calzado industrial con punta de acero.
+                            </p>    
+                            <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
+                                <p-checkbox 
+                                styleClass="checkbox-lg"
+                                [(ngModel)]="checkedCumplimiento" 
+                                name="cumplimientoEPP"
+                                [binary]="true" 
+                                inputId="binary" />
                             </div>
-                            <label for="" class="label-cumplimiento mt-3">Acepto medidas de prevención.</label>
-                            <p-checkbox 
-                            styleClass="checkbox-lg"
-                            [(ngModel)]="checkedCumplimiento" 
-                            [binary]="true" 
-                            inputId="binary" />
-                        </div>
-                    </div> 
-                </p-accordionTab>
-            </p-accordion>
-            
-            <div class="grid pt-3">
-                <div class="col-6 xl:col-6">
-                    <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" (onClick)="confirmSubmitFormATS()" />
+                        </div> 
+                        <div class="card mt-2">
+                        <label class="label" for="orden">Fotografía EPP básico obligatorio.</label>
+                        <app-upload-photo 
+                            [showTakePhotoButton]="true"
+                            [showGalleryButton]="false"
+                            [showTakeAndUploadButton]="false"
+                            [showUploadButton]="true"
+                            [showCancelButton]="true">                            
+                        </app-upload-photo>
+                    </div>    
+                    <div class="card mb-1">
+                        <label class="label" for="orden">Fotografía protección adicional.</label>
+                        <app-upload-photo 
+                            [showTakePhotoButton]="true"
+                            [showGalleryButton]="false"
+                            [showTakeAndUploadButton]="false"
+                            [showUploadButton]="true"
+                            [showCancelButton]="true">                            
+                        </app-upload-photo>
+                    </div>  
+                    </p-accordionTab>
+
+                    <p-accordionTab header="Medidas de prevención" headerStyleClass="registro-tab header-lg">
+                        <div class="card mt-2 mb-1">
+                            <h5 class="label" for="orden">Recuerda estas medidas de prevención para un trabajo más seguro.</h5>
+                            <p class="p-recomendaciones">
+                                Práctica siempre el orden y limpieza. 
+                            </p>
+                            <p class="p-recomendaciones">
+                                Delimita tu área de trabajo.
+                            </p>
+                            <p class="p-recomendaciones">
+                                Evitar hacer bromas pesadas.
+                            </p>
+                            <p class="p-recomendaciones">
+                                Utilizar herramienta en buen estado. 
+                            </p>
+                            <p class="p-recomendaciones">
+                                Reportar cualquier anomalía.
+                            </p>    
+                            <p class="p-recomendaciones">
+                                Evita tomar bebidas energizantes. 
+                            </p>  
+                            <p class="p-recomendaciones">
+                                No Fumar adentro de las instalaciones de la empresa.
+                            </p>  
+                            <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
+                                <h5 class="label">Y recuerda antes de iniciar:</h5>
+                                <div class="flex align-items-center gap-2">
+                                    <p-button label="Me detengo" icon="pi pi-arrow-right" iconPos="right" [outlined]="true" severity="secondary" />
+                                    <p-button label="Pienso" icon="pi pi-arrow-right" iconPos="right" [outlined]="true" severity="secondary" />
+                                    <p-button label="Actúo" [outlined]="true" severity="secondary" />
+                                </div>
+                                <label for="" class="label-cumplimiento mt-3">Acepto medidas de prevención.</label>
+                                <p-checkbox 
+                                styleClass="checkbox-lg"
+                                [(ngModel)]="checkedCumplimiento" 
+                                name="cumplimientoPrevencion"
+                                [binary]="true" 
+                                inputId="binary" />
+                            </div>
+                        </div> 
+                    </p-accordionTab>
+                </p-accordion>
+                
+                <div class="grid pt-3">
+                    <div class="col-6 xl:col-6">
+                        <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" (onClick)="confirmSubmitFormATS()" />
+                    </div>
+                    <div class="col-6 xl:col-6">
+                        <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
+                    </div>
                 </div>
-                <div class="col-6 xl:col-6">
-                    <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
-                </div>
-            </div>
+
+            </form>
 
         </div>
 
