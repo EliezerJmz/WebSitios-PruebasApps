@@ -9,6 +9,18 @@ export class ApiUrlService {
 
     constructor() { }
 
+    apiUserById() {
+        const SLUG = `usuarios`;
+        return this.apiURL + SLUG;
+    }
+
+
+
+
+
+
+
+
     apiLocationReports() {
         const SLUG = 'reports/locations';
         return this.apiURL + SLUG;

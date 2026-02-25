@@ -13,8 +13,6 @@ export const environment = {
   apiUrlBase:'http://localhost:8080/', // Para emulador solamente
   //apiUrlBase:'http://10.95.151.179:8080/', // ipv4 local GIO
 
-  
- 
   apiVersion:'api/v1/',
   
   // URL HTTPS para login (segura - OK para producción)

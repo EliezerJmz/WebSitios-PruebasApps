@@ -8,7 +8,8 @@
         "service",
         "interceptor",
         "routing",
-        "module"
+        "module",
+        "model"
     ],
     "chat.fontSize": 14,
     "scm.inputFontSize": 14,

@@ -7,6 +7,7 @@
     <p class="p">El formulario consta de varias secciones donde debe llenar la Información necesaria en cada una de ellas.</p>
 </p-dialog>
 <div class="grid m-0">
+
         <div id="panel" class="col-12 p-0">
             <div class="flex justify-content-center align-items-center gap-3 pt-3 px-3 mb-3">
                 <h4 class="m-0">Formulario ATS</h4>
@@ -18,18 +19,19 @@
                     styleClass="info-button-large-icon"
                     />
             </div>
+
             <p-accordion [activeIndex]="null">
                 <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
                     <div class="card mt-2">
 
                         <div class="flex align-items-center gap-3">
                             <label class="label mb-0" for="id">Código IVR:</label>
-                            <p class="p m-0">1001-741-654</p>
+                            <p class="p m-0">{{ userResponse?.data?.codigoIVR }}</p>
                         </div>
 
                         <div class="mt-3">
                             <label class="label" for="emp">Nombre de la Empresa</label>
-                             <p class="p">Instalaciones de telecomunicaciones S.A</p>
+                             <p class="p">{{ userResponse?.data?.empresaNombre }}</p>
                         </div>
                 
                         <div class="mt-3">
@@ -765,14 +767,17 @@
                     </div> 
                 </p-accordionTab>
             </p-accordion>
+            
+            <div class="grid pt-3">
+                <div class="col-6 xl:col-6">
+                    <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" (onClick)="confirmSubmitFormATS()" />
+                </div>
+                <div class="col-6 xl:col-6">
+                    <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
+                </div>
+            </div>
+
         </div>
 
-        <div class="grid pt-3">
-            <div class="col-6 xl:col-6">
-                <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" (onClick)="confirmSubmitFormATS()" />
-            </div>
-            <div class="col-6 xl:col-6">
-                <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
-            </div>
-        </div>
+
 </div>
