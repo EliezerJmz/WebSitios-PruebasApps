@@ -218,3 +218,31 @@
         height: 400px;
     }
 }
+
+
+// Estilos para el formulario Formly
+::ng-deep formly-field {
+  display: block;
+  margin-bottom: 1rem;
+}
+::ng-deep .p-field {
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .p-field label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+::ng-deep .p-field-checkbox {
+  margin-bottom: 15px;
+}
+// Ancho completo para los campos de entrada en el formulario Formly
+::ng-deep .p-field .p-inputtext,
+::ng-deep .p-field .p-inputtextarea,
+::ng-deep .p-field .p-dropdown,
+::ng-deep .p-field .p-calendar,
+::ng-deep .p-field input {
+  width: 100%;
+}
