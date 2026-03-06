@@ -112,6 +112,8 @@ ngOnInit() {
        this.fields.push(...ats.data.campos);
         this.isLoading = false;
         console.warn('Campos cargados:', ats.data.campos);
+        this.actualizarCampoIVR();
+        this.actualizarCampoEmpresaNombre();
       },
       error: (error) => {
         console.error('Error al cargar formulario:', error);
@@ -296,12 +298,76 @@ getUserById(){
             console.warn('Datos del usuario:', response);
             // Asignar toda la respuesta a la propiedad userResponse
             this.userResponse = response;
+            this.actualizarCampoIVR();
+            this.actualizarCampoEmpresaNombre();
         },
         error: (error) => {
             console.error('Error al obtener los datos del usuario:', error);
         }
     });
      
+}
+
+// Actualizar campo IVR con el código IVR del usuario (búsqueda dinámica)
+actualizarCampoIVR() {
+    // Verificar que tengamos ambos datos disponibles
+    if (this.fields.length === 0 || !this.userResponse?.data?.codigoIVR) {
+        return;
+    }
+    
+    // Buscar dinámicamente el campo que contenga '_ivr' en su key
+    const campoIVR = this.fields.find(field => 
+        field.key && String(field.key).toLowerCase().includes('_ivr')
+    );
+    
+    if (campoIVR) {
+        // Actualizar el valor por defecto del campo
+        campoIVR.defaultValue = this.userResponse.data.codigoIVR;
+        // También actualizar el modelo usando la key dinámica
+        this.model[String(campoIVR.key)] = this.userResponse.data.codigoIVR;
+        
+        // Bloquear/deshabilitar el campo
+        if (!campoIVR.props) {
+            campoIVR.props = {};
+        }
+        //campoIVR.props.disabled = true;
+        campoIVR.props.readonly = true;
+        
+        console.log(`Campo IVR actualizado y bloqueado: ${campoIVR.key} = ${this.userResponse.data.codigoIVR}`);
+    } else {
+        console.warn('No se encontró un campo con "_ivr" en su key');
+    }
+}
+
+// Actualizar campo EmpresaNombre con el nombre de la empresa (búsqueda dinámica)
+actualizarCampoEmpresaNombre() {
+    // Verificar que tengamos ambos datos disponibles
+    if (this.fields.length === 0 || !this.userResponse?.data?.empresaNombre) {
+        return;
+    }
+    
+    // Buscar dinámicamente el campo que contenga 'empresa' y 'nombre' en su key
+    const campoEmpresa = this.fields.find(field => 
+        field.key && String(field.key).toLowerCase().includes('_nombre')
+    );
+    
+    if (campoEmpresa) {
+        // Actualizar el valor por defecto del campo
+        campoEmpresa.defaultValue = this.userResponse.data.empresaNombre;
+        // También actualizar el modelo usando la key dinámica
+        this.model[String(campoEmpresa.key)] = this.userResponse.data.empresaNombre;
+        
+        // Bloquear/deshabilitar el campo
+        if (!campoEmpresa.props) {
+            campoEmpresa.props = {};
+        }
+       // campoEmpresa.props.disabled = true;
+        campoEmpresa.props.readonly = true;
+        
+        console.log(`Campo Empresa actualizado y bloqueado: ${campoEmpresa.key} = ${this.userResponse.data.empresaNombre}`);
+    } else {
+        console.warn('No se encontró un campo con "empresa" y "nombre" en su key');
+    }
 }
 
 
