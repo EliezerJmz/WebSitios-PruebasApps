@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, ChangeDetectorRef, AfterViewInit, OnInit, HostListener } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table, TableModule } from 'primeng/table';
 import { Router } from '@angular/router';
@@ -14,6 +14,10 @@ import { StatusItem } from 'src/app/core/api/management-catalog/catalog';
 import { CheckboxModule } from 'primeng/checkbox';
 import { UserByIdService } from '../../service/user/user-by-id.service';
 import { UserById } from '../../api/user-by-id/userById.model';
+//formly
+import { FormGroup } from '@angular/forms';
+import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
+import { FormATSService } from '../../service/formATS/form-ats.service';
 
 
 
@@ -22,7 +26,32 @@ import { UserById } from '../../api/user-by-id/userById.model';
     styleUrls: ['./formulario-ats.component.scss'],
     providers: [MessageService, ConfirmationService, TableModule, TagModule, RatingModule, ButtonModule, CommonModule, CheckboxModule]
 })
-export class FormularioAtsComponent  {
+export class FormularioAtsComponent implements AfterViewInit, OnInit {
+
+// Propiedades formly para ATS
+form = new FormGroup({});
+  model: any = {};
+  options: FormlyFormOptions = {
+    formState: {
+      awesomeIsForced: false,
+    },
+  };
+
+  fields: FormlyFieldConfig[] = [];
+  formularioId = '213bf1e7-85aa-4c00-8d35-02c44dc4f4b5';
+
+  isLoading = true;
+// Fin Propiedades formly para ATS
+
+
+
+
+
+
+
+
+
+
 
 // Propiedades para secciones del formulario analisis de riesgo
   selectedCategories: any[] = [];
@@ -67,13 +96,58 @@ export class FormularioAtsComponent  {
     userResponse: UserById; // Aquí se almacenarán los datos del usuario obtenidos por ID  
 
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService,
-    private userByIdService: UserByIdService
+    private userByIdService: UserByIdService, private formularioATSService: FormATSService, private cdr: ChangeDetectorRef
 ) { }
 
 ngOnInit() {
-    this.getUserById()
-  
+    this.getUserById(); 
+    this.cargarFormularioATS();
 }
+
+// Formulario ATS - Cargar campos dinámicos desde el backend
+  cargarFormularioATS() {
+    this.formularioATSService.getFormularioATS(this.formularioId).subscribe({
+      next: (ats) => {
+       //this.fields = ats.data.campos as FormlyFieldConfig[];
+       this.fields.push(...ats.data.campos);
+        this.isLoading = false;
+        console.warn('Campos cargados:', ats.data.campos);
+      },
+      error: (error) => {
+        console.error('Error al cargar formulario:', error);
+        this.isLoading = false;
+      }
+    });
+  }
+
+ ngAfterViewInit() {
+    // Detectar cambios después de que la vista se inicialice completamente
+    this.cdr.detectChanges();
+  }
+
+  getFilteredFields() {
+    return this.fields.filter(field => String(field.key).includes('ATSM1'));
+  }
+  
+   getFilteredFieldsFotoRostro() {
+    return this.fields.filter(field => String(field.key).includes('ATSM2'));
+  }
+
+    getFilteredFieldsAnalisisRiesgo() {
+    return this.fields.filter(field => String(field.key).includes('ATSM3'));
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      alert(JSON.stringify(this.model));
+      console.log(this.model);
+    }
+  }
+// Fin Formulario ATS - Cargar campos dinámicos desde el backend
+
+
+
+
 
 // Función para manejar el click en los headers del acordeón y hacer scroll al contenido
 @HostListener('click', ['$event'])

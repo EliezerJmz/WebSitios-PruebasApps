@@ -30,6 +30,12 @@ import { CardModule } from 'primeng/card';
 import { GeolocationComponent } from './geolocation/geolocation/geolocation.component';
 import { A11yModule } from "@angular/cdk/a11y";
 import { CalendarModule } from 'primeng/calendar';
+//Formly
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyPrimeNGModule } from '@ngx-formly/primeng';  
+import { FormlySelectModule } from '@ngx-formly/core/select';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
     imports: [
@@ -64,7 +70,14 @@ import { CalendarModule } from 'primeng/calendar';
     CalendarModule,
     //my components
     UploadPhotoComponent,
-    A11yModule
+    A11yModule,
+    //Formly
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyPrimeNGModule,
+    FormlySelectModule
+
+    
 ],
     declarations: [FormularioAtsComponent, GeolocationComponent]
 })

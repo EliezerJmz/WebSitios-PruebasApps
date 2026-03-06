@@ -25,7 +25,7 @@
                     <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
                         <div class="card mt-2">
 
-                            <div class="flex align-items-center gap-3">
+                            <!-- <div class="flex align-items-center gap-3">
                                 <label class="label mb-0" for="id">Código IVR:</label>
                                 <p class="p m-0">{{ userResponse?.data?.codigoIVR }}</p>
                             </div>
@@ -41,7 +41,9 @@
                                     <input id="id" name="sitioId" type="text" pInputText class="flex-1" [(ngModel)]="valueId" />
                                     <p-button type="button" label="Buscar" icon="pi pi-search" styleClass="p-button-info" />
                                 </div>
-                            </div>
+                            </div> -->
+                             <formly-form [form]="form" [fields]="getFilteredFields()" [model]="model"></formly-form>
+                            
                         </div>
                         <div class="card mt-3">
                             <div class="flex align-items-center gap-3">
