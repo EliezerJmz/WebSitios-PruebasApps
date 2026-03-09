@@ -20,7 +20,7 @@
                     />
             </div>
 
-            <form id="form">
+            <form id="form" *ngIf="!isLoading"  (ngSubmit)="onSubmit()" >
                 <p-accordion [activeIndex]="null">
                     <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
                         <div class="card mt-2">
@@ -70,9 +70,8 @@
                     </p-accordionTab>
 
                     <p-accordionTab header="Fotografía del Rostro con Ubicación" headerStyleClass="registro-tab header-lg">
-                    <div>
-
-                    <div class="card mt-2">
+               
+                      <!-- <div class="card mt-2">
 
                             <app-upload-photo 
                                 [showTakePhotoButton]="true"
@@ -127,13 +126,33 @@
                                 class="w-full p"
                                 [(ngModel)]="valueTextArea">
                             </textarea>
-                    </div>
-                    </div>  
+                        </div> -->
+
+                        <div class="card mt-2">
+                            <app-upload-photo 
+                                [showTakePhotoButton]="true"
+                                [showGalleryButton]="false"
+                                [showTakeAndUploadButton]="false"
+                                [showUploadButton]="true"
+                                [showCancelButton]="true">                            
+                            </app-upload-photo>
+                        </div>
+
+                         <div class="card">
+                            <app-geolocation 
+                                [showMap]="false">
+                            </app-geolocation>
+                        </div>
+                        
+                        <div class="card mt-2">
+                            <formly-form [form]="form" [fields]="getFilteredFieldsFotoRostro()" [model]="model"></formly-form>
+                        </div>
+            
                     </p-accordionTab>
 
                     <p-accordionTab header="Análisis de Riesgo" headerStyleClass="registro-tab header-lg">
                     <div>
-                        <div class="card mt-2 mb-1">
+                        <!-- <div class="card mt-2 mb-1">
                             <label class="label" for="riesgo">Análisis de Riesgos en el Entorno</label>
     
                             <div class="flex flex-column gap-2 mt-3">
@@ -150,7 +169,11 @@
                             </div>
                         </div>
     
-                        <p-button (onClick)="selectedCheckCategories()">Categorias chequeadas</p-button>
+                        <p-button (onClick)="selectedCheckCategories()">Categorias chequeadas</p-button> -->
+
+                           <div class="card mt-2">
+                               <formly-form [form]="form" [fields]="getFilteredFieldsAnalisisRiesgo()" [model]="model"></formly-form>
+                           </div>
 
                     </div>      
 
