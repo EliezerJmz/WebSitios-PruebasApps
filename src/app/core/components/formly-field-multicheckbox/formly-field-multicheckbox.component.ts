@@ -4,25 +4,12 @@ import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
 @Component({
   selector: 'formly-field-multicheckbox',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <div class="p-field">
-      <label *ngIf="props.label">{{ props.label }}</label>
-      <div class="p-field-checkbox" *ngFor="let option of props.options | formlySelectOptions: field | async">
-        <p-checkbox
-          [name]="fieldKey"
-          [inputId]="fieldKey + '_' + option.value"
-          [value]="option.value"
-          [label]="option.label"
-          [disabled]="option.disabled || false"
-          [ngModel]="isChecked(option.value)"
-          (ngModelChange)="onChange(option.value, $event)"
-          [binary]="true">
-        </p-checkbox>
-      </div>
-      <small *ngIf="props.description" class="p-text-secondary">{{ props.description }}</small>
-    </div>
-  `
+  templateUrl: './formly-field-multicheckbox.component.html',
+  styleUrls: ['./formly-field-multicheckbox.component.scss']
 })
+
+  
+
 export class FormlyFieldMultiCheckbox extends FieldType<FieldTypeConfig> {
   
   get fieldKey(): string {
