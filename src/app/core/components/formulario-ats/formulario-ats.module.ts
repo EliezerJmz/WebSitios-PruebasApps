@@ -35,6 +35,9 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyPrimeNGModule } from '@ngx-formly/primeng';  
 import { FormlySelectModule } from '@ngx-formly/core/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormlyFieldMultiCheckbox } from '../formly-field-multicheckbox/formly-field-multicheckbox.component';
+import { FormlyFieldFile } from '../formly-file-type/formly-file-type/formly-file-type.component';   
+
 
 
 @NgModule({
@@ -73,12 +76,22 @@ import { ReactiveFormsModule } from '@angular/forms';
     A11yModule,
     //Formly
     ReactiveFormsModule,
-    FormlyModule.forRoot(),
     FormlyPrimeNGModule,
-    FormlySelectModule
+    FormlySelectModule,
+    FormlyFieldFile,
+
+    
+     FormlyModule.forRoot({
+      types: [
+        { name: 'file', component: FormlyFieldFile },
+        { name: 'file_upload', component: FormlyFieldFile },
+        { name: 'multicheckbox', component: FormlyFieldMultiCheckbox },
+        { name: 'MULTICHECKBOX', component: FormlyFieldMultiCheckbox },
+      ],
+    }),
 
     
 ],
-    declarations: [FormularioAtsComponent, GeolocationComponent]
+    declarations: [FormularioAtsComponent, GeolocationComponent, FormlyFieldMultiCheckbox]
 })
 export class FormularioAtsModule { }
