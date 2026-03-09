@@ -137,46 +137,7 @@
   }
 }
 
-// Tamaño grande para los checkboxes de PrimeNG
-::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box {
-  width: 30px !important;
-  height: 30px !important;
-  min-width: 30px !important;
-  min-height: 30px !important;
-}
 
-::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-checkbox-icon {
-  font-size: 30px !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-icon {
-  width: 20px !important;
-  height: 22px !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg + .p-checkbox-label {
-  font-size: 1.2rem !important;
-  margin-left: 1.3rem !important;
-  line-height: 27px !important;
-}// Color warning (naranja) para el checkbox
-::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box.p-highlight {
-  border-color: #FF8300 !important;
-  background: #FF8300 !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box:hover {
-  border-color: #FF8300 !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
-  border-color: #b35c00 !important;
-  background: #b35c00 !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
-  border-color: #FF8300 !important;
-  box-shadow: 0 0 0 0.2rem rgba(255, 131, 0, 0.25) !important;
-}
 
 // Estilos para el dialog de información
 :host ::ng-deep .info-dialog .p-dialog-header {
@@ -231,13 +192,12 @@
 }
 
 ::ng-deep .p-field label {
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
-::ng-deep .p-field-checkbox {
-  margin-bottom: 15px;
-}
+
 // Ancho completo para los campos de entrada en el formulario Formly
 ::ng-deep .p-field .p-inputtext,
 ::ng-deep .p-field .p-inputtextarea,
