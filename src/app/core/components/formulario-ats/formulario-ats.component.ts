@@ -38,7 +38,7 @@ form = new FormGroup({});
   };
 
   fields: FormlyFieldConfig[] = [];
-  formularioId = '213bf1e7-85aa-4c00-8d35-02c44dc4f4b5';
+  formularioId = '39f6b14a-9772-4c4d-b2a3-1522d0d9bbc2'; // ID del formulario ATS a cargar 
 
   isLoading = true;
 // Fin Propiedades formly para ATS
@@ -119,16 +119,26 @@ ngOnInit() {
     this.cdr.detectChanges();
   }
 
+  // FORMULARIO ATS - Funciones para filtrar campos por sección usando typeform y category
   getFilteredFields() {
-    return this.fields.filter(field => String(field.key).includes('ATSM1'));
+    return this.fields.filter(field => 
+      (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
+      (field as any).category === 'DATOS_EMPRESA'
+    );
   }
   
    getFilteredFieldsFotoRostro() {
-    return this.fields.filter(field => String(field.key).includes('ATSM2'));
+    return this.fields.filter(field => 
+      (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
+      (field as any).category === 'FOTO_ROSTRO'
+    );
   }
 
     getFilteredFieldsAnalisisRiesgo() {
-    return this.fields.filter(field => String(field.key).includes('ATSM3'));
+    return this.fields.filter(field => 
+      (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
+      (field as any).category === 'ANALISIS_RIESGO'
+    );
   }
 
   onSubmit() {

@@ -20,6 +20,9 @@ export interface Campo {
   key: string
   type: string
   props: Props
+  typeform: string
+  category?: string
+  subcategory?: string
 }
 
 export interface Props {
