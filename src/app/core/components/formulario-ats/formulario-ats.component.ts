@@ -38,7 +38,7 @@ form = new FormGroup({});
   };
 
   fields: FormlyFieldConfig[] = [];
-  formularioId = '39f6b14a-9772-4c4d-b2a3-1522d0d9bbc2'; // ID del formulario ATS a cargar 
+  formularioId = 'aa6c6f1e-c2e3-467e-ad65-edda6c2ef318'; // ID del formulario ATS a cargar 
 
   isLoading = true;
 // Fin Propiedades formly para ATS
@@ -130,7 +130,7 @@ ngOnInit() {
    getFilteredFieldsFotoRostro() {
     return this.fields.filter(field => 
       (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
-      (field as any).category === 'FOTO_ROSTRO'
+      (field as any).category === 'FOTOGRAFIA_ROSTRO_UBICACION'
     );
   }
 
