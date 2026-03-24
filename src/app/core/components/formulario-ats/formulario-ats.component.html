@@ -71,63 +71,6 @@
 
                     <p-accordionTab header="Fotografía del Rostro con Ubicación" headerStyleClass="registro-tab header-lg">
                
-                      <!-- <div class="card mt-2">
-
-                            <app-upload-photo 
-                                [showTakePhotoButton]="true"
-                                [showGalleryButton]="false"
-                                [showTakeAndUploadButton]="false"
-                                [showUploadButton]="true"
-                                [showCancelButton]="true">                            
-                            </app-upload-photo>
-
-                        </div>
-                        <div class="card">
-                            <app-geolocation 
-                                [showMap]="false">
-                            </app-geolocation>
-                        </div>
-
-                        <div class="card">
-                            <div>
-                                <label class="label" for="orden">No. De orden de trabajo / RDA</label>
-                                <input class="input" id="orden" name="ordenTrabajo" type="number" placeholder="Ingrese número..."  pInputText [(ngModel)]="valueEmp" />
-                            </div>
-                            <div class="mt-4">
-                                <label class="label" for="date">Fecha de Inicio</label>
-                                <p-calendar 
-                                    [(ngModel)]="valueDate" 
-                                    name="fechaInicio"
-                                    [showIcon]="true" 
-                                    [showOnFocus]="false" 
-                                    styleClass="p"
-                                    inputId="buttondisplay" />                                         
-                            </div>
-                            <div class="mt-4">
-                                <label class="label" for="date">Fecha de Fin</label>
-                                    <p-calendar 
-                                    [(ngModel)]="valueDateFin" 
-                                    name="fechaFin"
-                                    [showIcon]="true" 
-                                    [showOnFocus]="false" 
-                                    styleClass="p"
-                                    inputId="buttondisplay" />                                                  
-                            </div>
-                        </div>
-
-                        <div class="card mt-3 mb-1">
-                            <label class="label" for="id">Lugar exacto de donde se realizará el trabajo</label>
-                            <textarea 
-                                placeholder="Escriba la descripción aquí..." 
-                                id="description"
-                                name="lugarTrabajo"
-                                rows="5"
-                                pInputTextarea 
-                                class="w-full p"
-                                [(ngModel)]="valueTextArea">
-                            </textarea>
-                        </div> -->
-
                         <div class="card mt-2">
                             <app-upload-photo 
                                 [showTakePhotoButton]="true"
@@ -152,25 +95,7 @@
 
                     <p-accordionTab header="Análisis de Riesgo" headerStyleClass="registro-tab header-lg">
                     <div>
-                        <!-- <div class="card mt-2 mb-1">
-                            <label class="label" for="riesgo">Análisis de Riesgos en el Entorno</label>
-    
-                            <div class="flex flex-column gap-2 mt-3">
-                                <div *ngFor="let category of categories" class="field-checkbox">
-                                    <p-checkbox 
-                                        styleClass="checkbox-lg"
-                                        severity="warning"
-                                        [(ngModel)]="selectedCategories"
-                                        (ngModelChange)="onSelectedCategoriesChange($event)"
-                                        [label]="category.name"
-                                        name="riesgos"
-                                        [value]="category" />
-                                </div>
-                            </div>
-                        </div>
-    
-                        <p-button (onClick)="selectedCheckCategories()">Categorias chequeadas</p-button> -->
-
+                  
                            <div class="card mt-2">
                                <formly-form [form]="form" [fields]="getFilteredFieldsAnalisisRiesgo()" [model]="model"></formly-form>
                            </div>
@@ -181,13 +106,11 @@
 
                     <p-accordionTab header="Permisos de Trabajo" headerStyleClass="registro-tab header-lg">
                             <p-accordion styleClass="mt-2">
-                                <p-accordionTab header="Trabajos en caliente" headerStyleClass="registro-sub">
+                             <p-accordionTab header="Trabajos en caliente" headerStyleClass="registro-sub">
 
-
-
-                                              <div class="card mt-2">
-                            <formly-form [form]="form" [fields]="getFilteredFieldsPermisosTrabajoCaliente()" [model]="model"></formly-form>
-                        </div>
+                                <div class="card mt-2">
+                                    <formly-form [form]="form" [fields]="getFilteredFieldsPermisosTrabajoCaliente()" [model]="model"></formly-form>
+                                </div>
 
                                     <div class="card mt-2">
                                         <label class="label" for="orden">Fotografía de extintor en buen estado, con carga, marchamo y pin.</label>
