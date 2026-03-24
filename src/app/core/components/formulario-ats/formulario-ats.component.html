@@ -42,7 +42,8 @@
 
                          <div class="card">
                             <app-geolocation 
-                                [showMap]="false">
+                                [showMap]="false"
+                                (coordenadasObtenidas)="actualizarCamposGeolocation($event)">
                             </app-geolocation>
                         </div>
                         

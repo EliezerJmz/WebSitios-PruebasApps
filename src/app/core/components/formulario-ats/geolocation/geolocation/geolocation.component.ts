@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 // Paso 1: Importar el plugin de Geolocation de Capacitor
 import { Geolocation } from '@capacitor/geolocation';
 
@@ -12,6 +12,9 @@ export class GeolocationComponent implements OnInit {
    
   // Configuración de google map visibles
   @Input() showMap: boolean = true;
+  
+  // Output para emitir las coordenadas al componente padre
+  @Output() coordenadasObtenidas = new EventEmitter<{ latitud: number, longitud: number, precision: number }>();
   
   // Paso 2: Definir las propiedades para almacenar las coordenadas
   latitude: number | null = null;
@@ -62,6 +65,13 @@ export class GeolocationComponent implements OnInit {
       this.latitude = coordinates.coords.latitude;
       this.longitude = coordinates.coords.longitude;
       this.accuracy = coordinates.coords.accuracy;
+      
+      // Emitir las coordenadas al componente padre
+      this.coordenadasObtenidas.emit({
+        latitud: this.latitude,
+        longitud: this.longitude,
+        precision: this.accuracy
+      });
       
       console.log('Coordenadas obtenidas:', coordinates);
     } catch (err: any) {

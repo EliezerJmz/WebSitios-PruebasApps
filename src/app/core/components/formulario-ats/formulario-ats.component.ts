@@ -106,6 +106,7 @@ ngOnInit() {
         console.warn('Campos cargados:', ats.data.campos);
         this.actualizarCampoIVR();
         this.actualizarCampoEmpresaNombre();
+        this.ocultarCamposGeolocation();
       },
       error: (error) => {
         console.error('Error al cargar formulario:', error);
@@ -232,6 +233,93 @@ actualizarCampoEmpresaNombre() {
     } else {
         console.warn('No se encontró un campo con "empresa" y "nombre" en su key');
     }
+}
+
+// Ocultar campos de geolocalización al cargar el formulario
+ocultarCamposGeolocation() {
+    if (this.fields.length === 0) {
+        return;
+    }
+    
+    // Buscar y ocultar campo de latitud
+    const campoLatitud = this.fields.find(field => 
+        field.key && String(field.key).toLowerCase().includes('latitud')
+    );
+    
+    if (campoLatitud) {
+        campoLatitud.hide = true;
+        console.log(`Campo Latitud ocultado: ${campoLatitud.key}`);
+    }
+    
+    // Buscar y ocultar campo de longitud
+    const campoLongitud = this.fields.find(field => 
+        field.key && String(field.key).toLowerCase().includes('longitud')
+    );
+    
+    if (campoLongitud) {
+        campoLongitud.hide = true;
+        console.log(`Campo Longitud ocultado: ${campoLongitud.key}`);
+    }
+    
+    // Buscar y ocultar campo de precisión
+    const campoPrecision = this.fields.find(field => 
+        field.key && String(field.key).toLowerCase().includes('precision')
+    );
+    
+    if (campoPrecision) {
+        campoPrecision.hide = true;
+        console.log(`Campo Precisión ocultado: ${campoPrecision.key}`);
+    }
+}
+
+// Actualizar campos de geolocalización (latitud, longitud, precisión)
+actualizarCamposGeolocation(coordenadas: { latitud: number, longitud: number, precision: number }) {
+    if (this.fields.length === 0) {
+        console.warn('No hay campos disponibles para actualizar');
+        return;
+    }
+    
+    // Buscar y actualizar campo de latitud
+    const campoLatitud = this.fields.find(field => 
+        field.key && String(field.key).toLowerCase().includes('latitud')
+    );
+    
+    if (campoLatitud) {
+        campoLatitud.defaultValue = coordenadas.latitud;
+        this.model[String(campoLatitud.key)] = coordenadas.latitud;
+        console.log(`Campo Latitud actualizado: ${campoLatitud.key} = ${coordenadas.latitud}`);
+    } else {
+        console.warn('No se encontró un campo con "latitud" en su key');
+    }
+    
+    // Buscar y actualizar campo de longitud
+    const campoLongitud = this.fields.find(field => 
+        field.key && String(field.key).toLowerCase().includes('longitud')
+    );
+    
+    if (campoLongitud) {
+        campoLongitud.defaultValue = coordenadas.longitud;
+        this.model[String(campoLongitud.key)] = coordenadas.longitud;
+        console.log(`Campo Longitud actualizado: ${campoLongitud.key} = ${coordenadas.longitud}`);
+    } else {
+        console.warn('No se encontró un campo con "longitud" en su key');
+    }
+    
+    // Buscar y actualizar campo de precisión
+    const campoPrecision = this.fields.find(field => 
+        field.key && String(field.key).toLowerCase().includes('precision')
+    );
+    
+    if (campoPrecision) {
+        campoPrecision.defaultValue = coordenadas.precision;
+        this.model[String(campoPrecision.key)] = coordenadas.precision;
+        console.log(`Campo Precisión actualizado: ${campoPrecision.key} = ${coordenadas.precision}`);
+    } else {
+        console.warn('No se encontró un campo con "precision" en su key');
+    }
+    
+    // Forzar detección de cambios en el formulario
+    this.cdr.detectChanges();
 }
 
 // * Fin Formulario ATS - Cargar campos dinámicos desde el backend
