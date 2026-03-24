@@ -38,7 +38,7 @@ form = new FormGroup({});
   };
 
   fields: FormlyFieldConfig[] = [];
-  formularioId = 'aa6c6f1e-c2e3-467e-ad65-edda6c2ef318'; // ID del formulario ATS a cargar 
+  formularioId = '1a53196a-a6f4-44a4-9512-8f35833c899b'; // ID del formulario ATS a cargar 
 
   isLoading = true;
 // Fin Propiedades formly para ATS
@@ -138,6 +138,13 @@ ngOnInit() {
     return this.fields.filter(field => 
       (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
       (field as any).category === 'ANALISIS_RIESGO'
+    );
+  }
+    getFilteredFieldsPermisosTrabajoCaliente() {
+    return this.fields.filter(field => 
+      (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
+      (field as any).category === 'PERMISOS_TRABAJO' && 
+      (field as any).subcategory === 'TRABAJOS_CALIENTE'
     );
   }
 
