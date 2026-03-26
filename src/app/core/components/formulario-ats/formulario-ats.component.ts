@@ -130,7 +130,8 @@ obtenerFormulariosPublicados() {
        //this.fields = ats.data.campos as FormlyFieldConfig[];
        this.fields.push(...ats.data.campos);
         this.isLoading = false;
-        console.warn('Campos cargados:', ats.data.campos);
+        console.warn('FORM ATS RECONSTRUIDO PARA FORMLY:', ats.data.campos);
+        console.warn('FORM ATS RECONSTRUIDO JSON:', JSON.stringify(ats.data.campos));
         this.actualizarCampoIVR();
         this.actualizarCampoEmpresaNombre();
         this.ocultarCamposGeolocation();
@@ -180,6 +181,7 @@ obtenerFormulariosPublicados() {
     if (this.form.valid) {
       alert(JSON.stringify(this.model));
       console.log(this.model);
+      console.warn('Formulario enviado con datos:', JSON.stringify(this.model));
     }
   }
 
