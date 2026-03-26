@@ -9,8 +9,22 @@ export class ApiUrlService {
 
     constructor() { }
 
+  // Apis de Web Sitios  
+
     apiUserById() {
         const SLUG = `usuarios`;
+        return this.apiURL + SLUG;
+    }
+
+    //Form By ID
+    apiGetFormById() {
+        const SLUG = `formularios`;
+        return this.apiURL + SLUG;
+    }
+
+    // Listar formularios publicados
+    apiPublishedForms() {
+        const SLUG = `formularios`;
         return this.apiURL + SLUG;
     }
 
@@ -21,6 +35,7 @@ export class ApiUrlService {
 
 
 
+// Endpoints de parqueos se deben borrar cuando se integre con el nuevo backend de web sitios
     apiLocationReports() {
         const SLUG = 'reports/locations';
         return this.apiURL + SLUG;
