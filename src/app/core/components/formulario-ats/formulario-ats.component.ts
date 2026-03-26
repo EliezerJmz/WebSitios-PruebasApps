@@ -18,6 +18,7 @@ import { UserById } from '../../api/user-by-id/userById.model';
 import { FormGroup } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { FormATSService } from '../../service/formATS/form-ats.service';
+import { PublishedFormsService } from '../../service/publishedForms/published-forms.service';
 
 
 
@@ -38,7 +39,7 @@ form = new FormGroup({});
   };
 
   fields: FormlyFieldConfig[] = [];
-  formularioId = '1a53196a-a6f4-44a4-9512-8f35833c899b'; // ID del formulario ATS a cargar 
+  formularioId = ''; // ID del formulario ATS a cargar 
 
   isLoading = true;
 // Fin Propiedades formly para ATS
@@ -88,13 +89,39 @@ form = new FormGroup({});
     userResponse: UserById; // Aquí se almacenarán los datos del usuario obtenidos por ID  
 
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService,
-    private userByIdService: UserByIdService, private formularioATSService: FormATSService, private cdr: ChangeDetectorRef
+    private userByIdService: UserByIdService, private formularioATSService: FormATSService, private cdr: ChangeDetectorRef,
+    private publishedFormsService: PublishedFormsService,
 ) { }
 
 ngOnInit() {
     this.getUserById(); 
-    this.cargarFormularioATS();
+    this.obtenerFormulariosPublicados();
 }
+
+obtenerFormulariosPublicados() {
+    this.publishedFormsService.getPublishedForms('PUBLISHED').subscribe({
+        next: (response) => {
+            console.warn('Formularios publicados:', response);
+            this.formularioId = response.data.find((form: any) => form.nombre === 'Formulario ATS' && form.estado === 'PUBLISHED')?.id || '';   
+            console.warn('ID del formulario ATS encontrado:', this.formularioId);
+            
+            // Cargar el formulario solo si se encontró el ID
+            if (this.formularioId) {
+                this.cargarFormularioATS();
+            } else {
+                console.error('No se encontró el formulario ATS publicado');
+                this.isLoading = false;
+            }
+        },
+        error: (error) => {
+            console.error('Error al obtener formularios publicados:', error);
+            this.isLoading = false;
+        }
+    });
+}
+
+    
+
 
 // * Formulario ATS - Cargar campos dinámicos desde el backend
   cargarFormularioATS() {
