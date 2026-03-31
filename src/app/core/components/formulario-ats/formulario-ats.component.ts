@@ -19,6 +19,8 @@ import { FormGroup } from '@angular/forms';
 import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { FormATSService } from '../../service/formATS/form-ats.service';
 import { PublishedFormsService } from '../../service/publishedForms/published-forms.service';
+//recursos del token
+import { AuthService } from '../../service/auth/auth.service';
 
 
 
@@ -90,7 +92,7 @@ form = new FormGroup({});
 
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService,
     private userByIdService: UserByIdService, private formularioATSService: FormATSService, private cdr: ChangeDetectorRef,
-    private publishedFormsService: PublishedFormsService,
+    private publishedFormsService: PublishedFormsService, private authService: AuthService 
 ) { }
 
 ngOnInit() {
@@ -101,8 +103,8 @@ ngOnInit() {
 obtenerFormulariosPublicados() {
     this.publishedFormsService.getPublishedForms('PUBLISHED').subscribe({
         next: (response) => {
-            console.warn('Formularios publicados:', response);
-            this.formularioId = response.data.find((form: any) => form.nombre === 'Formulario ATS' && form.estado === 'PUBLISHED')?.id || '';   
+            console.warn('Formularios publicados:', response);                     
+            this.formularioId = response.data.find((form: any) => form.nombre === 'FORMULARIO ATS' && form.estado === 'PUBLISHED')?.id || '';   
             console.warn('ID del formulario ATS encontrado:', this.formularioId);
             
             // Cargar el formulario solo si se encontró el ID
@@ -186,20 +188,24 @@ obtenerFormulariosPublicados() {
   }
 
 getUserById(){
-
-    this.userByIdService.getUserById('eb5da338-fd5e-44e9-afc9-8d6e5f84fbea').subscribe({
-        next: (response) => {
-            console.warn('Datos del usuario:', response);
-            // Asignar toda la respuesta a la propiedad userResponse
-            this.userResponse = response;
-            this.actualizarCampoIVR();
-            this.actualizarCampoEmpresaNombre();
-        },
-        error: (error) => {
-            console.error('Error al obtener los datos del usuario:', error);
-        }
-    });
-     
+    //obtenemos el ID del usuario desde el token para cargar sus datos y asignar campos dinámicos en el formulario ATS
+    const userId = this.authService.getTokenPayload()?.userId;
+        console.warn('ID de usuario obtenido del token:', userId);
+    
+    if (userId) {    
+        this.userByIdService.getUserById(userId).subscribe({
+            next: (response) => {
+                console.warn('Datos del usuario:', response);
+                // Asignar toda la respuesta a la propiedad userResponse
+                this.userResponse = response;
+                this.actualizarCampoIVR();
+                this.actualizarCampoEmpresaNombre();
+            },
+            error: (error) => {
+                console.error('Error al obtener los datos del usuario:', error);
+            },
+        });
+    }
 }
 
 // Actualizar campo IVR con el código IVR del usuario (búsqueda dinámica)

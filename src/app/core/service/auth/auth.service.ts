@@ -176,6 +176,7 @@ handleSamlAuthSuccess(token: string, refreshToken: string): void {
   }
 
   getResources(): string[] {
+    console.warn('Recursos actuales del usuario:', this.resources);
     return this.resources;
   }
 
