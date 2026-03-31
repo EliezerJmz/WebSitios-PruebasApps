@@ -248,7 +248,7 @@ actualizarCampoEmpresaNombre() {
     
     // Buscar dinámicamente el campo que contenga 'empresa' y 'nombre' en su key
     const campoEmpresa = this.fields.find(field => 
-        field.key && String(field.key).toLowerCase().includes('_nombre')
+        field.key && String(field.key).toLowerCase().includes('_empresa')
     );
     
     if (campoEmpresa) {
