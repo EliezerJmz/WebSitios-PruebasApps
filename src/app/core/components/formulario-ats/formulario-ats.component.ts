@@ -21,6 +21,7 @@ import { FormATSService } from '../../service/formATS/form-ats.service';
 import { PublishedFormsService } from '../../service/publishedForms/published-forms.service';
 //recursos del token
 import { AuthService } from '../../service/auth/auth.service';
+import { SitiosService } from '../../service/sitios/sitios.service';
 
 
 
@@ -87,12 +88,16 @@ form = new FormGroup({});
   checkedCumplimiento: boolean = false;  
   checkedRecomendaciones: boolean = false; 
 
+    sitioIdSearch = '';
+    isSearchingSitio = false;
+
 // Formulario ATS - Datos de la empresa
     userResponse: UserById; // Aquí se almacenarán los datos del usuario obtenidos por ID  
 
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService,
     private userByIdService: UserByIdService, private formularioATSService: FormATSService, private cdr: ChangeDetectorRef,
-    private publishedFormsService: PublishedFormsService, private authService: AuthService 
+    private publishedFormsService: PublishedFormsService, private authService: AuthService,
+    private sitiosService: SitiosService
 ) { }
 
 ngOnInit() {
@@ -152,11 +157,63 @@ obtenerFormulariosPublicados() {
 
   // FORMULARIO ATS - Funciones para filtrar campos por sección usando typeform y category
   getFilteredFields() {
-    return this.fields.filter(field => 
+        return this.fields.filter(field =>
       (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
       (field as any).category === 'DATOS_EMPRESA'
     );
   }
+
+  // Funciones para obtener campos antes y después del campo de sitio, para mostrar en secciones separadas del formulario para agregar la funcionalidad de búsqueda de sitio por ID y completar campos relacionados (nombre de sitio, etc)
+    getFilteredFieldsDatosEmpresaAntesSitio() {
+        const datosEmpresa = this.getFilteredFields();
+        const splitIndex = this.getSitioSearchSplitIndex(datosEmpresa);
+        return datosEmpresa.slice(0, splitIndex);
+    }
+
+    getFilteredFieldsDatosEmpresaDespuesSitio() {
+        const datosEmpresa = this.getFilteredFields();
+        const splitIndex = this.getSitioSearchSplitIndex(datosEmpresa);
+        return datosEmpresa.slice(splitIndex);
+    }
+
+    private getSitioSearchSplitIndex(fields: FormlyFieldConfig[]): number {
+        const indexNombreEmpresa = this.findFieldIndexByLabel(fields, 'nombre de la empresa');
+        const indexIdSitio = this.findFieldIndexByLabel(fields, 'id de sitio');
+
+        if (indexNombreEmpresa !== -1 && indexIdSitio !== -1) {
+            if (indexNombreEmpresa < indexIdSitio) {
+                return indexIdSitio;
+            }
+            return indexNombreEmpresa + 1;
+        }
+
+        if (indexIdSitio !== -1) {
+            return indexIdSitio;
+        }
+
+        if (indexNombreEmpresa !== -1) {
+            return indexNombreEmpresa + 1;
+        }
+
+        return 0;
+    }
+
+    private findFieldIndexByLabel(fields: FormlyFieldConfig[], expectedLabel: string): number {
+        const normalizedExpected = this.normalizeText(expectedLabel);
+
+        return fields.findIndex(field => {
+            const label = String(field.props?.label || field.templateOptions?.label || '');
+            return this.normalizeText(label) === normalizedExpected;
+        });
+    }
+
+    private normalizeText(value: string): string {
+        return (value || '')
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .trim();
+    }
   
    getFilteredFieldsFotoRostro() {
     return this.fields.filter(field => 
@@ -186,6 +243,103 @@ obtenerFormulariosPublicados() {
       console.warn('Formulario enviado con datos:', JSON.stringify(this.model));
     }
   }
+
+buscarSitioPorId() {
+    const sitioId = (this.sitioIdSearch || '').trim();
+
+    if (!sitioId) {
+        this.messageService.add({
+            severity: 'warn',
+            summary: 'Campo requerido',
+            detail: 'Debe ingresar un ID de sitio para buscar.'
+        });
+        return;
+    }
+
+    this.isSearchingSitio = true;
+
+    this.sitiosService.getSitioById(sitioId).subscribe({
+        next: (response) => {
+            const sitio = Array.isArray(response?.data)
+                ? response.data[0]
+                : response?.data;
+
+            if (!sitio?.id) {
+                this.messageService.add({
+                    severity: 'warn',
+                    summary: 'Sin resultados',
+                    detail: response?.message || 'No se encontró un sitio con el ID ingresado.'
+                });
+                this.isSearchingSitio = false;
+                return;
+            }
+
+            this.actualizarCamposSitio(sitio.id, sitio.nombre || '');
+            this.messageService.add({
+                severity: 'success',
+                summary: 'Sitio encontrado',
+                detail: 'Se completaron los campos del formulario.'
+            });
+
+            this.isSearchingSitio = false;
+        },
+        error: (error) => {
+            console.error('Error al buscar sitio por ID:', error);
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Error de búsqueda',
+                detail: 'No fue posible obtener la información del sitio.'
+            });
+            this.isSearchingSitio = false;
+        }
+    });
+}
+
+private actualizarCamposSitio(idSitio: string, nombreSitio: string) {
+    if (this.fields.length === 0) {
+        return;
+    }
+
+    const campoIdSitio = this.buscarCampoSitio('id de sitio', ['sitio', 'id']);
+    const campoNombreSitio = this.buscarCampoSitio('nombre de sitio', ['sitio', 'nombre']);
+
+    if (campoIdSitio?.key) {
+        campoIdSitio.defaultValue = idSitio;
+        this.model[String(campoIdSitio.key)] = idSitio;
+    }
+
+    if (campoNombreSitio?.key) {
+        campoNombreSitio.defaultValue = nombreSitio;
+        this.model[String(campoNombreSitio.key)] = nombreSitio;
+    }
+
+    this.cdr.detectChanges();
+}
+
+private buscarCampoSitio(labelEsperado: string, keyIncludes: string[]): FormlyFieldConfig | undefined {
+    const normalizar = (valor: string) =>
+        valor
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .trim();
+
+    const labelNormalizado = normalizar(labelEsperado);
+
+    const porLabel = this.fields.find(field => {
+        const label = (field.props?.label || field.templateOptions?.label || '').toString();
+        return label && normalizar(label) === labelNormalizado;
+    });
+
+    if (porLabel) {
+        return porLabel;
+    }
+
+    return this.fields.find(field => {
+        const key = (field.key || '').toString().toLowerCase();
+        return keyIncludes.every(term => key.includes(term));
+    });
+}
 
 getUserById(){
     //obtenemos el ID del usuario desde el token para cargar sus datos y asignar campos dinámicos en el formulario ATS

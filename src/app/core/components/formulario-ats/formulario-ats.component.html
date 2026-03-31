@@ -24,8 +24,39 @@
                 <p-accordion [activeIndex]="null">
                     <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
                         <div class="card mt-2">
-                            <formly-form [form]="form" [fields]="getFilteredFields()" [model]="model"></formly-form>
+                            <formly-form [form]="form" [fields]="getFilteredFieldsDatosEmpresaAntesSitio()" [model]="model"></formly-form>
+                        </div>    
+                
+                        <div class="card mt-2">
+                            <label for="sitioIdSearchInput" class="mt-2 label-form">Buscar por ID de sitio</label>
+                            <input
+                                pInputText
+                                id="sitioIdSearchInput"
+                                type="text"
+                                name="sitioIdSearch"
+                                [(ngModel)]="sitioIdSearch"
+                                [ngModelOptions]="{ standalone: true }"
+                                placeholder="Ingrese ID de sitio"
+                                (keyup.enter)="buscarSitioPorId()"
+                                class="w-full md:w-20rem" />
+
+                            <div class="flex flex-column align-items-center mt-4 mb-3">
+                                <p-button
+                                    label="Buscar Sitio"
+                                    icon="pi pi-search"
+                                    [loading]="isSearchingSitio"
+                                    [disabled]="isSearchingSitio"
+                                    (onClick)="buscarSitioPorId()"
+                                    severity="info"
+                                    styleClass="p-button-lg">
+                                </p-button>
+                            </div>    
                         </div>
+                         
+                        <div class="card mt-2">
+                            <formly-form [form]="form" [fields]="getFilteredFieldsDatosEmpresaDespuesSitio()" [model]="model"></formly-form>
+                        </div>
+                      
                     </p-accordionTab>
 
                     <p-accordionTab header="Fotografía del Rostro con Ubicación" headerStyleClass="registro-tab header-lg">

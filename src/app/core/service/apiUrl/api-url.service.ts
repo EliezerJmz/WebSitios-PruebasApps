@@ -28,6 +28,12 @@ export class ApiUrlService {
         return this.apiURL + SLUG;
     }
 
+    // Sitio By ID
+    apiGetSitioById() {
+        const SLUG = `sitios`;
+        return this.apiURL + SLUG;
+    }
+
 
 
 
