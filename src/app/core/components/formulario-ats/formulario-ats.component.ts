@@ -141,6 +141,7 @@ obtenerFormulariosPublicados() {
         console.warn('FORM ATS RECONSTRUIDO JSON:', JSON.stringify(ats.data.campos));
         this.actualizarCampoIVR();
         this.actualizarCampoEmpresaNombre();
+                this.marcarCamposSitioComoReadonly();
         this.ocultarCamposGeolocation();
       },
       error: (error) => {
@@ -314,6 +315,25 @@ private actualizarCamposSitio(idSitio: string, nombreSitio: string) {
     }
 
     this.cdr.detectChanges();
+}
+
+private marcarCamposSitioComoReadonly() {
+    const campoIdSitio = this.buscarCampoSitio('id de sitio', ['sitio', 'id']);
+    const campoNombreSitio = this.buscarCampoSitio('nombre de sitio', ['sitio', 'nombre']);
+
+    if (campoIdSitio) {
+        if (!campoIdSitio.props) {
+            campoIdSitio.props = {};
+        }
+        campoIdSitio.props.readonly = true;
+    }
+
+    if (campoNombreSitio) {
+        if (!campoNombreSitio.props) {
+            campoNombreSitio.props = {};
+        }
+        campoNombreSitio.props.readonly = true;
+    }
 }
 
 private buscarCampoSitio(labelEsperado: string, keyIncludes: string[]): FormlyFieldConfig | undefined {
