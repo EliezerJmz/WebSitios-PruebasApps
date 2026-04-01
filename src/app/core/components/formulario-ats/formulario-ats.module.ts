@@ -37,6 +37,7 @@ import { FormlySelectModule } from '@ngx-formly/core/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyFieldMultiCheckbox } from '../formly-field-multicheckbox/formly-field-multicheckbox.component';
 import { FormlyFieldFile } from '../formly-file-type/formly-file-type/formly-file-type.component';   
+import { FormlyCalendarType } from '../formly-field-calendar/formly-field-calendar.component';
 
 
 
@@ -87,11 +88,12 @@ import { FormlyFieldFile } from '../formly-file-type/formly-file-type/formly-fil
         { name: 'file_upload', component: FormlyFieldFile },
         { name: 'multicheckbox', component: FormlyFieldMultiCheckbox },
         { name: 'MULTICHECKBOX', component: FormlyFieldMultiCheckbox },
+        { name: 'calendar', component: FormlyCalendarType },
       ],
     }),
 
     
 ],
-    declarations: [FormularioAtsComponent, GeolocationComponent, FormlyFieldMultiCheckbox]
+    declarations: [FormularioAtsComponent, GeolocationComponent, FormlyFieldMultiCheckbox, FormlyCalendarType]
 })
 export class FormularioAtsModule { }
