@@ -9,7 +9,7 @@ import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="p-field">
-      <h5 *ngIf="resolvedLabel" class="m-0 mb-2" [style.white-space]="'pre-line'">{{ resolvedLabel }}</h5>
+      <p *ngIf="resolvedLabel" style="display:block; font-weight:500; font-size:1.1rem; margin-bottom:0.5rem; white-space:pre-line; margin-top:0;">{{ resolvedLabel }}</p>
       <p *ngIf="shouldShowText" class="m-0" [style.white-space]="'pre-line'">{{ resolvedText }}</p>
     </div>
   `,
