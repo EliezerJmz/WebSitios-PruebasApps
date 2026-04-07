@@ -204,6 +204,68 @@
   font-weight: 500;
 }
 
+// Estilos de checkbox equivalentes a formly-field-multicheckbox
+:host ::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box {
+  width: 25px !important;
+  height: 25px !important;
+  min-width: 25px !important;
+  min-height: 25px !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-checkbox-icon {
+  font-size: 20px !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-icon {
+  width: 20px !important;
+  height: 18px !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg + .p-checkbox-label {
+  font-size: 1.2rem !important;
+  margin-left: 1.3rem !important;
+  line-height: 27px !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box.p-highlight {
+  border-color: #FF8300 !important;
+  background: #FF8300 !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: #FF8300 !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+  border-color: #b35c00 !important;
+  background: #b35c00 !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  border-color: #FF8300 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 131, 0, 0.25) !important;
+}
+
+// Color amarillo para checkboxes de los campos dinámicos en Permisos de Trabajo/Trabajos en caliente
+:host ::ng-deep .amarillo-checbox .p-checkbox .p-checkbox-box.p-highlight {
+  border-color: #FF8300 !important;
+  background: #FF8300 !important;
+}
+
+:host ::ng-deep .amarillo-checbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: #FF8300 !important;
+}
+
+:host ::ng-deep .amarillo-checbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+  border-color: #b35c00 !important;
+  background: #b35c00 !important;
+}
+
+:host ::ng-deep .amarillo-checbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  border-color: #FF8300 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 131, 0, 0.25) !important;
+}
+
 
 // Ancho completo para los campos de entrada en el formulario Formly
 ::ng-deep .p-field .p-inputtext,
