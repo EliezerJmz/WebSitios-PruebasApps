@@ -99,11 +99,15 @@
                             <p-accordion styleClass="mt-2">
                              <p-accordionTab header="Trabajos en caliente" headerStyleClass="registro-sub">
 
-                                <div class="card mt-2">
-                                    <formly-form [form]="form" [fields]="getFilteredFieldsPermisosTrabajoCaliente()" [model]="model"></formly-form>
+                                <div class="amarillo-checbox">
+                                    <ng-container *ngFor="let field of getFilteredFieldsPermisosTrabajoCaliente()">
+                                        <div class="card mt-2">
+                                            <formly-form [form]="form" [fields]="[field]" [model]="model"></formly-form>
+                                        </div>
+                                    </ng-container>
                                 </div>
 
-                                    <div class="card mt-2">
+                                    <!-- <div class="card mt-2">
                                         <label class="label" for="orden">Fotografía de extintor en buen estado, con carga, marchamo y pin.</label>
                                         <app-upload-photo 
                                             [showTakePhotoButton]="true"
@@ -122,58 +126,9 @@
                                             [showUploadButton]="true"
                                             [showCancelButton]="true">                            
                                         </app-upload-photo>
-                                    </div>    
-                                    <div class="card">
-                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                        <p class="p-recomendaciones">
-                                            Se han delimitado las áreas de trabajo 
-                                            expuestas a riesgos por la actividad.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Se ha aislado ductos de aire, ventiladores, 
-                                            alivios que puedan transportar gases.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Colocar protectores (canceles, pantallas, 
-                                            mamparas) a prueba de fuego para aislar áreas.
-                                        </p>
-                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                            <p-checkbox 
-                                            styleClass="checkbox-lg"
-                                            [(ngModel)]="checkedCumplimiento" 
-                                            name="cumplimientoCaliente"
-                                            [binary]="true" 
-                                            inputId="binary" />
-                                        </div>
-                                    </div> 
-                                    <div class="card mb-1">
-                                        <h5 class="label" for="orden">Recomendaciones</h5>
-                                        <p class="p-recomendaciones">
-                                            Inspeccione las herramientas y equipos antes
-                                            de iniciar la actividad para identificar y 
-                                            eliminar peligros. 
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            El supervisor y las personas expuestas a los 
-                                            peligros de la actividad han sido notificados 
-                                            sobre los trabajos a realizar.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Evaluar alrededor del área para identificar 
-                                            posibles materiales inflamables. 
-                                        </p>
-                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                            <p-checkbox 
-                                            styleClass="checkbox-lg"
-                                            [(ngModel)]="checkedRecomendaciones" 
-                                            name="recomendacionesCaliente"
-                                            [binary]="true" 
-                                            inputId="binary" />
-                                        </div>
-                                    </div>    
+                                    </div>     -->
+       
+                                    
                                 </p-accordionTab>
 
                                 <p-accordionTab header="Trabajos en alturas" headerStyleClass="registro-sub">
