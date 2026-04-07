@@ -38,6 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyFieldMultiCheckbox } from '../formly-field-multicheckbox/formly-field-multicheckbox.component';
 import { FormlyFieldFile } from '../formly-file-type/formly-file-type/formly-file-type.component';   
 import { FormlyCalendarType } from '../formly-field-calendar/formly-field-calendar.component';
+import { FormlyFieldParagraph } from '../formly-field-paragraph/formly-field-paragraph.component';
 
 
 
@@ -80,6 +81,7 @@ import { FormlyCalendarType } from '../formly-field-calendar/formly-field-calend
     FormlyPrimeNGModule,
     FormlySelectModule,
     FormlyFieldFile,
+    FormlyFieldParagraph,
 
     
      FormlyModule.forRoot({
@@ -89,6 +91,8 @@ import { FormlyCalendarType } from '../formly-field-calendar/formly-field-calend
         { name: 'multicheckbox', component: FormlyFieldMultiCheckbox },
         { name: 'MULTICHECKBOX', component: FormlyFieldMultiCheckbox },
         { name: 'calendar', component: FormlyCalendarType },
+        { name: 'paragraph', component: FormlyFieldParagraph },
+        { name: 'PARAGRAPH', component: FormlyFieldParagraph },
       ],
     }),
 
