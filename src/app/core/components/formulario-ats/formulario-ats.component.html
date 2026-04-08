@@ -132,86 +132,15 @@
                                 </p-accordionTab>
 
                                 <p-accordionTab header="Trabajos en alturas" headerStyleClass="registro-sub">
-                                    <div class="card mt-2">
-                                        <label class="label" for="orden">Fotografía de etiqueta de arnés.</label>
-                                        <app-upload-photo 
-                                            [showTakePhotoButton]="true"
-                                            [showGalleryButton]="false"
-                                            [showTakeAndUploadButton]="false"
-                                            [showUploadButton]="true"
-                                            [showCancelButton]="true">                            
-                                        </app-upload-photo>
-                                    </div>    
-                                    <div class="card">
-                                        <label class="label" for="orden">Fotografía de arnés y accesorios <br> (línea de vida, bandola, tie-off y mosquetones).</label>
-                                        <app-upload-photo 
-                                            [showTakePhotoButton]="true"
-                                            [showGalleryButton]="false"
-                                            [showTakeAndUploadButton]="false"
-                                            [showUploadButton]="true"
-                                            [showCancelButton]="true">                            
-                                        </app-upload-photo>
-                                    </div>    
-                                    <div class="card">
-                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                        <p class="p-recomendaciones">
-                                            Se requiere un mínimo de 3 trabajadores
-                                            en el lugar.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Delimitar y señalizar el área bajo la zona de
-                                            trabajo por riesgo de caída de objetos.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                        Utilizar puntos de anclaje permanentes.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                        Contar con comunicación directa o telefónica.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                        Evaluar si existen interferencias con energías 
-                                            peligrosas y/o tránsito de personas.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Andamios, escaleras y/o grúas en buen estado.
-                                        </p>
-                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                            <p-checkbox 
-                                            styleClass="checkbox-lg"
-                                            [(ngModel)]="checkedCumplimiento"
-                                            name="cumplimientoAlturas"
-                                            [binary]="true" 
-                                            inputId="binary" />
-                                        </div>
-                                    </div> 
-                                    <div class="card mb-1">
-                                        <h5 class="label" for="orden">Recomendaciones</h5>
-                                        <p class="p-recomendaciones">
-                                            Inspeccione las herramientas y equipos antes
-                                            de iniciar la actividad para identificar y 
-                                            eliminar peligros. 
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            El supervisor y las personas expuestas a los 
-                                            peligros de la actividad han sido notificados 
-                                            sobre los trabajos a realizar.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Evaluar alrededor del área para identificar 
-                                            posibles materiales inflamables. 
-                                        </p>
-                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                            <p-checkbox 
-                                            styleClass="checkbox-lg"
-                                            [(ngModel)]="checkedRecomendaciones" 
-                                            name="recomendacionesAlturas"
-                                            [binary]="true" 
-                                            inputId="binary" />
-                                        </div>
-                                    </div>      
+                                   
+                                    <div class="amarillo-checbox">
+                                        <ng-container *ngFor="let field of getFilteredFieldsPermisosTrabajoAlturas()">
+                                            <div class="card mt-2">
+                                                <formly-form [form]="form" [fields]="[field]" [model]="model"></formly-form>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+
                                 </p-accordionTab>
 
                                 <p-accordionTab header="Trabajos con energías peligrosas" headerStyleClass="registro-sub">
