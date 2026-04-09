@@ -257,6 +257,13 @@ obtenerFormulariosPublicados() {
       (field as any).subcategory === 'TRABAJOS_QUIMICOS'
     );
   }
+     getFilteredFieldsPermisosTrabajoEspaciosConfinados() {
+    return this.fields.filter(field => 
+      (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
+      (field as any).category === 'PERMISOS_TRABAJO' &&
+      (field as any).subcategory === 'TRABAJOS_ESPACIOS_CONFINADOS'
+    );
+  }
 
 
   onSubmit() {

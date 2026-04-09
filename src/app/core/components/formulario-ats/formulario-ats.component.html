@@ -164,96 +164,13 @@
                                 </p-accordionTab>
                             
                                 <p-accordionTab header="Trabajos en espacios confinados" headerStyleClass="registro-sub">
-                                    <div class="card mt-2">
-                                        <label class="label" for="orden">Fotografía de equipos de protección <br> (arnés, escalera, trípode).</label>
-                                        <app-upload-photo 
-                                            [showTakePhotoButton]="true"
-                                            [showGalleryButton]="false"
-                                            [showTakeAndUploadButton]="false"
-                                            [showUploadButton]="true"
-                                            [showCancelButton]="true">                            
-                                        </app-upload-photo>
-                                    </div>    
-                                    <div class="card">
-                                        <label class="label" for="orden">Fotografía de equipos de protección <br> (medidor de oxígeno, inyector de oxígeno).</label>
-                                        <app-upload-photo 
-                                            [showTakePhotoButton]="true"
-                                            [showGalleryButton]="false"
-                                            [showTakeAndUploadButton]="false"
-                                            [showUploadButton]="true"
-                                            [showCancelButton]="true">                            
-                                        </app-upload-photo>
-                                    </div>    
-                                    <div class="card">
-                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                        <p class="p-recomendaciones">
-                                            Con el medidor de oxígeno se identificó que el 
-                                            espacio esté libre de gases, vapores, presión, 
-                                            residuos de materiales combustibles, 
-                                            sustancias tóxicas, asfixiantes, etc.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            El área alrededor deberá mantenerse libre y 
-                                            limpia de materiales combustibles e 
-                                            inflamables en todo momento.
-                                            </p>
-                                        <p class="p-recomendaciones">
-                                            Asignar a una persona como vigía.
-                                            Se debe tener un medio de comunicación entre 
-                                            el vigía y las personas que ingresan. 
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Las personas que ingresan deben usar arnés y 
-                                            estar conectados a la línea de vida.
-                                        </p>
-                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                            <p-checkbox 
-                                            styleClass="checkbox-lg"
-                                            [(ngModel)]="checkedCumplimiento" 
-                                            name="cumplimientoConfinados"
-                                            [binary]="true" 
-                                            inputId="binary" />
-                                        </div>
-                                    </div> 
-                                    <div class="card mb-1">
-                                        <h5 class="label" for="orden">Recomendaciones</h5>
-                                        <p class="p-recomendaciones">
-                                            Se debe gestionar el permiso de trabajo en caliente 
-                                            para toda labor que genere chispas.
-                                        </p>
-                                        <p class="p-recomendaciones">    
-                                            Se debe desconectar cualquier fuente de 
-                                            energización eléctrica. 
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            La entrada del espacio confinado debe estar 
-                                            señalizada.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Recuerda establecer la rotación de las personas que 
-                                            ingresan cada cierto tiempo.
-                                        </p>
-                                        <p class="p-recomendaciones"> 
-                                            El vigía es quien debe llevar la bitácora de las 
-                                            condiciones del espacio incluyendo el ingreso y 
-                                            egreso del personal. 
-                                        </p>
-                                        <p class="p-recomendaciones">   
-                                            Se debe tener un plan de emergencia y rescate 
-                                            disponible y conocido por todos.
-                                        </p>
-                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                            <p-checkbox 
-                                            styleClass="checkbox-lg"
-                                            [(ngModel)]="checkedRecomendaciones" 
-                                            name="recomendacionesConfinados"
-                                            [binary]="true" 
-                                            inputId="binary" />
-                                        </div>    
-                                </div>   
+                                    <div class="amarillo-checbox">
+                                        <ng-container *ngFor="let field of getFilteredFieldsPermisosTrabajoEspaciosConfinados()">
+                                            <div class="card mt-2">
+                                                <formly-form [form]="form" [fields]="[field]" [model]="model"></formly-form>
+                                            </div>
+                                        </ng-container>
+                                    </div>
                                 </p-accordionTab>
 
                                 <p-accordionTab header="Trabajos de excavaciones" headerStyleClass="registro-sub">
