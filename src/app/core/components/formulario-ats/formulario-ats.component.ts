@@ -271,16 +271,22 @@ obtenerFormulariosPublicados() {
       (field as any).subcategory === 'TRABAJOS_EXCAVACIONES'
     );
   }
-     getFilteredFieldsFotosHerramientas() {
+    getFilteredFieldsFotosHerramientas() {
     return this.fields.filter(field => 
       (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
       (field as any).category === 'FOTOGRAFIA_HERRAMIENTAS'
     );
   }
-       getFilteredFieldsFotosEquiposProteccion() {
+    getFilteredFieldsFotosEquiposProteccion() {
     return this.fields.filter(field => 
       (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
       (field as any).category === 'FOTOGRAFIA_EQUIPO_PROTECCION'
+    );
+  }
+   getFilteredFieldsMedidasPrevencion() {
+    return this.fields.filter(field => 
+      (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
+      (field as any).category === 'MEDIDAS_PREVENCION'
     );
   }
 

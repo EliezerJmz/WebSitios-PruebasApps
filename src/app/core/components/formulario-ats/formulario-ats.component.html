@@ -206,45 +206,13 @@
                     </p-accordionTab>
 
                     <p-accordionTab header="Medidas de prevención" headerStyleClass="registro-tab header-lg">
-                        <div class="card mt-2 mb-1">
-                            <h5 class="label" for="orden">Recuerda estas medidas de prevención para un trabajo más seguro.</h5>
-                            <p class="p-recomendaciones">
-                                Práctica siempre el orden y limpieza. 
-                            </p>
-                            <p class="p-recomendaciones">
-                                Delimita tu área de trabajo.
-                            </p>
-                            <p class="p-recomendaciones">
-                                Evitar hacer bromas pesadas.
-                            </p>
-                            <p class="p-recomendaciones">
-                                Utilizar herramienta en buen estado. 
-                            </p>
-                            <p class="p-recomendaciones">
-                                Reportar cualquier anomalía.
-                            </p>    
-                            <p class="p-recomendaciones">
-                                Evita tomar bebidas energizantes. 
-                            </p>  
-                            <p class="p-recomendaciones">
-                                No Fumar adentro de las instalaciones de la empresa.
-                            </p>  
-                            <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                <h5 class="label">Y recuerda antes de iniciar:</h5>
-                                <div class="flex align-items-center gap-2">
-                                    <p-button label="Me detengo" icon="pi pi-arrow-right" iconPos="right" [outlined]="true" severity="secondary" />
-                                    <p-button label="Pienso" icon="pi pi-arrow-right" iconPos="right" [outlined]="true" severity="secondary" />
-                                    <p-button label="Actúo" [outlined]="true" severity="secondary" />
+                       <div class="amarillo-checbox">
+                            <ng-container *ngFor="let field of getFilteredFieldsMedidasPrevencion()">
+                                <div class="card mt-2">
+                                    <formly-form [form]="form" [fields]="[field]" [model]="model"></formly-form>
                                 </div>
-                                <label for="" class="label-cumplimiento mt-3">Acepto medidas de prevención.</label>
-                                <p-checkbox 
-                                styleClass="checkbox-lg"
-                                [(ngModel)]="checkedCumplimiento" 
-                                name="cumplimientoPrevencion"
-                                [binary]="true" 
-                                inputId="binary" />
-                            </div>
-                        </div> 
+                            </ng-container>
+                        </div>
                     </p-accordionTab>
                 </p-accordion>
                 
