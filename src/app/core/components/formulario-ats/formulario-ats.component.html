@@ -144,93 +144,13 @@
                                 </p-accordionTab>
 
                                 <p-accordionTab header="Trabajos con energías peligrosas" headerStyleClass="registro-sub">
-                                    <div class="card mt-2">
-                                        <label class="label" for="orden">Fotografía de equipos aislantes <br> (guantes, mantas, equipos de protección dieléctricos).</label>
-                                        <app-upload-photo 
-                                            [showTakePhotoButton]="true"
-                                            [showGalleryButton]="false"
-                                            [showTakeAndUploadButton]="false"
-                                            [showUploadButton]="true"
-                                            [showCancelButton]="true">                            
-                                        </app-upload-photo>
-                                    </div>    
-                                    <div class="card">
-                                        <label class="label" for="orden">Fotografía de candado de bloqueo y etiqueta de señalización.</label>
-                                        <app-upload-photo 
-                                            [showTakePhotoButton]="true"
-                                            [showGalleryButton]="false"
-                                            [showTakeAndUploadButton]="false"
-                                            [showUploadButton]="true"
-                                            [showCancelButton]="true">                            
-                                        </app-upload-photo>
-                                    </div>    
-                                    <div class="card">
-                                        <h5 class="label" for="orden">Cumplimiento obligatorio</h5>
-                                        <p class="p-recomendaciones">
-                                            Verificar la interferencia con otros equipos del área.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Cumplir con las 5 reglas de oro. 
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                        Delimitar el área de trabajo.
-                                        </p>
-                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                            <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                            <p-checkbox 
-                                            styleClass="checkbox-lg"
-                                            [(ngModel)]="checkedCumplimiento" 
-                                            name="cumplimientoEnergias"
-                                            [binary]="true" 
-                                            inputId="binary" />
-                                        </div>
-                                    </div> 
-                                    <div class="card mb-1">
-                                        <h5 class="label" for="orden">Recomendaciones</h5>
-                                        <p class="p-recomendaciones">
-                                            Verifica que el EPP no este dañado ni roto.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Contar con extintor. 
-                                        </p>
-                                        <h5 class="label">
-                                            5 reglas de oro:
-                                        </h5>
-                                        <p class="p-recomendaciones">
-                                            Desconectar la energía, cortar la fuente de 
-                                            energía antes de iniciar cualquier trabajo.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Bloquear y señalizar Asegurar que no se pueda 
-                                            reconectar accidentalmente y advertir con 
-                                            señalización.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Verificar ausencia de tensión Comprobar que 
-                                            no haya energía presente en el sistema.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Poner a tierra y cortocircuitar Evitar cualquier 
-                                            reenergización conectando a tierra y 
-                                            cortocircuitando.
-                                        </p>
-                                        <p class="p-recomendaciones">
-                                            Delimitar y señalizar la zona de trabajo. <br> 
-                                            Proteger el área para evitar accesos no autorizados y 
-                                            garantizar seguridad.
-                                        </p>
-
-                                        <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                            <label for="" class="label-cumplimiento">He leído, entendido y me comprometo a seguir las recomendaciones indicadas.</label>
-                                            <label for="" class="label-cumplimiento">Acepto las recomendaciones.</label>
-                                            <p-checkbox 
-                                            styleClass="checkbox-lg"
-                                            [(ngModel)]="checkedRecomendaciones" 
-                                            name="recomendacionesEnergias"
-                                            [binary]="true" 
-                                            inputId="binary" />
-                                        </div>
-                                    </div>       
+                                    <div class="amarillo-checbox">
+                                        <ng-container *ngFor="let field of getFilteredFieldsPermisosTrabajoEnergia()">
+                                            <div class="card mt-2">
+                                                <formly-form [form]="form" [fields]="[field]" [model]="model"></formly-form>
+                                            </div>
+                                        </ng-container>
+                                    </div>
                                 </p-accordionTab>
 
                                 <p-accordionTab header="Trabajos con químicos" headerStyleClass="registro-sub">

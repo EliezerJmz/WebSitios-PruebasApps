@@ -243,6 +243,13 @@ obtenerFormulariosPublicados() {
       (field as any).subcategory === 'TRABAJOS_ALTURA'
     );
   }
+  getFilteredFieldsPermisosTrabajoEnergia() {
+    return this.fields.filter(field => 
+      (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
+      (field as any).category === 'PERMISOS_TRABAJO' &&
+      (field as any).subcategory === 'TRABAJOS_ENERGIAS_PELIGROSAS'
+    );
+  }
 
 
   onSubmit() {
