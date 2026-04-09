@@ -264,6 +264,14 @@ obtenerFormulariosPublicados() {
       (field as any).subcategory === 'TRABAJOS_ESPACIOS_CONFINADOS'
     );
   }
+   getFilteredFieldsPermisosTrabajoExcavaciones() {
+    return this.fields.filter(field => 
+      (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
+      (field as any).category === 'PERMISOS_TRABAJO' &&
+      (field as any).subcategory === 'TRABAJOS_EXCAVACIONES'
+    );
+  }
+
 
 
   onSubmit() {
