@@ -186,86 +186,23 @@
                     </p-accordionTab>
 
                     <p-accordionTab header="Fotografías de Herramientas" headerStyleClass="registro-tab header-lg">
-                    <div class="card mt-2">
-                        <label class="label" for="orden">1. Fotografía Herramientas para utilizar.</label>
-                        <app-upload-photo 
-                            [showTakePhotoButton]="true"
-                            [showGalleryButton]="false"
-                            [showTakeAndUploadButton]="false"
-                            [showUploadButton]="true"
-                            [showCancelButton]="true">                            
-                        </app-upload-photo>
-                    </div>    
-                    <div class="card">
-                        <label class="label" for="orden">2. Fotografía Herramientas para utilizar.</label>
-                        <app-upload-photo 
-                            [showTakePhotoButton]="true"
-                            [showGalleryButton]="false"
-                            [showTakeAndUploadButton]="false"
-                            [showUploadButton]="true"
-                            [showCancelButton]="true">                            
-                        </app-upload-photo>
-                    </div>  
-                    <div class="card mb-1">
-                        <label class="label" for="orden">3. Fotografía Herramientas para utilizar.</label>
-                        <app-upload-photo 
-                            [showTakePhotoButton]="true"
-                            [showGalleryButton]="false"
-                            [showTakeAndUploadButton]="false"
-                            [showUploadButton]="true"
-                            [showCancelButton]="true">                            
-                        </app-upload-photo>
-                    </div>           
+                         <div class="amarillo-checbox">
+                            <ng-container *ngFor="let field of getFilteredFieldsFotosHerramientas()">
+                                <div class="card mt-2">
+                                    <formly-form [form]="form" [fields]="[field]" [model]="model"></formly-form>
+                                </div>
+                            </ng-container>
+                        </div>
                     </p-accordionTab>
                     
                     <p-accordionTab header="Fotografías de Equipo de Protección" headerStyleClass="registro-tab header-lg">
-                        <div class="card mt-2">
-                            <h5 class="label" for="orden">EPP básico obligatorio para todas las actividades</h5>
-                            <p class="p-recomendaciones">
-                                Casco con barbiquejo.
-                            </p>
-                            <p class="p-recomendaciones">
-                                Lentes de seguridad.
-                            </p>
-                            <p class="p-recomendaciones">
-                                Guantes de acuerdo con la actividad.
-                            </p>
-                            <p class="p-recomendaciones">
-                                Chaleco con reflectivo.
-                            </p>
-                            <p class="p-recomendaciones">
-                                Calzado industrial con punta de acero.
-                            </p>    
-                            <div class="flex flex-column align-items-center gap-2 mt-3 mb-4">
-                                <label for="" class="label-cumplimiento">Acepto el cumplimiento obligatorio.</label>
-                                <p-checkbox 
-                                styleClass="checkbox-lg"
-                                [(ngModel)]="checkedCumplimiento" 
-                                name="cumplimientoEPP"
-                                [binary]="true" 
-                                inputId="binary" />
-                            </div>
-                        </div> 
-                        <div class="card mt-2">
-                        <label class="label" for="orden">Fotografía EPP básico obligatorio.</label>
-                        <app-upload-photo 
-                            [showTakePhotoButton]="true"
-                            [showGalleryButton]="false"
-                            [showTakeAndUploadButton]="false"
-                            [showUploadButton]="true"
-                            [showCancelButton]="true">                            
-                        </app-upload-photo>
-                    </div>    
-                    <div class="card mb-1">
-                        <label class="label" for="orden">Fotografía protección adicional.</label>
-                        <app-upload-photo 
-                            [showTakePhotoButton]="true"
-                            [showGalleryButton]="false"
-                            [showTakeAndUploadButton]="false"
-                            [showUploadButton]="true"
-                            [showCancelButton]="true">                            
-                        </app-upload-photo>
-                    </div>  
+                        <div class="amarillo-checbox">
+                            <ng-container *ngFor="let field of getFilteredFieldsFotosEquiposProteccion()">
+                                <div class="card mt-2">
+                                    <formly-form [form]="form" [fields]="[field]" [model]="model"></formly-form>
+                                </div>
+                            </ng-container>
+                        </div>
                     </p-accordionTab>
 
                     <p-accordionTab header="Medidas de prevención" headerStyleClass="registro-tab header-lg">
