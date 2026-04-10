@@ -9,7 +9,8 @@
         "interceptor",
         "routing",
         "module",
-        "model"
+        "model",
+        "environment"
     ],
 
     "chat.fontSize": 14,
