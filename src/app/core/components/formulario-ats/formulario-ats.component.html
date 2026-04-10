@@ -20,6 +20,16 @@
                     />
             </div>
 
+            <!-- Spinner de carga -->
+            <div *ngIf="isLoading" class="flex justify-content-center align-items-center" style="min-height: 400px;">
+                <p-progressSpinner 
+                    styleClass="w-4rem h-4rem" 
+                    strokeWidth="4" 
+                    fill="var(--surface-ground)" 
+                    animationDuration=".8s"
+                />
+            </div>
+
             <form id="form" *ngIf="!isLoading"  (ngSubmit)="onSubmit()" >
                 <p-accordion [activeIndex]="null">
                     <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">

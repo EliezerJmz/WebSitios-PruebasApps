@@ -26,6 +26,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ImageModule } from 'primeng/image';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { SpinnerModule } from 'primeng/spinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CardModule } from 'primeng/card';
 import { GeolocationComponent } from './geolocation/geolocation/geolocation.component';
 import { A11yModule } from "@angular/cdk/a11y";
@@ -71,6 +72,7 @@ import { FormlyFieldParagraph } from '../formly-field-paragraph/formly-field-par
     ToastModule,
     ButtonModule,
     SpinnerModule,
+    ProgressSpinnerModule,
     CardModule,
     CalendarModule,
     //my components
