@@ -1,16 +1,12 @@
 import { Component, ChangeDetectorRef, AfterViewInit, OnInit, HostListener } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Table, TableModule } from 'primeng/table';
-import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
-import { ParkingService } from 'src/app/core/service/parking.service';
-import { Parking } from 'src/app/core/api/parkings';
-import { SelectItem } from 'primeng/api';
+import { TableModule } from 'primeng/table';
+
 import { TagModule } from 'primeng/tag';
 import { RatingModule } from 'primeng/rating';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { StatusItem } from 'src/app/core/api/management-catalog/catalog';
+
 import { CheckboxModule } from 'primeng/checkbox';
 import { UserByIdService } from '../../service/user/user-by-id.service';
 import { UserById } from '../../api/user-by-id/userById.model';
@@ -45,49 +41,11 @@ form = new FormGroup({});
   formularioId = ''; // ID del formulario ATS a cargar 
 
   isLoading = true;
-// Fin Propiedades formly para ATS
 
-
-
-// Propiedades para secciones del formulario analisis de riesgo
-  selectedCategories: any[] = [];
-
-    categories: any[] = [
-        { name: 'Explosión', key: 'EXP' },
-        { name: 'Incendio', key: 'INC' },
-        { name: 'Quemaduras', key: 'QUEM' },
-        { name: 'Choque eléctrico', key: 'CE' },
-        { name: 'Arco eléctrico', key: 'AE' },
-        { name: 'Caida de diferentes niveles', key: 'CDN' },
-        { name: 'Caida de objetos desplomes', key: 'COD' },
-        { name: 'Colisiones', key: 'COL' },
-        { name: 'Atropellamiento', key: 'ATRO' },
-        { name: 'inhalación de particulas', key: 'INH' },
-        { name: 'Exposición a fluidos presurizados', key: 'EFP' },
-        { name: 'Intoxicación/Asfixia/Irritación por quimicos', key: 'IQC' },
-        { name: 'Contaminación por quimicos', key: 'CQC' },
-        { name: 'Exposición a ruido', key: 'ER' },
-        { name: 'Sobre esfuerzo por manipulación manual de carga', key: 'SEMMC' },
-        { name: 'Generación de residuos', key: 'GR' },
-        { name: 'Atrapamiento', key: 'ATRA' },
-        { name: 'Derrumbes', key: 'DER' },
-    ];
-
-
-// Propiedad para los checkboxes del accordion
-    pizza: string[] = [];
-
-    valueEmp: string;
-    valueId: string;
-    valueTextArea: string;
-    valueDate: string;
-    valueDateFin: string;
+// Dialog de información ATS
     showInfoDialog: boolean = false;
 
- // Permisos de trabajo
-  checkedCumplimiento: boolean = false;  
-  checkedRecomendaciones: boolean = false; 
-
+// Funcionalidad de búsqueda de sitio por ID    
     sitioIdSearch = '';
     isSearchingSitio = false;
 
@@ -126,9 +84,6 @@ obtenerFormulariosPublicados() {
         }
     });
 }
-
-    
-
 
 // * Formulario ATS - Cargar campos dinámicos desde el backend
   cargarFormularioATS() {
@@ -216,6 +171,7 @@ obtenerFormulariosPublicados() {
             .trim();
     }
   
+  // Funciones para filtrar campos por sección usando typeform y category   
    getFilteredFieldsFotoRostro() {
     return this.fields.filter(field => 
       (field as any).typeform === 'ANALISIS_TRABAJO_SEGURO' && 
@@ -289,7 +245,6 @@ obtenerFormulariosPublicados() {
       (field as any).category === 'MEDIDAS_PREVENCION'
     );
   }
-
 
 
   onSubmit() {
@@ -589,9 +544,6 @@ actualizarCamposGeolocation(coordenadas: { latitud: number, longitud: number, pr
 // * Fin Formulario ATS - Cargar campos dinámicos desde el backend
 
 
-
-
-
 // Función para manejar el click en los headers del acordeón y hacer scroll al contenido
 @HostListener('click', ['$event'])
 onClick(event: MouseEvent) {
@@ -671,9 +623,6 @@ onSelectedCategoriesChange(selected: any[]) {
 
 }
 
-selectedCheckCategories(){
-    console.log("CHEKEADAS:", this.selectedCategories);
-}
 
 //CONFIRMACIÓN BOTON DE ENVIAR FORMULARIO ATS
 confirmSubmitFormATS() {
@@ -728,8 +677,5 @@ confirmCancelFormATS() {
         }
     });
 }
-
-
-
 
 }
