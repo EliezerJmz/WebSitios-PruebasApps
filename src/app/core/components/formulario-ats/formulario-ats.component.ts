@@ -276,7 +276,11 @@ obtenerFormulariosPublicados() {
 
     this.camposRequeridosPendientes = requiredFields
       .filter(field => {
-        const value = this.form.get(String(field.key))?.value;
+        const key = String(field.key);
+        // Para campos ocultos, Formly elimina el control del FormGroup, leer desde el model
+        const value = field.hide
+          ? this.model[key]
+          : this.form.get(key)?.value;
         if (field.type === 'checkbox') {
           return value !== true;
         }
@@ -285,6 +289,16 @@ obtenerFormulariosPublicados() {
       .map(field => String(field.props?.label || field.templateOptions?.label || field.key || ''));
 
     this.showValidationPanel = true;
+  }
+
+  get geolocationFilled(): boolean {
+    const camposGeo = ['latitud', 'longitud', 'precision'];
+    return camposGeo.every(term => {
+      const campo = this.fields.find(f => f.key && String(f.key).toLowerCase().includes(term));
+      if (!campo) return true; // si el campo no existe, no bloquear
+      const value = this.model[String(campo.key)];
+      return value !== null && value !== undefined && value !== '';
+    });
   }
 
   get allRequiredCheckboxesChecked(): boolean {
