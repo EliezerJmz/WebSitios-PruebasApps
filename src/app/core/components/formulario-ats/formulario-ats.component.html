@@ -228,7 +228,7 @@
                 
                 <div class="grid pt-3">
                     <div class="col-6 xl:col-6">
-                        <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" [disabled]="!allRequiredCheckboxesChecked" (onClick)="confirmSubmitFormATS()" />
+                        <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" [disabled]="!allRequiredCheckboxesChecked || form.invalid" (onClick)="confirmSubmitFormATS()" />
                     </div>
                     <div class="col-6 xl:col-6">
                         <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
