@@ -45,6 +45,10 @@ form = new FormGroup({});
 // Dialog de información ATS
     showInfoDialog: boolean = false;
 
+// Validación de campos requeridos pendientes
+    showValidationPanel: boolean = false;
+    camposRequeridosPendientes: string[] = [];
+
 // Funcionalidad de búsqueda de sitio por ID    
     sitioIdSearch = '';
     isSearchingSitio = false;
@@ -253,6 +257,34 @@ obtenerFormulariosPublicados() {
       console.log(this.model);
       console.warn('Formulario enviado con datos:', JSON.stringify(this.model));
     }
+  }
+
+  validarRespuestas() {
+    const collectRequiredFields = (fields: FormlyFieldConfig[]): FormlyFieldConfig[] => {
+      return fields.reduce((acc: FormlyFieldConfig[], field) => {
+        if (field.props?.required && field.key) {
+          acc.push(field);
+        }
+        if (field.fieldGroup) {
+          acc.push(...collectRequiredFields(field.fieldGroup));
+        }
+        return acc;
+      }, []);
+    };
+
+    const requiredFields = collectRequiredFields(this.fields);
+
+    this.camposRequeridosPendientes = requiredFields
+      .filter(field => {
+        const value = this.form.get(String(field.key))?.value;
+        if (field.type === 'checkbox') {
+          return value !== true;
+        }
+        return value === null || value === undefined || value === '';
+      })
+      .map(field => String(field.props?.label || field.templateOptions?.label || field.key || ''));
+
+    this.showValidationPanel = true;
   }
 
   get allRequiredCheckboxesChecked(): boolean {

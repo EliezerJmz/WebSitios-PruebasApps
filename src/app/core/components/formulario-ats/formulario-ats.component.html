@@ -226,7 +226,37 @@
                     </p-accordionTab>
                 </p-accordion>
                 
-                <div class="grid pt-3">
+                
+
+                <div class="grid pt-2">
+                    <div class="col-12 xl:col-12">
+                    <p-accordion [activeIndex]="showValidationPanel ? 0 : null" styleClass="accordion-info">
+                        <p-accordionTab headerStyleClass="p-accordion-header-info">
+                            <ng-template pTemplate="header">
+                                <span class="flex align-items-center gap-2 w-full" (click)="validarRespuestas()">
+                                    <i class="pi pi-check-circle"></i>
+                                    <span class="font-semibold">Validar respuestas</span>
+                                    <span *ngIf="camposRequeridosPendientes.length > 0" class="ml-auto mr-2 font-semibold validation-pending-count">
+                                        {{ camposRequeridosPendientes.length }} pendiente(s)
+                                    </span>
+                                </span>
+                            </ng-template>
+                            <div *ngIf="camposRequeridosPendientes.length === 0" class="flex align-items-center gap-2 p-2 border-round validation-ok">
+                                <i class="pi pi-check-circle"></i>
+                                <span class="font-medium">Todos los campos requeridos están completos.</span>
+                            </div>
+                            <div *ngIf="camposRequeridosPendientes.length > 0" class="p-2 border-round validation-warning">
+                                <p class="font-semibold m-0 mb-2 validation-warning-title">
+                                    <i class="pi pi-exclamation-triangle mr-1"></i>
+                                    {{ camposRequeridosPendientes.length }} Campo(s) requerido(s) pendiente(s):
+                                </p>
+                                <ul class="m-0 pl-4">
+                                    <li *ngFor="let campo of camposRequeridosPendientes" class="mb-1 validation-warning-item">{{ campo }}</li>
+                                </ul>
+                            </div>
+                        </p-accordionTab>
+                    </p-accordion>
+                </div>
                     <div class="col-6 xl:col-6">
                         <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" [disabled]="!allRequiredCheckboxesChecked || form.invalid" (onClick)="confirmSubmitFormATS()" />
                     </div>

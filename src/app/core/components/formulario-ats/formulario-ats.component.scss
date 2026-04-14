@@ -59,6 +59,45 @@
     font-size: 1.2rem;
   }
 }
+// Accordion validar respuestas - tema info
+:host ::ng-deep .accordion-info .p-accordion-header .p-accordion-header-link {
+  background: #00a8be !important;
+  border-color: #00a8be !important;
+  color: #fff !important;
+}
+
+:host ::ng-deep .accordion-info .p-accordion-header .p-accordion-header-link .p-accordion-header-text,
+:host ::ng-deep .accordion-info .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+  color: #fff !important;
+}
+
+:host ::ng-deep .accordion-info .p-accordion-header:not(.p-disabled):hover .p-accordion-header-link {
+  background: #00a8be !important;
+  border-color: #00a8be !important;
+}
+
+// Validación de respuestas
+.validation-pending-count {
+  color: #fafac8;
+}
+
+.validation-ok {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.validation-warning {
+  background: #fefce8;
+}
+
+.validation-warning-title {
+  color: #92400e;
+}
+
+.validation-warning-item {
+  color: #78350f;
+}
+
 .label {
   display: block;
   font-weight: 500;
