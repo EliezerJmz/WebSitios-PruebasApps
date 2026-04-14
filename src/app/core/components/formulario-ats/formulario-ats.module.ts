@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { AbstractControl, FormsModule } from '@angular/forms';
 import { FormularioAtsRoutingModule } from './formulario-ats-routing.module';
 import { FormularioAtsComponent } from './formulario-ats.component';
 import { TableModule } from 'primeng/table';
@@ -90,6 +90,24 @@ import { FormlyFieldParagraph } from '../formly-field-paragraph/formly-field-par
       types: [
         { name: 'file', component: FormlyFieldFile },
         { name: 'file_upload', component: FormlyFieldFile },
+        {
+          name: 'checkbox',
+          defaultOptions: {
+            hooks: {
+              onInit: (field: any) => {
+                if (field.props?.required) {
+                  const checkboxRequiredValidator = (control: AbstractControl) =>
+                    control.value === true ? null : { required: true };
+                  field.formControl?.addValidators(checkboxRequiredValidator);
+                  field.formControl?.updateValueAndValidity({ emitEvent: false });
+                }
+                field.formControl?.valueChanges.subscribe(() => {
+                  field.formControl?.markAsTouched();
+                });
+              },
+            },
+          },
+        },
         { name: 'multicheckbox', component: FormlyFieldMultiCheckbox },
         { name: 'MULTICHECKBOX', component: FormlyFieldMultiCheckbox },
         { name: 'calendar', component: FormlyCalendarType },

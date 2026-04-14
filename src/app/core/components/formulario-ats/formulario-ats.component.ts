@@ -255,6 +255,25 @@ obtenerFormulariosPublicados() {
     }
   }
 
+  get allRequiredCheckboxesChecked(): boolean {
+    const collectCheckboxFields = (fields: FormlyFieldConfig[]): FormlyFieldConfig[] => {
+      return fields.reduce((acc: FormlyFieldConfig[], field) => {
+        if (field.type === 'checkbox' && field.props?.required) {
+          acc.push(field);
+        }
+        if (field.fieldGroup) {
+          acc.push(...collectCheckboxFields(field.fieldGroup));
+        }
+        return acc;
+      }, []);
+    };
+    const requiredCheckboxes = collectCheckboxFields(this.fields);
+    if (requiredCheckboxes.length === 0) return true;
+    return requiredCheckboxes.every(
+      field => this.form.get(String(field.key))?.value === true
+    );
+  }
+
 buscarSitioPorId() {
     const sitioId = (this.sitioIdSearch || '').trim();
 
