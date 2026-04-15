@@ -18,6 +18,8 @@ import { PublishedFormsService } from '../../service/publishedForms/published-fo
 //recursos del token
 import { AuthService } from '../../service/auth/auth.service';
 import { SitiosService } from '../../service/sitios/sitios.service';
+//rutas
+import { Router } from '@angular/router';
 
 
 
@@ -59,7 +61,7 @@ form = new FormGroup({});
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService,
     private userByIdService: UserByIdService, private formularioATSService: FormATSService, private cdr: ChangeDetectorRef,
     private publishedFormsService: PublishedFormsService, private authService: AuthService,
-    private sitiosService: SitiosService
+    private sitiosService: SitiosService, private router: Router
 ) { }
 
 ngOnInit() {
@@ -720,15 +722,13 @@ confirmSubmitFormATS() {
         rejectButtonStyleClass:"p-button-text",
         accept: () => {
             this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: 'Se ha enviado un Formulario ATS', life: 1000 });
-           /**
-            setTimeout(() => {
-                this.redirectSearchAssignment()
-              }, 1000);
-             */   
-           this.onSubmit();
+            
+            setTimeout(() => {this.redirectFormulariosEnviados() }, 1000);
+             
+            this.onSubmitAnswersATS();   
         },
         reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Envio Cancelado', life: 2000 });
+            this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Envío Cancelado', life: 2000 });
         }
     });
 }
@@ -737,8 +737,8 @@ confirmSubmitFormATS() {
 confirmCancelFormATS() {
     this.confirmationService.confirm({
         target: event.target as EventTarget,
-        message: '¿Desea Borrar el Formulario ATS?',
-        header: 'Confirmar Borrado',
+        message: '¿Desea Cancelar el envío del Formulario ATS?',
+        header: 'Confirmar Cancelación',
         icon: 'pi pi-exclamation-triangle',
         acceptIcon:"none",
         rejectIcon:"none",
@@ -746,18 +746,24 @@ confirmCancelFormATS() {
         rejectLabel: 'No',
         rejectButtonStyleClass:"p-button-text",
         accept: () => {
-            this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: 'Borrado Confirmado', life: 1000 });
-           /**
-            setTimeout(() => {
-                this.redirectSearchAssignment()
-              }, 1000);
-             */   
-           
+            this.messageService.add({ severity: 'success', summary: 'Cancelación', detail: 'Confirmada', life: 1000 });
+            
+            setTimeout(() => { this.redirectFormulariosEnviados() }, 1000);
+             
         },
         reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Borrado Cancelado', life: 2000 });
+            this.messageService.add({ severity: 'error', summary: 'Cancelación', detail: 'No confirmada', life: 2000 });
         }
     });
 }
+
+
+//Acciones
+redirectFormulariosEnviados() {
+    this.router.navigate(['formularios-enviados']); // Coloca la ruta a donde quieres redirigir
+
+
+}
+
 
 }
