@@ -360,6 +360,7 @@ buscarSitioPorId() {
                 : response?.data;
 
             if (!sitio?.id) {
+                this.actualizarCamposSitio('', '');
                 this.messageService.add({
                     severity: 'warn',
                     summary: 'Sin resultados',
@@ -380,6 +381,7 @@ buscarSitioPorId() {
         },
         error: (error) => {
             console.error('Error al buscar sitio por ID:', error);
+            this.actualizarCamposSitio('', '');
             this.messageService.add({
                 severity: 'error',
                 summary: 'Error de búsqueda',
@@ -399,13 +401,17 @@ private actualizarCamposSitio(idSitio: string, nombreSitio: string) {
     const campoNombreSitio = this.buscarCampoSitio('nombre de sitio', ['sitio', 'nombre']);
 
     if (campoIdSitio?.key) {
+        const keyId = String(campoIdSitio.key);
         campoIdSitio.defaultValue = idSitio;
-        this.model[String(campoIdSitio.key)] = idSitio;
+        this.model[keyId] = idSitio;
+        this.form.get(keyId)?.setValue(idSitio, { emitEvent: false });
     }
 
     if (campoNombreSitio?.key) {
+        const keyNombre = String(campoNombreSitio.key);
         campoNombreSitio.defaultValue = nombreSitio;
-        this.model[String(campoNombreSitio.key)] = nombreSitio;
+        this.model[keyNombre] = nombreSitio;
+        this.form.get(keyNombre)?.setValue(nombreSitio, { emitEvent: false });
     }
 
     this.cdr.detectChanges();
