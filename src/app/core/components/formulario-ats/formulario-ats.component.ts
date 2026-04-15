@@ -369,7 +369,7 @@ buscarSitioPorId() {
                 return;
             }
 
-            this.actualizarCamposSitio(sitio.id, sitio.nombre || '');
+            this.actualizarCamposSitio(sitio.codigo, sitio.nombre || '');
             this.messageService.add({
                 severity: 'success',
                 summary: 'Sitio encontrado',
