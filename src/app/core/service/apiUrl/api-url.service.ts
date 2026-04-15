@@ -28,6 +28,12 @@ export class ApiUrlService {
         return this.apiURL + SLUG;
     }
 
+    // Enviar respuestas del formulario por ID
+    apiSubmitAnswersATS(formularioId: number | string) {
+    const SLUG = `formularios/${formularioId}/respuestas`;
+    return this.apiURL + SLUG;
+}
+
     // Sitio By ID
     apiGetSitioById() {
         const SLUG = `sitios`;
