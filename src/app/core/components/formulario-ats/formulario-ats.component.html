@@ -30,7 +30,7 @@
                 />
             </div>
 
-            <form id="form" *ngIf="!isLoading"  (ngSubmit)="onSubmitAnswersATS()" >
+            <form id="form" *ngIf="!isLoading"  (ngSubmit)="confirmSubmitFormATS()" >
                 <p-accordion [activeIndex]="null">
                     <p-accordionTab header="Datos de la Empresa" headerStyleClass="registro-tab header-lg">
                         <div class="card mt-2">

@@ -164,7 +164,7 @@ obtenerFormulariosPublicados() {
         const normalizedExpected = this.normalizeText(expectedLabel);
 
         return fields.findIndex(field => {
-            const label = String(field.props?.label || field.templateOptions?.label || '');
+            const label = String(field.props?.label || '');
             return this.normalizeText(label) === normalizedExpected;
         });
     }
@@ -305,7 +305,7 @@ obtenerFormulariosPublicados() {
         }
         return value === null || value === undefined || value === '';
       })
-      .map(field => String(field.props?.label || field.templateOptions?.label || field.key || ''));
+      .map(field => String(field.props?.label || field.key || ''));
 
     this.showValidationPanel = true;
   }
@@ -447,7 +447,7 @@ private buscarCampoSitio(labelEsperado: string, keyIncludes: string[]): FormlyFi
     const labelNormalizado = normalizar(labelEsperado);
 
     const porLabel = this.fields.find(field => {
-        const label = (field.props?.label || field.templateOptions?.label || '').toString();
+        const label = (field.props?.label || '').toString();
         return label && normalizar(label) === labelNormalizado;
     });
 
