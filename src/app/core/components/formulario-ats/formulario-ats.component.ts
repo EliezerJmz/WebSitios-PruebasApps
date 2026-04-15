@@ -259,6 +259,23 @@ obtenerFormulariosPublicados() {
     }
   }
 
+  onSubmitAnswersATS() {
+    if (this.form.valid) {
+        const userId = this.authService.getTokenPayload()?.userId ?? '';
+
+        this.formularioATSService.submitFormAnswersATS(this.formularioId, this.model, { submittedAt: new Date().toISOString() }, userId).subscribe({
+          next: (response) => {
+            console.log('Formulario ATS enviado con éxito:', response);
+          },
+          error: (error) => {
+            console.error('Error al enviar el formulario ATS:', error);
+          }
+        });
+
+    }
+  }
+
+
   validarRespuestas() {
     const collectRequiredFields = (fields: FormlyFieldConfig[]): FormlyFieldConfig[] => {
       return fields.reduce((acc: FormlyFieldConfig[], field) => {
