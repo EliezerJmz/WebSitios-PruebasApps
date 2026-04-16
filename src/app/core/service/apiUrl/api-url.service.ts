@@ -34,9 +34,15 @@ export class ApiUrlService {
     return this.apiURL + SLUG;
 }
 
-    // Sitio By ID
+    // Sitios por ID de sitio
     apiGetSitioById() {
         const SLUG = `sitios`;
+        return this.apiURL + SLUG;
+    }
+
+    // Respuestas de formularios enviados por usuario
+    apiGetFormulariosEnviadosByUserId() {
+        const SLUG = `respuestas/mis-formularios`;
         return this.apiURL + SLUG;
     }
 
