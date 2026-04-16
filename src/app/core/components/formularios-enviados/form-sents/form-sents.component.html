@@ -23,9 +23,9 @@
     </ng-template>
     <ng-template pTemplate="body" let-formulario>
         <tr>
-            <td>{{formulario.name}}</td>
-            <td>{{formulario.fecha}}</td>
-            <td><p-tag [value]="formulario.status" [severity]="getSeverity(formulario.status)" /></td>
+            <td>{{formulario.formNombre}}</td>
+            <td>{{formulario.creadoEn}}</td>
+            <td><p-tag [value]="formulario.estado" [severity]="getSeverity(formulario.estado)" /></td>
         </tr>
     </ng-template>
     <ng-template pTemplate="summary">

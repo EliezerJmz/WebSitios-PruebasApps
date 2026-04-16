@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService, Message } from 'primeng/api';
+import { Data } from 'src/app/core/api/responsesSent/responsesSent.model';
+import { AuthService } from 'src/app/core/service/auth/auth.service';
+import { ResponsesSentService } from 'src/app/core/service/responsesSent/responses-sent.service';
 
 @Component({
   selector: 'app-form-sents',
@@ -7,57 +10,43 @@ import { ConfirmationService, MessageService, Message } from 'primeng/api';
   templateUrl: './form-sents.component.html',
   styleUrl: './form-sents.component.scss'
 })
-export class FormSentsComponent 
-{
+export class FormSentsComponent implements OnInit {
 
-   formularios: any[] = [
-        {fecha: '01-01-2026', name: 'Formulario ATS', status: 'ENVIADO'},
-        {fecha: '01-02-2026', name: 'Formulario PT', status: 'ACEPTADO'},
-        {fecha: '01-03-2026', name: 'Reporte de Accidentes', status: 'ENVIADO'},
-        {fecha: '01-04-2026', name: 'Reporte de Riesgos', status: 'ACEPTADO'},
-        {fecha: '01-05-2026', name: 'Reporte de Riesgos', status: 'RECHAZADO'},
-        {fecha: '01-06-2026', name: 'Formulario ATS', status: 'ENVIADO'},
-        {fecha: '01-07-2026', name: 'Formulario PT', status: 'ACEPTADO'},
-        {fecha: '01-08-2026', name: 'Reporte de Accidentes', status: 'ENVIADO'},
-        {fecha: '01-09-2026', name: 'Reporte de Riesgos', status: 'ACEPTADO'},
-        {fecha: '01-10-2026', name: 'Reporte de Riesgos', status: 'RECHAZADO'},
-        {fecha: '01-11-2026', name: 'Formulario ATS', status: 'ENVIADO'},
-        {fecha: '01-12-2026', name: 'Formulario PT', status: 'ACEPTADO'},
-        {fecha: '01-01-2026', name: 'Reporte de Accidentes', status: 'ENVIADO'},
-        {fecha: '01-02-2026', name: 'Reporte de Riesgos', status: 'ACEPTADO'},
-        {fecha: '01-03-2026', name: 'Reporte de Riesgos', status: 'RECHAZADO'},
-        {fecha: '01-04-2026', name: 'Formulario ATS', status: 'ENVIADO'},
-        {fecha: '01-05-2026', name: 'Formulario PT', status: 'ACEPTADO'},
-        {fecha: '01-06-2026', name: 'Reporte de Accidentes', status: 'ENVIADO'},
-        {fecha: '01-07-2026', name: 'Reporte de Riesgos', status: 'ACEPTADO'},
-        {fecha: '01-08-2026', name: 'Reporte de Riesgos', status: 'RECHAZADO'},
-        {fecha: '01-09-2026', name: 'Formulario ATS', status: 'ENVIADO'},
-        {fecha: '01-10-2026', name: 'Formulario PT', status: 'ACEPTADO'},
-        {fecha: '01-11-2026', name: 'Reporte de Accidentes', status: 'ENVIADO'},
-        {fecha: '01-12-2026', name: 'Reporte de Riesgos', status: 'ACEPTADO'},
-        {fecha: '01-01-2026', name: 'Reporte de Riesgos', status: 'RECHAZADO'},
-        {fecha: '01-02-2026', name: 'Formulario ATS', status: 'ENVIADO'},
-        {fecha: '01-03-2026', name: 'Formulario PT', status: 'ACEPTADO'},
-        {fecha: '01-04-2026', name: 'Reporte de Accidentes', status: 'ENVIADO'},
-        {fecha: '01-05-2026', name: 'Reporte de Riesgos', status: 'ACEPTADO'},
-        {fecha: '01-06-2026', name: 'Reporte de Riesgos', status: 'RECHAZADO'},
-        {fecha: '01-07-2026', name: 'Formulario ATS', status: 'ENVIADO'},
-        {fecha: '01-08-2026', name: 'Formulario PT', status: 'ACEPTADO'},
-        {fecha: '01-09-2026', name: 'Reporte de Accidentes', status: 'ENVIADO'},
-        {fecha: '01-10-2026', name: 'Reporte de Riesgos', status: 'ACEPTADO'},
-        {fecha: '01-11-2026', name: 'Reporte de Riesgos', status: 'RECHAZADO'},
-        {fecha: '01-12-2026', name: 'Formulario ATS', status: 'ENVIADO'},
-        {fecha: '01-01-2026', name: 'Formulario PT', status: 'ACEPTADO'},
-        {fecha: '01-02-2026', name: 'Reporte de Accidentes', status: 'ENVIADO'},
-        {fecha: '01-03-2026', name: 'Reporte de Riesgos', status: 'ACEPTADO'},
-        {fecha: '01-04-2026', name: 'Reporte de Riesgos', status: 'RECHAZADO'},
-    ];
+
+formularios: Data[] = [];
  
-constructor(private confirmationService: ConfirmationService, private messageService: MessageService) { }
+constructor(private confirmationService: ConfirmationService, private messageService: MessageService,
+    private responsesSentService: ResponsesSentService, private authService: AuthService
+        
+) { }
+
+ngOnInit() {                                
+    this.FormulariosEnviados();
+}
+
+ FormulariosEnviados() {
+
+    const userId = this.authService.getTokenPayload()?.userId ?? '';
+   
+      this.responsesSentService.getFormulariosEnviadosByUserId(userId).subscribe({
+        next: (response) => {                  
+            console.log('Formularios enviados:', response.data);
+            this.formularios = response.data;
+            console.warn('Formularios enviados:', this.formularios);
+        },
+        error: (error) => {
+            console.error('Error al obtener los formularios enviados:', error);
+        }
+    });
+ }
+
+
+
+
 
   getSeverity(status: string) {
       switch (status) {
-          case 'ENVIADO':
+          case 'PENDIENTE':
             return 'warning';
             case 'ACEPTADO':
               return 'success';
@@ -66,6 +55,11 @@ constructor(private confirmationService: ConfirmationService, private messageSer
       }
       return null
   }
+
+
+
+
+  
 
 //CONFIRMACIÓN BOTON DE PANICO
 confirmMessage() {
