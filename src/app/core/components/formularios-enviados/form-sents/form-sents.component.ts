@@ -14,6 +14,7 @@ export class FormSentsComponent implements OnInit {
 
 
 formularios: Data[] = [];
+loading: boolean = false;
  
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService,
     private responsesSentService: ResponsesSentService, private authService: AuthService
@@ -27,15 +28,18 @@ ngOnInit() {
  FormulariosEnviados() {
 
     const userId = this.authService.getTokenPayload()?.userId ?? '';
+    this.loading = true;
    
       this.responsesSentService.getFormulariosEnviadosByUserId(userId).subscribe({
         next: (response) => {                  
             console.log('Formularios enviados:', response.data);
             this.formularios = response.data;
             console.warn('Formularios enviados:', this.formularios);
+            this.loading = false;
         },
         error: (error) => {
             console.error('Error al obtener los formularios enviados:', error);
+            this.loading = false;
         }
     });
  }

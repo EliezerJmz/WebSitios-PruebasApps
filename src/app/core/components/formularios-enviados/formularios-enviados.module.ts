@@ -18,6 +18,7 @@ import { TagModule } from 'primeng/tag';
 import { FormSentsComponent } from './form-sents/form-sents.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Toast, ToastModule } from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 
@@ -36,7 +37,8 @@ import { Toast, ToastModule } from 'primeng/toast';
     CheckboxModule,
     TagModule,
     ConfirmDialogModule,
-    ToastModule
+    ToastModule,
+    ProgressSpinnerModule
 ],
     declarations: [
         FormulariosEnviadosComponent,

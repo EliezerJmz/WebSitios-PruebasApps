@@ -2,7 +2,11 @@
 
 <p-toast></p-toast>
 <p-confirmDialog key="formSentsDialog" />
-<p-table [value]="formularios" 
+<div *ngIf="loading" class="flex justify-content-center align-items-center py-4">
+    <p-progressSpinner strokeWidth="4" styleClass="spinner-sm" />
+</div>
+
+<p-table *ngIf="!loading" [value]="formularios" 
     [tableStyle]="{'min-width': '20rem'}"  
     [paginator]="true"
     [rows]="6"

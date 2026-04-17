@@ -1,3 +1,8 @@
+:host ::ng-deep .spinner-sm {
+    width: 40px;
+    height: 40px;
+}
+
 // Reduce el espaciado entre th y td
 :host ::ng-deep .p-datatable th,
 :host ::ng-deep .p-datatable td {
