@@ -44,6 +44,11 @@ form = new FormGroup({});
 
   isLoading = true;
 
+// Modo edición (formulario rechazado)
+  modoEdicion: boolean = false;
+  respuestaId: string = '';
+  answersEdicion: any = null;
+
 // Dialog de información ATS
     showInfoDialog: boolean = false;
 
@@ -65,6 +70,12 @@ constructor(private confirmationService: ConfirmationService, private messageSer
 ) { }
 
 ngOnInit() {
+    const state = history.state;
+    if (state?.modoEdicion) {
+        this.modoEdicion = true;
+        this.respuestaId = state.respuestaId;
+        this.answersEdicion = state.answers ?? null;
+    }
     this.getUserById(); 
     this.obtenerFormulariosPublicados();
 }
@@ -102,6 +113,9 @@ obtenerFormulariosPublicados() {
         console.warn('FORM ATS RECONSTRUIDO JSON:', JSON.stringify(ats.data.campos));
         this.actualizarCampoIVR();
         this.actualizarCampoEmpresaNombre();
+        if (this.modoEdicion && this.answersEdicion) {
+            this.model = { ...this.answersEdicion };
+        }
                 this.marcarCamposSitioComoReadonly();
         this.ocultarCamposGeolocation();
       },
@@ -274,6 +288,21 @@ obtenerFormulariosPublicados() {
           }
         });
 
+    }
+  }
+
+  onEditAnswersATS() {
+    if (this.form.valid) {
+        const userId = this.authService.getTokenPayload()?.userId ?? '';
+
+        this.formularioATSService.editFormAnswersATS(this.respuestaId, this.model, { submittedAt: new Date().toISOString(), usuarioId: userId }).subscribe({
+          next: (response) => {
+            console.log('Formulario ATS editado con éxito:', response);
+          },
+          error: (error) => {
+            console.error('Error al editar el formulario ATS:', error);
+          }
+        });
     }
   }
 
@@ -718,8 +747,8 @@ onSelectedCategoriesChange(selected: any[]) {
 confirmSubmitFormATS() {
     this.confirmationService.confirm({
         target: event.target as EventTarget,
-        message: '¿Desea Enviar un Formulario ATS?',
-        header: 'Confirmar Envío',
+        message: this.modoEdicion ? '¿Desea guardar los cambios del Formulario ATS?' : '¿Desea Enviar un Formulario ATS?',
+        header: this.modoEdicion ? 'Confirmar Edición' : 'Confirmar Envío',
         icon: 'pi pi-exclamation-triangle',
         acceptIcon:"none",
         rejectIcon:"none",
@@ -727,11 +756,15 @@ confirmSubmitFormATS() {
         rejectLabel: 'No',
         rejectButtonStyleClass:"p-button-text",
         accept: () => {
-            this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: 'Se ha enviado un Formulario ATS', life: 1000 });
+            this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: this.modoEdicion ? 'Se han guardado los cambios' : 'Se ha enviado un Formulario ATS', life: 1000 });
             
             setTimeout(() => {this.redirectFormulariosEnviados() }, 1000);
              
-            this.onSubmitAnswersATS();   
+            if (this.modoEdicion) {
+                this.onEditAnswersATS();
+            } else {
+                this.onSubmitAnswersATS();
+            }
         },
         reject: () => {
             this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Envío Cancelado', life: 2000 });

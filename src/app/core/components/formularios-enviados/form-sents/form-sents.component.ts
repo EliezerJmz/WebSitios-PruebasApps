@@ -3,6 +3,7 @@ import { ConfirmationService, MessageService, Message } from 'primeng/api';
 import { Data } from 'src/app/core/api/responsesSent/responsesSent.model';
 import { AuthService } from 'src/app/core/service/auth/auth.service';
 import { ResponsesSentService } from 'src/app/core/service/responsesSent/responses-sent.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-sents',
@@ -17,7 +18,8 @@ formularios: Data[] = [];
 loading: boolean = false;
  
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService,
-    private responsesSentService: ResponsesSentService, private authService: AuthService
+    private responsesSentService: ResponsesSentService, private authService: AuthService,
+    private router: Router
         
 ) { }
 
@@ -64,6 +66,18 @@ ngOnInit() {
 
 
   
+
+//EDITAR FORMULARIO RECHAZADO
+editarFormulario(formulario: Data) {
+    this.router.navigate(['formulario-ats'], {
+        state: {
+            modoEdicion: true,
+            respuestaId: formulario.id,
+            answers: formulario.answers
+        }
+    });
+}
+
 
 //CONFIRMACIÓN BOTON DE PANICO
 confirmMessage() {

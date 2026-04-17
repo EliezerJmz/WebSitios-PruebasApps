@@ -29,7 +29,17 @@
         <tr>
             <td>{{formulario.formNombre}}</td>
             <td>{{formulario.creadoEn}}</td>
-            <td><p-tag [value]="formulario.estado" [severity]="getSeverity(formulario.estado)" /></td>
+            <td>
+                <p-tag [value]="formulario.estado" [severity]="getSeverity(formulario.estado)" />
+                <p-button *ngIf="formulario.estado === 'RECHAZADO'"
+                    icon="pi pi-pencil"
+                    severity="warning"
+                    size="small"
+                    styleClass="ml-2"
+                    (onClick)="editarFormulario(formulario)"
+                    pTooltip="Editar formulario"
+                    tooltipPosition="top" />
+            </td>
         </tr>
     </ng-template>
     <ng-template pTemplate="summary">
