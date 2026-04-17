@@ -4,6 +4,7 @@ import { FormATS } from '../../api/FormATS/formATS.model';
 import { Observable } from 'rxjs';
 import { ApiUrlService } from '../apiUrl/api-url.service';
 import { AnswersATS } from '../../api/FormATS/answersATS.model';
+import { EditFormATS } from '../../api/FormATS/editFormATS.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,17 @@ export class FormATSService {
       }
     };
     return this.http.post<AnswersATS>(URL, payload);
+  }
+
+  editFormAnswersATS(respuestaId: string, answers: any, metadata: any): Observable<EditFormATS> {
+    const URL = this.apiUrlService.apiEditAnswersATS(respuestaId);
+    const payload = {
+      answers,
+      metadata: {
+        ...metadata
+      }
+    };
+    return this.http.put<EditFormATS>(URL, payload);
   }
 
 }

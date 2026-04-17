@@ -47,6 +47,12 @@ export class ApiUrlService {
     }
 
 
+    // Editar respuestas del formulario por ID
+    apiEditAnswersATS(respuestaId: number | string) {
+        const SLUG = `/respuestas/${respuestaId}/corregir`;
+        return this.apiURL + SLUG;
+    }
+
 
 
 
