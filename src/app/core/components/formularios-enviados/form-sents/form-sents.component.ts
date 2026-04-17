@@ -52,7 +52,7 @@ ngOnInit() {
       switch (status) {
           case 'PENDIENTE':
             return 'warning';
-            case 'ACEPTADO':
+            case 'APROBADO':
               return 'success';
           case 'RECHAZADO':
               return 'danger';
