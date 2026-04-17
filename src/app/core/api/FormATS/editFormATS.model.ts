@@ -3,6 +3,6 @@ export interface EditFormATS {
   metadata: {
     ubicacion_gps?: string;
     dispositivo?: string;
-    version_app?: string
+    usuarioId: string;
   };
 }
