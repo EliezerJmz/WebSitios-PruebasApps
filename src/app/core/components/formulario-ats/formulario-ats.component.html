@@ -10,7 +10,7 @@
 
         <div id="panel" class="col-12 p-0">
             <div class="flex justify-content-center align-items-center gap-3 pt-3 px-3 mb-3">
-                <h4 class="m-0">Formulario ATS</h4>
+                <h4 class="m-0">{{ modoEdicion ? 'Editar Formulario ATS' : modoVisualizacion ? 'Respuestas Formulario ATS' : 'Crear Formulario ATS' }}</h4>
                 <p-button 
                     icon="pi pi-question-circle" 
                     severity="info" 
@@ -259,7 +259,7 @@
                 </div>
                     <ng-container *ngIf="!modoVisualizacion">
                         <div class="col-6 xl:col-6">
-                            <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" [disabled]="!allRequiredCheckboxesChecked || form.invalid || !geolocationFilled" (onClick)="confirmSubmitFormATS()" />
+                            <p-button type="submit" severity="primary" [label]="modoEdicion ? 'Editar' : 'Enviar'" styleClass="w-full" [disabled]="!allRequiredCheckboxesChecked || form.invalid || !geolocationFilled" (onClick)="confirmSubmitFormATS()" />
                         </div>
                         <div class="col-6 xl:col-6">
                             <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
@@ -267,7 +267,7 @@
                     </ng-container>
                     <ng-container *ngIf="modoVisualizacion">
                         <div class="col-12 xl:col-12">
-                            <p-button severity="secondary" icon="pi pi-arrow-left" label="Volver a Formularios Enviados" styleClass="w-full" (onClick)="redirectFormulariosEnviados()" />
+                            <p-button severity="info" icon="pi pi-arrow-left" label="Volver a Formularios Enviados" styleClass="w-full" (onClick)="redirectFormulariosEnviados()" />
                         </div>
                     </ng-container>
                 </div>
