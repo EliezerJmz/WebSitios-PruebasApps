@@ -49,6 +49,9 @@ form = new FormGroup({});
   respuestaId: string = '';
   answersEdicion: any = null;
 
+// Modo visualización (solo lectura)
+  modoVisualizacion: boolean = false;
+
 // Dialog de información ATS
     showInfoDialog: boolean = false;
 
@@ -74,6 +77,10 @@ ngOnInit() {
     if (state?.modoEdicion) {
         this.modoEdicion = true;
         this.respuestaId = state.respuestaId;
+        this.answersEdicion = state.answers ?? null;
+    }
+    if (state?.modoVisualizacion) {
+        this.modoVisualizacion = true;
         this.answersEdicion = state.answers ?? null;
     }
     this.getUserById(); 
@@ -115,9 +122,17 @@ obtenerFormulariosPublicados() {
         this.actualizarCampoEmpresaNombre();
         if (this.modoEdicion && this.answersEdicion) {
             this.model = { ...this.answersEdicion };
+            this.convertirFechasEnModel();
+        }
+        if (this.modoVisualizacion && this.answersEdicion) {
+            this.model = { ...this.answersEdicion };
+            this.convertirFechasEnModel();
+            this.marcarTodosLosCamposComoReadonly();
         }
                 this.marcarCamposSitioComoReadonly();
-        this.ocultarCamposGeolocation();
+        if (!this.modoVisualizacion) {
+            this.ocultarCamposGeolocation();
+        }
       },
       error: (error) => {
         console.error('Error al cargar formulario:', error);
@@ -799,9 +814,41 @@ confirmCancelFormATS() {
 
 //Acciones
 redirectFormulariosEnviados() {
-    this.router.navigate(['formularios-enviados']); // Coloca la ruta a donde quieres redirigir
+    this.router.navigate(['formularios-enviados']);
+}
 
+private marcarTodosLosCamposComoReadonly() {
+    const setReadonly = (fields: any[]) => {
+        fields.forEach(field => {
+            if (!field.props) field.props = {};
+            field.props.readonly = true;
+            if (field.type === 'calendar') {
+                field.props.disabled = true;
+            }
+            if (field.fieldGroup?.length) setReadonly(field.fieldGroup);
+        });
+    };
+    setReadonly(this.fields);
+}
 
+private convertirFechasEnModel() {
+    const convertir = (fields: any[]) => {
+        fields.forEach(field => {
+            if (field.type === 'calendar' && field.key) {
+                const key = String(field.key);
+                const val = this.model[key];
+                if (val && typeof val === 'string') {
+                    const fecha = new Date(val);
+                    if (!isNaN(fecha.getTime())) {
+                        this.model[key] = fecha;
+                    }
+                }
+            }
+            if (field.fieldGroup?.length) convertir(field.fieldGroup);
+        });
+    };
+    convertir(this.fields);
+    this.model = { ...this.model };
 }
 
 

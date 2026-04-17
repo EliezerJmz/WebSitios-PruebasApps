@@ -23,6 +23,7 @@
             <th pSortableColumn="status" >
                 Estado <p-sortIcon field="status" />
             </th>
+            <th>Acciones</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-formulario>
@@ -30,14 +31,21 @@
             <td>{{formulario.formNombre}}</td>
             <td>{{formulario.creadoEn}}</td>
             <td>
-                <p-tag [value]="formulario.estado" [severity]="getSeverity(formulario.estado)" />
-                <p-button *ngIf="formulario.estado === 'RECHAZADO'"
-                    icon="pi pi-pencil"
-                    severity="warning"
+                <p-tag
+                    [value]="formulario.estado"
+                    [severity]="getSeverity(formulario.estado)"
+                    [ngClass]="{'tag-clickable': formulario.estado === 'RECHAZADO'}"
+                    (click)="formulario.estado === 'RECHAZADO' && editarFormulario(formulario)"
+                    [pTooltip]="formulario.estado === 'RECHAZADO' ? 'Editar formulario' : null"
+                    tooltipPosition="top" />
+            </td>
+            <td>
+                <p-button
+                    icon="pi pi-eye"
+                    severity="info"
                     size="small"
-                    styleClass="ml-2"
-                    (onClick)="editarFormulario(formulario)"
-                    pTooltip="Editar formulario"
+                    (onClick)="verFormulario(formulario)"
+                    pTooltip="Ver respuestas"
                     tooltipPosition="top" />
             </td>
         </tr>

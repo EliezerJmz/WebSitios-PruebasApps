@@ -20,6 +20,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { Toast, ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TooltipModule } from 'primeng/tooltip';
+import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
 
 
 
@@ -40,7 +42,9 @@ import { TooltipModule } from 'primeng/tooltip';
     ConfirmDialogModule,
     ToastModule,
     ProgressSpinnerModule,
-    TooltipModule
+    TooltipModule,
+    DialogModule,
+    DividerModule
 ],
     declarations: [
         FormulariosEnviadosComponent,

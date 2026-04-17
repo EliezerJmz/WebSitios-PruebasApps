@@ -4,6 +4,7 @@ import { Data } from 'src/app/core/api/responsesSent/responsesSent.model';
 import { AuthService } from 'src/app/core/service/auth/auth.service';
 import { ResponsesSentService } from 'src/app/core/service/responsesSent/responses-sent.service';
 import { Router } from '@angular/router';
+import { FormATSService } from 'src/app/core/service/formATS/form-ats.service';
 
 @Component({
   selector: 'app-form-sents',
@@ -16,10 +17,18 @@ export class FormSentsComponent implements OnInit {
 
 formularios: Data[] = [];
 loading: boolean = false;
+mostrarDetalle: boolean = false;
+formularioSeleccionado: Data | null = null;
+loadingDetalle: boolean = false;
+seccionDetalle: Array<{
+    titulo: string;
+    campos: Array<{ label: string; value: any }>;
+    subsecciones?: Array<{ titulo: string; campos: Array<{ label: string; value: any }> }>;
+}> = [];
  
 constructor(private confirmationService: ConfirmationService, private messageService: MessageService,
     private responsesSentService: ResponsesSentService, private authService: AuthService,
-    private router: Router
+    private router: Router, private formularioATSService: FormATSService
         
 ) { }
 
@@ -66,6 +75,80 @@ ngOnInit() {
 
 
   
+
+//VER DETALLE DE FORMULARIO
+verFormulario(formulario: Data) {
+    this.router.navigate(['formulario-ats'], {
+        state: {
+            modoVisualizacion: true,
+            answers: formulario.answers
+        }
+    });
+}
+
+private construirSeccionesDetalle(campos: any[], answers: any) {
+    const SECCIONES: any[] = [
+        { titulo: 'Datos de la Empresa', category: 'DATOS_EMPRESA' },
+        { titulo: 'Fotografía del Rostro con Ubicación', category: 'FOTOGRAFIA_ROSTRO_UBICACION' },
+        { titulo: 'Análisis de Riesgo', category: 'ANALISIS_RIESGO' },
+        {
+            titulo: 'Permisos de Trabajo', category: 'PERMISOS_TRABAJO',
+            subcategorias: [
+                { titulo: 'Trabajos en caliente', subcategory: 'TRABAJOS_CALIENTE' },
+                { titulo: 'Trabajos en alturas', subcategory: 'TRABAJOS_ALTURA' },
+                { titulo: 'Trabajos con energías peligrosas', subcategory: 'TRABAJOS_ENERGIAS_PELIGROSAS' },
+                { titulo: 'Trabajos con químicos', subcategory: 'TRABAJOS_QUIMICOS' },
+                { titulo: 'Trabajos en espacios confinados', subcategory: 'TRABAJOS_ESPACIOS_CONFINADOS' },
+                { titulo: 'Trabajos de excavaciones', subcategory: 'TRABAJOS_EXCAVACIONES' },
+            ]
+        },
+        { titulo: 'Fotografías de Herramientas', category: 'FOTOGRAFIA_HERRAMIENTAS' },
+        { titulo: 'Fotografías de Equipo de Protección', category: 'FOTOGRAFIA_EQUIPO_PROTECCION' },
+        { titulo: 'Medidas de prevención', category: 'MEDIDAS_PREVENCION' },
+    ];
+
+    this.seccionDetalle = SECCIONES.map(seccion => {
+        if (seccion.subcategorias) {
+            const subsecciones = seccion.subcategorias.map((sub: any) => {
+                const camposSub = campos.filter(f =>
+                    f.typeform === 'ANALISIS_TRABAJO_SEGURO' &&
+                    f.category === seccion.category &&
+                    f.subcategory === sub.subcategory
+                );
+                return {
+                    titulo: sub.titulo,
+                    campos: camposSub
+                        .map((f: any) => ({ label: f.props?.label || f.key || '', value: answers?.[f.key] ?? null }))
+                        .filter((c: any) => c.value !== null && c.value !== undefined && c.value !== '')
+                };
+            }).filter((sub: any) => sub.campos.length > 0);
+            return { titulo: seccion.titulo, campos: [], subsecciones };
+        }
+        const camposSec = campos.filter(f =>
+            f.typeform === 'ANALISIS_TRABAJO_SEGURO' &&
+            f.category === seccion.category
+        );
+        return {
+            titulo: seccion.titulo,
+            campos: camposSec
+                .map((f: any) => ({ label: f.props?.label || f.key || '', value: answers?.[f.key] ?? null }))
+                .filter((c: any) => c.value !== null && c.value !== undefined && c.value !== ''),
+            subsecciones: undefined
+        };
+    }).filter(s => s.campos.length > 0 || (s.subsecciones && s.subsecciones.length > 0));
+}
+
+formatearValor(value: any): string {
+    if (value === true) return 'Sí';
+    if (value === false) return 'No';
+    if (value === null || value === undefined) return '-';
+    return String(value);
+}
+
+get answersEntries(): { key: string, value: any }[] {
+    if (!this.formularioSeleccionado?.answers) return [];
+    return Object.entries(this.formularioSeleccionado.answers).map(([key, value]) => ({ key, value }));
+}
 
 //EDITAR FORMULARIO RECHAZADO
 editarFormulario(formulario: Data) {

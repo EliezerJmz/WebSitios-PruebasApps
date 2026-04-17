@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
 
 @Component({
@@ -10,9 +10,16 @@ import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
         [formControl]="formControl"
         [formlyAttributes]="field"
         [showIcon]="true"
+        [readonlyInput]="!!props['disabled']"
         [dateFormat]="to['dateFormat'] || 'yy-mm-dd'">
       </p-calendar>
     </div>
   `,
 })
-export class FormlyCalendarType extends FieldType<FieldTypeConfig> {}
+export class FormlyCalendarType extends FieldType<FieldTypeConfig> implements OnInit {
+  ngOnInit() {
+    if (this.props['disabled']) {
+      this.formControl.disable();
+    }
+  }
+}

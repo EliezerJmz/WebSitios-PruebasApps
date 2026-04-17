@@ -37,7 +37,7 @@
                             <formly-form [form]="form" [fields]="getFilteredFieldsDatosEmpresaAntesSitio()" [model]="model"></formly-form>
                         </div>    
                 
-                        <div class="card mt-2">
+                        <div *ngIf="!modoVisualizacion" class="card mt-2">
                             <label for="sitioIdSearchInput" class="mt-2 label-form">Buscar por ID de sitio</label>
                             <input
                                 pInputText
@@ -81,7 +81,7 @@
                             </app-upload-photo>
                         </div>
 
-                         <div class="card">
+                         <div class="card" *ngIf="!modoVisualizacion">
                             <app-geolocation 
                                 [showMap]="false"
                                 (coordenadasObtenidas)="actualizarCamposGeolocation($event)">
@@ -229,7 +229,7 @@
                 
 
                 <div class="grid pt-2">
-                    <div class="col-12 xl:col-12">
+                    <div *ngIf="!modoVisualizacion" class="col-12 xl:col-12">
                     <p-accordion [activeIndex]="showValidationPanel ? 0 : null" styleClass="accordion-info">
                         <p-accordionTab headerStyleClass="p-accordion-header-info">
                             <ng-template pTemplate="header">
@@ -257,12 +257,19 @@
                         </p-accordionTab>
                     </p-accordion>
                 </div>
-                    <div class="col-6 xl:col-6">
-                        <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" [disabled]="!allRequiredCheckboxesChecked || form.invalid || !geolocationFilled" (onClick)="confirmSubmitFormATS()" />
-                    </div>
-                    <div class="col-6 xl:col-6">
-                        <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
-                    </div>
+                    <ng-container *ngIf="!modoVisualizacion">
+                        <div class="col-6 xl:col-6">
+                            <p-button type="submit" severity="primary" label="Enviar" styleClass="w-full" [disabled]="!allRequiredCheckboxesChecked || form.invalid || !geolocationFilled" (onClick)="confirmSubmitFormATS()" />
+                        </div>
+                        <div class="col-6 xl:col-6">
+                            <p-button severity="warning" label="Cancelar" styleClass="w-full" (onClick)="confirmCancelFormATS()" />
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="modoVisualizacion">
+                        <div class="col-12 xl:col-12">
+                            <p-button severity="secondary" icon="pi pi-arrow-left" label="Volver a Formularios Enviados" styleClass="w-full" (onClick)="redirectFormulariosEnviados()" />
+                        </div>
+                    </ng-container>
                 </div>
 
             </form>
