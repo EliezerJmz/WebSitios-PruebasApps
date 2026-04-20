@@ -16,7 +16,7 @@
             <div class="flex justify-content-center align-items-center gap-3 pt-3 px-3 mb-3">
                 <h4 class="m-0">{{ modoEdicion ? 'Editar Formulario ATS' : modoVisualizacion ? 'Respuestas Formulario ATS' : 'Crear Formulario ATS' }}</h4>
                 <p-button 
-                    [label]="modoEdicion ? 'Mensaje' : 'Información'"
+                    [label]="modoEdicion ? 'Mensaje' : 'Info.'"
                     [severity]="modoEdicion ? 'success' : 'info'" 
                     size="small"
                     (onClick)="modoEdicion ? showMensajeEdicionDialog = true : showInfoDialog = true"
