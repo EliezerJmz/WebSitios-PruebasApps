@@ -55,6 +55,9 @@ form = new FormGroup({});
 // Dialog de información ATS
     showInfoDialog: boolean = false;
 
+// Dialog de mensaje de edición
+    showMensajeEdicionDialog: boolean = false;
+
 // Validación de campos requeridos pendientes
     showValidationPanel: boolean = false;
     camposRequeridosPendientes: string[] = [];

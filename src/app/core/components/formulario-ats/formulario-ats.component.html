@@ -1,6 +1,10 @@
 <p-toast></p-toast>
 <p-confirmDialog />
-<p-dialog header="Información" [(visible)]="showInfoDialog" [modal]="true" [style]="{width: '83vw'}" [contentStyle]="{background: '#FFFCE0'}" styleClass="info-dialog" [baseZIndex]="10000 ">
+<p-dialog header="Mensaje" [(visible)]="showMensajeEdicionDialog" [modal]="true" [style]="{width: '83vw'}" [contentStyle]="{background: '#FFFCE0'}" styleClass="info-dialog" [baseZIndex]="10000">
+    <h5 class="h5 mt-3">Edición de Formulario ATS</h5>
+    <p class="p">Está a punto de editar un formulario ATS previamente enviado. Por favor revise y actualice los campos necesarios antes de guardar los cambios.</p>
+</p-dialog>
+<p-dialog header="Información" [(visible)]="showInfoDialog" [modal]="true" [style]="{width: '83vw'}" [contentStyle]="{background: '#FFFCE0'}" styleClass="info-dialog" [baseZIndex]="10000">
     <h5 class="h5 mt-3">
         Análisis de trabajo seguro (ATS)
     </h5>
@@ -12,10 +16,10 @@
             <div class="flex justify-content-center align-items-center gap-3 pt-3 px-3 mb-3">
                 <h4 class="m-0">{{ modoEdicion ? 'Editar Formulario ATS' : modoVisualizacion ? 'Respuestas Formulario ATS' : 'Crear Formulario ATS' }}</h4>
                 <p-button 
-                    icon="pi pi-question-circle" 
-                    severity="info" 
+                    [label]="modoEdicion ? 'Mensaje' : 'Información'"
+                    [severity]="modoEdicion ? 'success' : 'info'" 
                     size="small"
-                    (onClick)="showInfoDialog = true"
+                    (onClick)="modoEdicion ? showMensajeEdicionDialog = true : showInfoDialog = true"
                     styleClass="info-button-large-icon"
                     />
             </div>
