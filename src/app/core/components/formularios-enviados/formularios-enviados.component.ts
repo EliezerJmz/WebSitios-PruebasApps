@@ -9,31 +9,8 @@ import { OverView } from '../../api/dashboard/overView.model';
 })
 export class FormulariosEnviadosComponent implements OnInit {
 
-    //pruebas checkbox
-    pizza: string[] = [];
+constructor(private overviewService: OverviewService) {}
 
-    // Datos del Dashboard
-    overviewData: OverView = {
-        totalSlots: 0,
-        availableSlots: 0,
-        unavailableSlots: 0,
-        occupiedSlots: 0
-    };
-
-    constructor(private overviewService: OverviewService) {}
-
-    ngOnInit() {
-        this.loadOverviewData();
-    }
-
-    loadOverviewData() {
-        this.overviewService.getStatusOverviewData().subscribe(
-            response => {
-                this.overviewData = response.data;
-            },
-            error => {
-                console.error('Error al obtener datos del dashboard:', error);
-            }
-        );
-    }
+ngOnInit() {}
+    
 }
