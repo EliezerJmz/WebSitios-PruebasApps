@@ -29,7 +29,7 @@
     <ng-template pTemplate="body" let-formulario>
         <tr>
             <td>{{formulario.formNombre}}</td>
-            <td>{{formulario.creadoEn}}</td>
+            <td>{{formulario.creadoEn | date:'dd/MM/yyyy HH:mm'}}</td>
             <td>
                 <p-tag
                     [value]="formulario.estado"
