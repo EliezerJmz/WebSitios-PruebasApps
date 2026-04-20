@@ -52,6 +52,9 @@
                                 [ngModelOptions]="{ standalone: true }"
                                 placeholder="Ingrese ID de sitio"
                                 (keyup.enter)="buscarSitioPorId()"
+                                (keypress)="$event.charCode >= 48 && $event.charCode <= 57"
+                                maxlength="6"
+                                pattern="\d{1,6}"
                                 class="w-full md:w-20rem" />
 
                             <div class="flex flex-column align-items-center mt-4 mb-3">
