@@ -118,6 +118,8 @@ obtenerFormulariosPublicados() {
       next: (ats) => {
        //this.fields = ats.data.campos as FormlyFieldConfig[];
        this.fields.push(...ats.data.campos);
+        this.aplicarValidacionTextarea(this.fields);
+        this.aplicarValidacionInput(this.fields);
         this.isLoading = false;
         console.warn('FORM ATS RECONSTRUIDO PARA FORMLY:', ats.data.campos);
         console.warn('FORM ATS RECONSTRUIDO JSON:', JSON.stringify(ats.data.campos));
@@ -140,6 +142,48 @@ obtenerFormulariosPublicados() {
       error: (error) => {
         console.error('Error al cargar formulario:', error);
         this.isLoading = false;
+      }
+    });
+  }
+
+  private aplicarValidacionTextarea(fields: FormlyFieldConfig[]): void {
+    fields.forEach(field => {
+      if (field.type === 'textarea') {
+        field.props = {
+          ...field.props,
+          //minLength: 1,
+          maxLength: 250,
+        };
+        field.validation = {
+          ...field.validation,
+          messages: {
+            //minlength: 'Debe ingresar al menos 1 carácter.',
+            maxlength: 'No puede superar los 250 caracteres.',
+          },
+        };
+      }
+      if (field.fieldGroup?.length) {
+        this.aplicarValidacionTextarea(field.fieldGroup);
+      }
+    });
+  }
+
+  private aplicarValidacionInput(fields: FormlyFieldConfig[]): void {
+    fields.forEach(field => {
+      if (field.type === 'input') {
+        field.props = {
+          ...field.props,
+          maxLength: 75,
+        };
+        field.validation = {
+          ...field.validation,
+          messages: {
+            maxlength: 'No puede superar los 75 caracteres.',
+          },
+        };
+      }
+      if (field.fieldGroup?.length) {
+        this.aplicarValidacionInput(field.fieldGroup);
       }
     });
   }
