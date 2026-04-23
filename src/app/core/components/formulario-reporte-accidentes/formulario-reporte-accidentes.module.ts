@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormularioReporteAccidentesRoutingModule } from './formulario-reporte-accidentes-routing.module';
 import { FormularioReporteAccidentesComponent } from './formulario-reporte-accidentes.component';
 
-import { FormsModule } from '@angular/forms';
+import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -27,51 +27,95 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ImageModule } from 'primeng/image';
-
 import { SpinnerModule } from 'primeng/spinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CardModule } from 'primeng/card';
-
 import { A11yModule } from "@angular/cdk/a11y";
 import { CalendarModule } from 'primeng/calendar';
 
-
+// Formly
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyPrimeNGModule } from '@ngx-formly/primeng';
+import { FormlySelectModule } from '@ngx-formly/core/select';
+import { FormlyFieldMultiCheckbox } from '../formly-field-multicheckbox/formly-field-multicheckbox.component';
+import { FormlyFieldFile } from '../formly-file-type/formly-file-type/formly-file-type.component';
+import { FormlyCalendarType } from '../formly-field-calendar/formly-field-calendar.component';
+import { FormlyFieldParagraph } from '../formly-field-paragraph/formly-field-paragraph.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormularioReporteAccidentesRoutingModule,
-        TableModule,
-        FileUploadModule,
-        FormsModule,
-        ButtonModule,
-        RippleModule,
-        ToastModule,
-        ToolbarModule,
-        RatingModule,
-        ConfirmDialogModule,
-        InputTextModule,
-        InputTextareaModule,
-        DropdownModule,
-        RadioButtonModule,
-        InputNumberModule,
-        DialogModule,
-        ButtonModule, SplitButtonModule,
-        ToggleButtonModule,
-        MenuModule,
-        TagModule,
-        AccordionModule,
-        CheckboxModule,
-        ImageModule,
-        ToastModule,
-        ButtonModule,
-        SpinnerModule,
-        CardModule,
-        CalendarModule,
-        //my components
-        A11yModule
+    TableModule,
+    FileUploadModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    RippleModule,
+    ToastModule,
+    ToolbarModule,
+    RatingModule,
+    ConfirmDialogModule,
+    InputTextModule,
+    InputTextareaModule,
+    DropdownModule,
+    RadioButtonModule,
+    InputNumberModule,
+    DialogModule,
+    ButtonModule, SplitButtonModule,
+    ToggleButtonModule,
+    MenuModule,
+    TagModule,
+    AccordionModule,
+    CheckboxModule,
+    ImageModule,
+    ToastModule,
+    ButtonModule,
+    SpinnerModule,
+    ProgressSpinnerModule,
+    CardModule,
+    CalendarModule,
+    A11yModule,
+    // Formly
+    FormlyPrimeNGModule,
+    FormlySelectModule,
+    FormlyFieldFile,
+    FormlyFieldParagraph,
+    FormlyFieldMultiCheckbox,
+    FormlyCalendarType,
+    FormlyModule.forChild({
+      types: [
+        { name: 'file', component: FormlyFieldFile },
+        { name: 'file_upload', component: FormlyFieldFile },
+        {
+          name: 'checkbox',
+          defaultOptions: {
+            hooks: {
+              onInit: (field: any) => {
+                if (field.props?.required) {
+                  const checkboxRequiredValidator = (control: AbstractControl) =>
+                    control.value === true ? null : { required: true };
+                  field.formControl?.addValidators(checkboxRequiredValidator);
+                  field.formControl?.updateValueAndValidity({ emitEvent: false });
+                }
+                field.formControl?.valueChanges.subscribe(() => {
+                  field.formControl?.markAsTouched();
+                });
+              },
+            },
+          },
+        },
+        { name: 'multicheckbox', component: FormlyFieldMultiCheckbox },
+        { name: 'MULTICHECKBOX', component: FormlyFieldMultiCheckbox },
+        { name: 'calendar', component: FormlyCalendarType },
+        { name: 'paragraph', component: FormlyFieldParagraph },
+        { name: 'PARAGRAPH', component: FormlyFieldParagraph },
+      ],
+    }),
   ],
   declarations: [
     FormularioReporteAccidentesComponent,
   ]
 })
 export class FormularioReporteAccidentesModule { }
+
