@@ -1,8 +1,14 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FieldType, FieldTypeConfig } from '@ngx-formly/core';
+import { FieldType, FieldTypeConfig, FormlyModule } from '@ngx-formly/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormlySelectModule } from '@ngx-formly/core/select';
 
 @Component({
   selector: 'formly-field-multicheckbox',
+  standalone: true,
+  imports: [CommonModule, FormsModule, CheckboxModule, FormlyModule, FormlySelectModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './formly-field-multicheckbox.component.html',
   styleUrls: ['./formly-field-multicheckbox.component.scss']
