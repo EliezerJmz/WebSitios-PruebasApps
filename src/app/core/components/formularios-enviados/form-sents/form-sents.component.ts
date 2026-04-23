@@ -81,11 +81,11 @@ verFormulario(formulario: Data) {
     const typeform = this.detectarTypeform(formulario);
     if (typeform === 'REPORTE_ACCIDENTES') {
         this.router.navigate(['formulario-reporte-accidentes'], {
-            state: { modoVisualizacion: true, answers: formulario.answers }
+            state: { modoVisualizacion: true, answers: formulario.answers, formId: formulario.formId }
         });
     } else {
         this.router.navigate(['formulario-ats'], {
-            state: { modoVisualizacion: true, answers: formulario.answers }
+            state: { modoVisualizacion: true, answers: formulario.answers, formId: formulario.formId }
         });
     }
 }
@@ -174,28 +174,26 @@ editarFormulario(formulario: Data) {
     const typeform = this.detectarTypeform(formulario);
     if (typeform === 'REPORTE_ACCIDENTES') {
         this.router.navigate(['formulario-reporte-accidentes'], {
-            state: { modoEdicion: true, respuestaId: formulario.id, answers: formulario.answers }
+            state: { modoEdicion: true, respuestaId: formulario.id, answers: formulario.answers, formId: formulario.formId }
         });
     } else {
         this.router.navigate(['formulario-ats'], {
-            state: { modoEdicion: true, respuestaId: formulario.id, answers: formulario.answers }
+            state: { modoEdicion: true, respuestaId: formulario.id, answers: formulario.answers, formId: formulario.formId }
         });
     }
 }
 
 private detectarTypeform(formulario: Data): string | null {
-    if (!formulario?.answers) return null;
-    // Buscar en los campos cargados el typeform correspondiente
-    // Se detecta por el nombre del formulario si está disponible, sino se busca en las claves del answers
-    if ((formulario as any).formularioNombre?.includes('REPORTE') || (formulario as any).formularioNombre?.includes('ACCIDENTE')) {
+    const nombre = (formulario.formNombre || '').toUpperCase();
+    if (nombre.includes('REPORTE') || nombre.includes('ACCIDENTE')) {
         return 'REPORTE_ACCIDENTES';
     }
-    if ((formulario as any).formularioNombre?.includes('ATS') || (formulario as any).formularioNombre?.includes('ANALISIS')) {
+    if (nombre.includes('ATS') || nombre.includes('ANALISIS')) {
         return 'ANALISIS_TRABAJO_SEGURO';
     }
     // Fallback: detectar por typeform en metadata si existe
-    if ((formulario as any).metadata?.typeform) {
-        return (formulario as any).metadata.typeform;
+    if ((formulario.metadata as any)?.typeform) {
+        return (formulario.metadata as any).typeform;
     }
     return null;
 }

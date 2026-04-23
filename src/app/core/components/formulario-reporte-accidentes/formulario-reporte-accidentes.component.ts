@@ -81,8 +81,14 @@ export class FormularioReporteAccidentesComponent implements AfterViewInit, OnIn
             this.modoVisualizacion = true;
             this.answersEdicion = state.answers ?? null;
         }
-        this.getUserById();
-        this.obtenerFormulariosPublicados();
+        if (state?.formId) {
+            this.formularioId = state.formId;
+            this.getUserById();
+            this.cargarFormulario();
+        } else {
+            this.getUserById();
+            this.obtenerFormulariosPublicados();
+        }
     }
 
     obtenerFormulariosPublicados() {
@@ -300,8 +306,8 @@ export class FormularioReporteAccidentesComponent implements AfterViewInit, OnIn
     confirmSubmitForm() {
         this.confirmationService.confirm({
             target: event.target as EventTarget,
-            message: '¿Desea enviar el Formulario Reporte de Accidentes?',
-            header: 'Confirmar Envío',
+            message: this.modoEdicion ? '¿Desea guardar los cambios del Formulario Reporte de Accidentes?' : '¿Desea Enviar un Formulario Reporte de Accidentes?',
+            header: this.modoEdicion ? 'Confirmar Edición' : 'Confirmar Envío',
             icon: 'pi pi-exclamation-triangle',
             acceptIcon: 'none',
             rejectIcon: 'none',
@@ -309,11 +315,16 @@ export class FormularioReporteAccidentesComponent implements AfterViewInit, OnIn
             rejectLabel: 'No',
             rejectButtonStyleClass: 'p-button-text',
             accept: () => {
-                this.modoEdicion ? this.onEditAnswers() : this.onSubmitAnswers();
-                this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: 'Formulario enviado', life: 1000 });
+                this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: this.modoEdicion ? 'Se han guardado los cambios' : 'Se ha enviado un Formulario Reporte de Accidentes', life: 1000 });
+                setTimeout(() => { this.redirectFormulariosEnviados(); }, 1000);
+                if (this.modoEdicion) {
+                    this.onEditAnswers();
+                } else {
+                    this.onSubmitAnswers();
+                }
             },
             reject: () => {
-                this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Envío cancelado', life: 2000 });
+                this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Envío Cancelado', life: 2000 });
             }
         });
     }
