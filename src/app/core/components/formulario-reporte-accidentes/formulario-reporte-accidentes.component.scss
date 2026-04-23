@@ -59,6 +59,45 @@
     font-size: 1.2rem;
   }
 }
+// Accordion validar respuestas - tema info
+:host ::ng-deep .accordion-info .p-accordion-header .p-accordion-header-link {
+  background: #00a8be !important;
+  border-color: #00a8be !important;
+  color: #fff !important;
+}
+
+:host ::ng-deep .accordion-info .p-accordion-header .p-accordion-header-link .p-accordion-header-text,
+:host ::ng-deep .accordion-info .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon {
+  color: #fff !important;
+}
+
+:host ::ng-deep .accordion-info .p-accordion-header:not(.p-disabled):hover .p-accordion-header-link {
+  background: #00a8be !important;
+  border-color: #00a8be !important;
+}
+
+// Validación de respuestas
+.validation-pending-count {
+  color: #fafac8;
+}
+
+.validation-ok {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.validation-warning {
+  background: #fefce8;
+}
+
+.validation-warning-title {
+  color: #92400e;
+}
+
+.validation-warning-item {
+  color: #78350f;
+}
+
 .label {
   display: block;
   font-weight: 500;
@@ -72,6 +111,13 @@
   text-align: center;
   margin-bottom: 0.5rem;
   color: #FF8300;
+}
+.label-form {
+  display: block;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #4b5563;
 }
 
 .p{
@@ -126,6 +172,11 @@
   font-size: 1.3rem !important;
 }
 
+:host ::ng-deep .info-button-large-icon.p-button {
+  font-size: 1rem !important;
+  padding: 0.6rem 1rem !important;
+}
+
 // Estilos para botones en pantallas muy pequeñas
 @media (max-width: 325px) {
   :host ::ng-deep .p-button .p-button-label {
@@ -137,46 +188,7 @@
   }
 }
 
-// Tamaño grande para los checkboxes de PrimeNG
-::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box {
-  width: 30px !important;
-  height: 30px !important;
-  min-width: 30px !important;
-  min-height: 30px !important;
-}
 
-::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-checkbox-icon {
-  font-size: 30px !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-icon {
-  width: 20px !important;
-  height: 22px !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg + .p-checkbox-label {
-  font-size: 1.2rem !important;
-  margin-left: 1.3rem !important;
-  line-height: 27px !important;
-}// Color warning (naranja) para el checkbox
-::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box.p-highlight {
-  border-color: #FF8300 !important;
-  background: #FF8300 !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box:hover {
-  border-color: #FF8300 !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
-  border-color: #b35c00 !important;
-  background: #b35c00 !important;
-}
-
-::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
-  border-color: #FF8300 !important;
-  box-shadow: 0 0 0 0.2rem rgba(255, 131, 0, 0.25) !important;
-}
 
 // Estilos para el dialog de información
 :host ::ng-deep .info-dialog .p-dialog-header {
@@ -217,4 +229,93 @@
     .scroll-box {
         height: 400px;
     }
+}
+
+
+// Estilos para el formulario Formly
+::ng-deep formly-field {
+  display: block;
+  margin-bottom: 1rem;
+}
+::ng-deep .p-field {
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .p-field label {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+// Estilos de checkbox equivalentes a formly-field-multicheckbox
+:host ::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box {
+  width: 25px !important;
+  height: 25px !important;
+  min-width: 25px !important;
+  min-height: 25px !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-checkbox-icon {
+  font-size: 20px !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box .p-icon {
+  width: 20px !important;
+  height: 18px !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg + .p-checkbox-label {
+  font-size: 1.2rem !important;
+  margin-left: 1.3rem !important;
+  line-height: 27px !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg .p-checkbox-box.p-highlight {
+  border-color: #FF8300 !important;
+  background: #FF8300 !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: #FF8300 !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+  border-color: #b35c00 !important;
+  background: #b35c00 !important;
+}
+
+:host ::ng-deep .p-checkbox.checkbox-lg:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  border-color: #FF8300 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 131, 0, 0.25) !important;
+}
+
+// Color amarillo para checkboxes de los campos dinámicos en Permisos de Trabajo/Trabajos en caliente
+:host ::ng-deep .amarillo-checbox .p-checkbox .p-checkbox-box.p-highlight {
+  border-color: #FF8300 !important;
+  background: #FF8300 !important;
+}
+
+:host ::ng-deep .amarillo-checbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: #FF8300 !important;
+}
+
+:host ::ng-deep .amarillo-checbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+  border-color: #b35c00 !important;
+  background: #b35c00 !important;
+}
+
+:host ::ng-deep .amarillo-checbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  border-color: #FF8300 !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 131, 0, 0.25) !important;
+}
+
+
+// Ancho completo para los campos de entrada en el formulario Formly
+::ng-deep .p-field .p-inputtext,
+::ng-deep .p-field .p-inputtextarea,
+::ng-deep .p-field .p-dropdown,
+::ng-deep .p-field .p-calendar,
+::ng-deep .p-field input {
+  width: 100%;
 }
