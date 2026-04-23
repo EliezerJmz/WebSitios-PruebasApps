@@ -321,8 +321,8 @@ export class FormularioReporteAccidentesComponent implements AfterViewInit, OnIn
     confirmCancelForm() {
         this.confirmationService.confirm({
             target: event.target as EventTarget,
-            message: '¿Desea borrar el formulario?',
-            header: 'Confirmar Borrado',
+            message: '¿Desea Cancelar el envío del Formulario Reporte de Accidentes?',
+            header: 'Confirmar Cancelación',
             icon: 'pi pi-exclamation-triangle',
             acceptIcon: 'none',
             rejectIcon: 'none',
@@ -330,12 +330,11 @@ export class FormularioReporteAccidentesComponent implements AfterViewInit, OnIn
             rejectLabel: 'No',
             rejectButtonStyleClass: 'p-button-text',
             accept: () => {
-                this.form.reset();
-                this.model = {};
-                this.messageService.add({ severity: 'success', summary: 'Confirmado', detail: 'Formulario borrado', life: 1000 });
+                this.messageService.add({ severity: 'success', summary: 'Cancelación', detail: 'Confirmada', life: 1000 });
+                setTimeout(() => { this.redirectFormulariosEnviados(); }, 1000);
             },
             reject: () => {
-                this.messageService.add({ severity: 'error', summary: 'Cancelado', detail: 'Borrado cancelado', life: 2000 });
+                this.messageService.add({ severity: 'error', summary: 'Cancelación', detail: 'No confirmada', life: 2000 });
             }
         });
     }
