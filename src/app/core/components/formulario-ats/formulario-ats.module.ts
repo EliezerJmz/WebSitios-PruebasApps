@@ -84,6 +84,8 @@ import { FormlyFieldParagraph } from '../formly-field-paragraph/formly-field-par
     FormlySelectModule,
     FormlyFieldFile,
     FormlyFieldParagraph,
+    FormlyFieldMultiCheckbox,
+    FormlyCalendarType,
 
     
      FormlyModule.forRoot({
@@ -118,6 +120,6 @@ import { FormlyFieldParagraph } from '../formly-field-paragraph/formly-field-par
 
     
 ],
-    declarations: [FormularioAtsComponent, GeolocationComponent, FormlyFieldMultiCheckbox, FormlyCalendarType]
+    declarations: [FormularioAtsComponent, GeolocationComponent]
 })
 export class FormularioAtsModule { }
