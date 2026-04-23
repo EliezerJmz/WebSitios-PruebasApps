@@ -78,16 +78,24 @@ ngOnInit() {
 
 //VER DETALLE DE FORMULARIO
 verFormulario(formulario: Data) {
-    this.router.navigate(['formulario-ats'], {
-        state: {
-            modoVisualizacion: true,
-            answers: formulario.answers
-        }
-    });
+    const typeform = this.detectarTypeform(formulario);
+    if (typeform === 'REPORTE_ACCIDENTES') {
+        this.router.navigate(['formulario-reporte-accidentes'], {
+            state: { modoVisualizacion: true, answers: formulario.answers }
+        });
+    } else {
+        this.router.navigate(['formulario-ats'], {
+            state: { modoVisualizacion: true, answers: formulario.answers }
+        });
+    }
 }
 
 private construirSeccionesDetalle(campos: any[], answers: any) {
-    const SECCIONES: any[] = [
+    // Detectar si es REPORTE_ACCIDENTES o ANALISIS_TRABAJO_SEGURO
+    const tieneReporte = campos.some(f => f.typeform === 'REPORTE_ACCIDENTES');
+    const typeform = tieneReporte ? 'REPORTE_ACCIDENTES' : 'ANALISIS_TRABAJO_SEGURO';
+
+    const SECCIONES_ATS: any[] = [
         { titulo: 'Datos de la Empresa', category: 'DATOS_EMPRESA' },
         { titulo: 'Fotografía del Rostro con Ubicación', category: 'FOTOGRAFIA_ROSTRO_UBICACION' },
         { titulo: 'Análisis de Riesgo', category: 'ANALISIS_RIESGO' },
@@ -107,11 +115,22 @@ private construirSeccionesDetalle(campos: any[], answers: any) {
         { titulo: 'Medidas de prevención', category: 'MEDIDAS_PREVENCION' },
     ];
 
+    const SECCIONES_REPORTE: any[] = [
+        { titulo: 'Datos del Colaborador', category: 'DATOS_COLABORADOR_IVR' },
+        { titulo: 'Lugar del Accidente', category: 'LUGAR_ACCIDENTE' },
+        { titulo: 'Condiciones Ambientales en lugar del Accidente', category: 'CONDICIONES_AMBIENTALES' },
+        { titulo: 'Datos Ocurrencia del Accidente', category: 'DATOS_OCURRENCIA' },
+        { titulo: 'Análisis Preliminar del Accidente', category: 'ANALISIS_PRELIMINAR' },
+        { titulo: 'Descripción del Accidente', category: 'DESCRIPCION_ACCIDENTE' },
+    ];
+
+    const SECCIONES = tieneReporte ? SECCIONES_REPORTE : SECCIONES_ATS;
+
     this.seccionDetalle = SECCIONES.map(seccion => {
         if (seccion.subcategorias) {
             const subsecciones = seccion.subcategorias.map((sub: any) => {
                 const camposSub = campos.filter(f =>
-                    f.typeform === 'ANALISIS_TRABAJO_SEGURO' &&
+                    f.typeform === typeform &&
                     f.category === seccion.category &&
                     f.subcategory === sub.subcategory
                 );
@@ -125,7 +144,7 @@ private construirSeccionesDetalle(campos: any[], answers: any) {
             return { titulo: seccion.titulo, campos: [], subsecciones };
         }
         const camposSec = campos.filter(f =>
-            f.typeform === 'ANALISIS_TRABAJO_SEGURO' &&
+            f.typeform === typeform &&
             f.category === seccion.category
         );
         return {
@@ -152,13 +171,33 @@ get answersEntries(): { key: string, value: any }[] {
 
 //EDITAR FORMULARIO RECHAZADO
 editarFormulario(formulario: Data) {
-    this.router.navigate(['formulario-ats'], {
-        state: {
-            modoEdicion: true,
-            respuestaId: formulario.id,
-            answers: formulario.answers
-        }
-    });
+    const typeform = this.detectarTypeform(formulario);
+    if (typeform === 'REPORTE_ACCIDENTES') {
+        this.router.navigate(['formulario-reporte-accidentes'], {
+            state: { modoEdicion: true, respuestaId: formulario.id, answers: formulario.answers }
+        });
+    } else {
+        this.router.navigate(['formulario-ats'], {
+            state: { modoEdicion: true, respuestaId: formulario.id, answers: formulario.answers }
+        });
+    }
+}
+
+private detectarTypeform(formulario: Data): string | null {
+    if (!formulario?.answers) return null;
+    // Buscar en los campos cargados el typeform correspondiente
+    // Se detecta por el nombre del formulario si está disponible, sino se busca en las claves del answers
+    if ((formulario as any).formularioNombre?.includes('REPORTE') || (formulario as any).formularioNombre?.includes('ACCIDENTE')) {
+        return 'REPORTE_ACCIDENTES';
+    }
+    if ((formulario as any).formularioNombre?.includes('ATS') || (formulario as any).formularioNombre?.includes('ANALISIS')) {
+        return 'ANALISIS_TRABAJO_SEGURO';
+    }
+    // Fallback: detectar por typeform en metadata si existe
+    if ((formulario as any).metadata?.typeform) {
+        return (formulario as any).metadata.typeform;
+    }
+    return null;
 }
 
 
