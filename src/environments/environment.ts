@@ -10,7 +10,7 @@ export const environment = {
   //apiUrlBase:'https://api.devparqueosrrhh.claro.com.gt/',
   
   // URLs HTTP para desarrollo local (SOLO PARA DEBUG):
-  apiUrlBase:'http://localhost:8080/', // Para emulador solamente
+  //apiUrlBase:'http://localhost:8080/', // Para emulador solamente
   //apiUrlBase:'http://10.204.227.179:8080/', // ipv4 local GIO
 
   apiVersion:'api/v1/',
