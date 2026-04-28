@@ -18,10 +18,12 @@ jobs:
         run: npm install 
 
       - name: Build project
-        run: npm run build  
+        run: npm run build -- --configuration production --base-href /WebSitios-PruebasApps/
+
+        
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist
+          folder: dist/web_sitios_s.i
