@@ -10,7 +10,8 @@
         "routing",
         "module",
         "model",
-        "environment"
+        "environment",
+        "deploy"
     ],
 
     "chat.fontSize": 14,
