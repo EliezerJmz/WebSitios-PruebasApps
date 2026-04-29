@@ -12,7 +12,7 @@ export const environment = {
   // URLs HTTP para desarrollo local (SOLO PARA DEBUG):
   //apiUrlBase:'http://localhost:8080/', // Para emulador solamente
   //apiUrlBase:'http://10.204.227.179:8080/', // ipv4 local GIO
-  apiUrlBase:'https://eliezerjmz.github.io:8080/'
+  apiUrlBase:'https://eliezerjmz.github.io:8080/', 
 
   apiVersion:'api/v1/',
   
